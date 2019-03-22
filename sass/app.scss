@@ -1,0 +1,94 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~bootstrap-vue/dist/bootstrap-vue.css';
+
+body {
+  margin: 40px 0;
+}
+
+.scheduler {
+  &__wrapper {
+    position: relative;
+    background: #5d86c4;
+  }
+
+  &__wrapper, &__times {
+    padding: 40px;
+  }
+
+  &__times {
+    &-title {
+      font-size: 1.5em;
+    }
+
+    &-item {
+      margin-top: 40px;
+
+      a {
+        &:link, &:visited, &:hover, &:active {
+          color: #48576a;
+        }
+      }
+
+      &_disabled {
+        text-decoration: line-through;
+      }
+    }
+  }
+
+  &__calendar {
+    background: #5d86c4 !important;
+    border: none !important;
+    position: relative;
+    color: #fff;
+    font-weight: bold;
+    margin: 0 auto;
+
+    .prev:after {
+      border-right: 10px solid #fff !important;
+    }
+
+    .next:after {
+      border-left: 10px solid #fff !important;
+    }
+
+    .cell {
+      &.disabled {
+        text-decoration: line-through;
+      }
+
+      &:hover {
+        border: 1px solid transparent !important;
+      }
+
+      &.selected, &.selected:hover {
+        background: #f49a28 !important;
+      }
+
+      a {
+        &:link, &:visited, &:active {
+          text-decoration: none;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  &__wrapper {
+    &:after {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      content: '';
+      background: #5d86c4;
+      right: -10px;
+      top: 60px;
+      transform: rotate(45deg);
+    }
+  }
+
+  &__title {
+    color: #c1e2ff;
+    font-weight: normal;
+    font-size: 1.2em;
+  }
+}

@@ -1,7 +1,7 @@
-window.Vue = require('vue/dist/vue.min.js');
-window.BootstrapVue = require('bootstrap-vue/dist/bootstrap-vue');
-window.VueRouter = require('vue-router');
-window.VueX = require('vuex');
+let Vue = require('vue/dist/vue.min.js');
+let BootstrapVue = require('bootstrap-vue/dist/bootstrap-vue');
+let VueRouter = require('vue-router');
+let VueX = require('vuex');
 
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
@@ -9,15 +9,16 @@ Vue.use(VueX);
 
 import Scheduler from './components/Scheduler.vue';
 
+let store = new VueX.Store({
+    state: {
+        selectedTimes: {}
+    }
+});
+
 let app = new Vue({
    el: '#app',
 
-    data () {
+    store,
 
-    },
-
-    mounted () {
-
-    },
     components: {Scheduler}
 });
