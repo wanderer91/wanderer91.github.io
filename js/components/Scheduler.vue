@@ -102,12 +102,7 @@
                 this.$forceUpdate();
             },
             monthSelected (data) {
-                let nowDate = this.$store.getters.NOW_DATE;
-
                 const month = data instanceof Date ? data.getMonth() : this.$store.state.months.indexOf(data.month);
-                //nowDate.setMonth(month);
-
-                //this.$store.commit('SET_DATE', nowDate);
                 this.$router.push('/' + (month + 1));
             }
         }
