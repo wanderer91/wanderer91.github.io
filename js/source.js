@@ -45,7 +45,9 @@ let store = new VueX.Store({
             state.nowDateString = date.getMonth() + '-' + date.getUTCDate() + '-' + date.getFullYear();
         },
         DISABLE_CURR_DATE: state => {
-            state.disabledDates.push(state.nowDate);
+            if (state.disabledDates.indexOf(state.nowDate) < 0) {
+                state.disabledDates.push(state.nowDate);
+            }
         }
     }
 });

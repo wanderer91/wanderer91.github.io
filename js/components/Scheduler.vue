@@ -1,5 +1,5 @@
 <template>
-    <div class="container d-md-flex align-items-start scheduler">
+    <div class="container d-md-flex align-items-start justify-content-between scheduler">
         <div class="scheduler__wrapper">
             <h1 class="scheduler__title">
                 Select a Date for your Free LASIK Exam
@@ -14,7 +14,7 @@
                 Select a time on {{ $store.getters.MONTH }}{{ day ? ' ' + $store.getters.DAY + 'th' : '' }},
                 {{ $store.getters.YEAR }} that works best for you!
             </h2>
-            <div class="scheduler__times-item col-4 col-md-6 col-lg-2" v-for="(time, i) in $store.getters.DAY_TIMES"
+            <div class="scheduler__times-item col-4 col-md-6 col-lg-3" v-for="(time, i) in $store.getters.DAY_TIMES"
                  v-bind:class="{'scheduler__times-item_disabled': ($store.state.selectedTimes[$store.state.nowDateString] || []).indexOf(time) > -1}"
                 v-if="day">
                 <a href="#" @click.prevent="selectTime" :data-index="i">{{ time }}</a>
@@ -105,9 +105,9 @@
                 let nowDate = this.$store.getters.NOW_DATE;
 
                 const month = data instanceof Date ? data.getMonth() : this.$store.state.months.indexOf(data.month);
-                nowDate.setMonth(month);
+                //nowDate.setMonth(month);
 
-                this.$store.commit('SET_DATE', nowDate);
+                //this.$store.commit('SET_DATE', nowDate);
                 this.$router.push('/' + (month + 1));
             }
         }
