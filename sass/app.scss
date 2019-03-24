@@ -67,7 +67,7 @@ body {
         background: #f49a28 !important;
       }
 
-      &.disabled {
+      &.disabled, &.disabled:hover {
         text-decoration: line-through;
         background: transparent !important;
       }
