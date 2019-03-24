@@ -4,17 +4,19 @@
             <h1 class="scheduler__title">
                 Select a Date for your Free LASIK Exam
             </h1>
-            <date-picker inline="true" calendar-class="scheduler__calendar" format="d M yyyy" :value="calendarState.nowDate"
+            <date-picker inline="true" :calendar-class="calendarOptions.class" format="d M yyyy"
+                         :value="$store.getters.NOW_DATE"
                          :day-cell-content="getCellContent"
-                         :disabledDates="calendarState.disabledDates"></date-picker>
+                         :disabledDates="calendarOptions.disabledDates" @changedMonth="monthSelected"></date-picker>
         </div>
         <div class="scheduler__times d-flex flex-wrap">
             <h2 class="scheduler__times-title">
-                Select a time on {{ months[calendarState.nowDate.getMonth()] }} {{ calendarState.nowDate.getDate() }}th,
-                {{ calendarState.nowDate.getFullYear() }} that works best for you!
+                Select a time on {{ $store.getters.MONTH }}{{ day ? ' ' + $store.getters.DAY + 'th' : '' }},
+                {{ $store.getters.YEAR }} that works best for you!
             </h2>
-            <div class="scheduler__times-item col-4 col-md-6 col-lg-2" v-for="(time, i) in dayTimes"
-                 v-bind:class="{'scheduler__times-item_disabled': $store.state.selectedTimes[calendarState.nowDateString] && $store.state.selectedTimes[calendarState.nowDateString].indexOf(time) > -1}">
+            <div class="scheduler__times-item col-4 col-md-6 col-lg-2" v-for="(time, i) in $store.getters.DAY_TIMES"
+                 v-bind:class="{'scheduler__times-item_disabled': ($store.state.selectedTimes[$store.state.nowDateString] || []).indexOf(time) > -1}"
+                v-if="day">
                 <a href="#" @click.prevent="selectTime" :data-index="i">{{ time }}</a>
             </div>
         </div>
@@ -30,54 +32,83 @@
         components: {DatePicker},
 
         data() {
-            const nowDate = new Date();
-            const nowYear = nowDate.getFullYear();
-            const nowDateString = nowDate.getMonth() + '-' + nowDate.getUTCDate() + '-' + nowDate.getFullYear();
-
             return {
-                months: {0: 'January', 1: 'February', 2: 'March', 3: 'April', 4: 'May', 5: 'June', 6: 'July', 7: 'August', 8: 'September', 9: 'October', 10: 'November', 11: 'December'},
-                dayTimes: ['10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '11:45 AM', '12:00 PM', '12:15 PM', '12:30 PM', '1:30 PM', '2:00 PM', '2:30 PM', '3:00 PM'],
-                calendarState: {
-                    nowDate: nowDate,
-                    nowDateString: nowDateString,
+                calendarOptions: {
+                    class: 'scheduler__calendar',
+                    day: null,
+                    month: null,
                     disabledDates: {
                         ranges: [{
-                            from: new Date(1970, 0, 1),
-                            to: new Date(nowYear, 0, 1), // Disable all dates up to specific date
+                            from: new Date(1970, 0, 1)
                         }, {
-                            from: new Date(nowYear + 1, 0, 1),
                             to: new Date(2038, 11, 31)
-                        }]
+                        }],
+                        dates: []
                     }
                 }
             }
         },
 
-        mounted () {
+        beforeMount() {
+            const nowDate = new Date();
 
+            if (this.$route.params.day) {
+                this.day = this.$route.params.day;
+                nowDate.setDate(this.$route.params.day);
+            }
+
+            if (this.$route.params.month) {
+                this.month = this.$route.params.month;
+                nowDate.setMonth(this.$route.params.month - 1);
+            }
+
+            if (!this.day) {
+                this.calendarOptions.class += ' scheduler__calendar_only-month';
+            }
+
+            const nowYear = nowDate.getFullYear();
+
+            this.calendarOptions.disabledDates.ranges[0].to = new Date(nowYear, 0, 1);
+            this.calendarOptions.disabledDates.ranges[1].from = new Date(nowYear + 1, 0, 1);
+            this.calendarOptions.disabledDates.dates = this.$store.getters.DISABLED_DATES;
+
+            this.$store.commit('SET_DATE', nowDate);
+        },
+
+        mounted() {
+            window.$vm = this;
         },
 
         methods: {
-            getCellContent (date) {
+            getCellContent(date) {
                 if (date.isDisabled) {
                     return date.date;
                 }
                 let d = new Date();
                 d.setTime(date.timestamp);
-                return '<a href="' + d.getUTCMonth() + '/' + d.getUTCDate() + '">' + date.date + '</a>';
+
+                return '<a href="#/' + d.getDate() + '/' + (d.getMonth() + 1) + '">' + date.date + '</a>';
             },
 
-            selectTime (event) {
+            selectTime(event) {
                 const timeIndex = event.target.dataset.index;
 
-                let selectedTimes = this.$store.state.selectedTimes;
-                if (!selectedTimes[this.calendarState.nowDateString]) {
-                    selectedTimes[this.calendarState.nowDateString] = [];
+                this.$store.commit('ADD_TIME', this.$store.getters.DAY_TIMES[timeIndex]);
+
+                if ((this.$store.state.selectedTimes[this.$store.state.nowDateString] || []).length == this.$store.getters.DAY_TIMES.length) {
+                    this.$store.commit('DISABLE_CURR_DATE');
                 }
 
-                selectedTimes[this.calendarState.nowDateString].push(this.dayTimes[timeIndex]);
-
                 this.$forceUpdate();
+            },
+            monthSelected (data) {
+                let nowDate = this.$store.getters.NOW_DATE;
+
+                const month = data instanceof Date ? data.getMonth() : this.$store.state.months.indexOf(data.month);
+                nowDate.setMonth(month);
+
+                this.$store.commit('SET_DATE', nowDate);
+                this.$router.push('/' + (month + 1));
             }
         }
     }

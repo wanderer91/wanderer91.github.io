@@ -6,13 +6,13 @@
 
     <title>Scheduler</title>
 
-    <link rel="stylesheet" href="dist/app.css?1.0.0" />
+    <link rel="stylesheet" href="dist/app.css?1.0.1" />
 </head>
 <body>
 <div id="app">
-    <scheduler></scheduler>
+    <router-view :key="$route.fullPath"></router-view>
 </div>
 
-<script src="dist/app.js?1.0.0"></script>
+<script src="dist/app.js?1.0.1"></script>
 </body>
 </html>

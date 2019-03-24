@@ -31,6 +31,13 @@ body {
 
       &_disabled {
         text-decoration: line-through;
+
+        a {
+          cursor: default;
+          &:link, &:active, &:visited, &:hover {
+            text-decoration: none;
+          }
+        }
       }
     }
   }
@@ -52,10 +59,6 @@ body {
     }
 
     .cell {
-      &.disabled {
-        text-decoration: line-through;
-      }
-
       &:hover {
         border: 1px solid transparent !important;
       }
@@ -64,12 +67,26 @@ body {
         background: #f49a28 !important;
       }
 
+      &.disabled {
+        text-decoration: line-through;
+        background: transparent !important;
+      }
+
+      &.day {
+        padding: 0;
+      }
+
       a {
+        display: block;
         &:link, &:visited, &:active {
           text-decoration: none;
           color: #fff;
         }
       }
+    }
+
+    &_only-month .cell.day.selected {
+      background: transparent !important;
     }
   }
 
