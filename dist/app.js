@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
         mouseYOnBlock = event.clientY - boundingRect.top,
         r = mouseXOnBlock / target.offsetWidth * 127 + mouseYOnBlock / target.offsetHeight * 128,
         g = 255 - mouseXOnBlock / target.offsetWidth * 127 - mouseYOnBlock / target.offsetHeight * 128,
-        b = 255 - mouseXOnBlock / target.offsetWidth * 127 - mouseYOnBlock / target.offsetHeight * 128;
+        b = (r + g) / 2;
     mouseColor.style.backgroundColor = "rgba(".concat(r, ", ").concat(g, ", ").concat(b, ", 1)");
   });
 });
