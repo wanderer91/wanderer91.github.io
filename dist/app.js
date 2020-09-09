@@ -99,6 +99,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scss_app_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_app_scss__WEBPACK_IMPORTED_MODULE_0__);
 
 
+__webpack_require__(/*! ./blocks/mouse-color */ "./src/js/blocks/mouse-color.js");
+
+/***/ }),
+
+/***/ "./src/js/blocks/mouse-color.js":
+/*!**************************************!*\
+  !*** ./src/js/blocks/mouse-color.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+document.addEventListener('DOMContentLoaded', function () {
+  var mouseColor = document.querySelector('.mouse-color');
+  var boundingRect = mouseColor.getBoundingClientRect();
+  mouseColor.addEventListener('mousemove', function (event) {
+    var target = event.target,
+        mouseXOnBlock = event.clientX - boundingRect.left,
+        mouseYOnBlock = event.clientY - boundingRect.top,
+        r = mouseXOnBlock / target.offsetWidth * 127 + mouseYOnBlock / target.offsetHeight * 128,
+        g = 255 - mouseXOnBlock / target.offsetWidth * 127 - mouseYOnBlock / target.offsetHeight * 128,
+        b = 255 - mouseXOnBlock / target.offsetWidth * 127 - mouseYOnBlock / target.offsetHeight * 128;
+    mouseColor.style.backgroundColor = "rgba(".concat(r, ", ").concat(g, ", ").concat(b, ", 1)");
+  });
+});
+
 /***/ }),
 
 /***/ "./src/scss/app.scss":
