@@ -101,6 +101,8 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__(/*! ./blocks/mouse-color */ "./src/js/blocks/mouse-color.js");
 
+__webpack_require__(/*! ./blocks/preloader */ "./src/js/blocks/preloader.js");
+
 /***/ }),
 
 /***/ "./src/js/blocks/mouse-color.js":
@@ -113,16 +115,40 @@ __webpack_require__(/*! ./blocks/mouse-color */ "./src/js/blocks/mouse-color.js"
 document.addEventListener('DOMContentLoaded', function () {
   var mouseColor = document.querySelector('.mouse-color');
   var boundingRect = mouseColor.getBoundingClientRect();
+  var blockMiddleX = mouseColor.offsetWidth / 2;
+  var blockMiddleY = mouseColor.offsetHeight / 2; // параметры уравнения прямой, проходящей через середину блока параллельно оси Y
+
+  var middleA = -blockMiddleY;
+  var middleB = 0;
   mouseColor.addEventListener('mousemove', function (event) {
-    var target = event.target,
-        mouseXOnBlock = event.clientX - boundingRect.left,
+    var mouseXOnBlock = event.clientX - boundingRect.left,
         mouseYOnBlock = event.clientY - boundingRect.top,
-        r = mouseXOnBlock / target.offsetWidth * 127 + mouseYOnBlock / target.offsetHeight * 128,
-        g = 255 - mouseXOnBlock / target.offsetWidth * 127 - mouseYOnBlock / target.offsetHeight * 128,
-        b = (r + g) / 2;
+        r,
+        g,
+        b;
+    var A = mouseYOnBlock - blockMiddleY;
+    var B = blockMiddleX - mouseXOnBlock;
+    var phiRadians = Math.acos((A * middleA + B * middleB) / (Math.sqrt(Math.pow(A, 2) + Math.pow(B, 2)) * Math.sqrt(Math.pow(middleA, 2) + Math.pow(middleB, 2)))); // -180 <= phi <= 180
+
+    var phi = phiRadians * 180 / Math.PI * (mouseXOnBlock < blockMiddleX ? -1 : 1);
+    var absPhi = Math.abs(phi);
+    r = 255 * (180 - absPhi) / 180;
+    g = 255 * (absPhi > 45 ? Math.abs(absPhi - 45) / 135 : 0);
+    b = 255 * (phi < 0 ? absPhi : 0) / 180;
     mouseColor.style.backgroundColor = "rgba(".concat(r, ", ").concat(g, ", ").concat(b, ", 1)");
   });
 });
+
+/***/ }),
+
+/***/ "./src/js/blocks/preloader.js":
+/*!************************************!*\
+  !*** ./src/js/blocks/preloader.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+window.addEventListener('DOMContentLoaded', function () {});
 
 /***/ }),
 
