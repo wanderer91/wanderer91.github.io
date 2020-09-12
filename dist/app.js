@@ -98,10 +98,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scss_app_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/app.scss */ "./src/scss/app.scss");
 /* harmony import */ var _scss_app_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_app_scss__WEBPACK_IMPORTED_MODULE_0__);
 
+document.addEventListener('DOMContentLoaded', function () {
+  __webpack_require__(/*! ./blocks/mouse-color */ "./src/js/blocks/mouse-color.js");
 
-__webpack_require__(/*! ./blocks/mouse-color */ "./src/js/blocks/mouse-color.js");
+  __webpack_require__(/*! ./blocks/preloader */ "./src/js/blocks/preloader.js");
 
-__webpack_require__(/*! ./blocks/preloader */ "./src/js/blocks/preloader.js");
+  __webpack_require__(/*! ./blocks/mouse-images */ "./src/js/blocks/mouse-images.js");
+});
 
 /***/ }),
 
@@ -112,31 +115,52 @@ __webpack_require__(/*! ./blocks/preloader */ "./src/js/blocks/preloader.js");
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-document.addEventListener('DOMContentLoaded', function () {
-  var mouseColor = document.querySelector('.mouse-color');
-  var boundingRect = mouseColor.getBoundingClientRect();
-  var blockMiddleX = mouseColor.offsetWidth / 2;
-  var blockMiddleY = mouseColor.offsetHeight / 2; // параметры уравнения прямой, проходящей через середину блока параллельно оси Y
+var mouseColor = document.querySelector('.mouse-color');
+var boundingRect = mouseColor.getBoundingClientRect();
+var blockMiddleX = mouseColor.offsetWidth / 2;
+var blockMiddleY = mouseColor.offsetHeight / 2; // параметры уравнения прямой, проходящей через середину блока параллельно оси Y
 
-  var middleA = -blockMiddleY;
-  var middleB = 0;
-  mouseColor.addEventListener('mousemove', function (event) {
-    var mouseXOnBlock = event.clientX - boundingRect.left,
-        mouseYOnBlock = event.clientY - boundingRect.top,
-        r,
-        g,
-        b;
-    var A = mouseYOnBlock - blockMiddleY;
-    var B = blockMiddleX - mouseXOnBlock;
-    var phiRadians = Math.acos((A * middleA + B * middleB) / (Math.sqrt(Math.pow(A, 2) + Math.pow(B, 2)) * Math.sqrt(Math.pow(middleA, 2) + Math.pow(middleB, 2)))); // -180 <= phi <= 180
+var middleA = -blockMiddleY;
+var middleB = 0;
+mouseColor.addEventListener('mousemove', function (event) {
+  var mouseXOnBlock = event.clientX - boundingRect.left,
+      mouseYOnBlock = event.clientY - boundingRect.top,
+      r,
+      g,
+      b;
+  var A = mouseYOnBlock - blockMiddleY;
+  var B = blockMiddleX - mouseXOnBlock;
+  var phiRadians = Math.acos((A * middleA + B * middleB) / (Math.sqrt(Math.pow(A, 2) + Math.pow(B, 2)) * Math.sqrt(Math.pow(middleA, 2) + Math.pow(middleB, 2)))); // -180 <= phi <= 180
 
-    var phi = phiRadians * 180 / Math.PI * (mouseXOnBlock < blockMiddleX ? -1 : 1);
-    var absPhi = Math.abs(phi);
-    r = 255 * (180 - absPhi) / 180;
-    g = 255 * (absPhi > 45 ? Math.abs(absPhi - 45) / 135 : 0);
-    b = 255 * (phi < 0 ? absPhi : 0) / 180;
-    mouseColor.style.backgroundColor = "rgba(".concat(r, ", ").concat(g, ", ").concat(b, ", 1)");
-  });
+  var phi = phiRadians * 180 / Math.PI * (mouseXOnBlock < blockMiddleX ? -1 : 1);
+  var absPhi = Math.abs(phi);
+  r = 255 * (180 - absPhi) / 180;
+  g = 255 * (absPhi > 45 ? Math.abs(absPhi - 45) / 135 : 0);
+  b = 255 * (phi < 0 ? absPhi : 0) / 180;
+  mouseColor.style.backgroundColor = "rgba(".concat(r, ", ").concat(g, ", ").concat(b, ", 1)");
+});
+
+/***/ }),
+
+/***/ "./src/js/blocks/mouse-images.js":
+/*!***************************************!*\
+  !*** ./src/js/blocks/mouse-images.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var mouseImages = document.querySelector('.mouse-images');
+var boundingRect = mouseImages.getBoundingClientRect();
+var images = Array.from(mouseImages.children);
+var overlayWidth = mouseImages.offsetWidth / images.length;
+var visibleIndex = 0;
+images[visibleIndex].style.display = 'block';
+mouseImages.addEventListener('mousemove', function (event) {
+  var x = event.clientX - boundingRect.left;
+  var imageIndex = Math.floor(x / overlayWidth);
+  images[visibleIndex].style = null;
+  images[imageIndex].style.display = 'block';
+  visibleIndex = imageIndex;
 });
 
 /***/ }),
@@ -148,7 +172,37 @@ document.addEventListener('DOMContentLoaded', function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-window.addEventListener('DOMContentLoaded', function () {});
+var preloadedContent = document.querySelectorAll('[data-preloader]');
+
+function launchPreloader(preloaded) {
+  var progressBar = preloaded.querySelector('.preloader__progressbar');
+  var progressBarLine = progressBar.querySelector('.preloader__progressbar-line');
+  var progressBarWidth = progressBar.offsetWidth;
+  var growthTimeStep = 50;
+  var growthUpTime = 4000;
+  var stepsCount = Math.round(growthUpTime / growthTimeStep);
+  var growthWidthStep = Math.round(progressBarWidth / stepsCount);
+  var counter = 0;
+
+  function increaseProgressLine() {
+    counter++;
+    progressBarLine.style.width = "".concat(counter * growthWidthStep, "px");
+
+    if (counter < stepsCount) {
+      setTimeout(increaseProgressLine, growthTimeStep);
+    } else {
+      progressBar.classList.add('expanded');
+      preloaded.querySelector('.preloader__content').classList.add('visible');
+    }
+  }
+
+  setTimeout(increaseProgressLine, 0);
+}
+
+preloadedContent.forEach(function (preloaded) {
+  preloaded.innerHTML = "<div class=\"preloader\" style=\"height: ".concat(preloaded.offsetHeight, "px;\">") + "<div class=\"preloader__progressbar\">" + "<div class=\"preloader__progressbar-line\"></div>" + "</div>" + "<div class=\"preloader__content\">".concat(preloaded.innerHTML, "</div>") + "</div>";
+  launchPreloader(preloaded);
+});
 
 /***/ }),
 

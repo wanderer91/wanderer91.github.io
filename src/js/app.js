@@ -1,4 +1,7 @@
 import "../scss/app.scss";
 
-require('./blocks/mouse-color');
-require('./blocks/preloader');
+document.addEventListener('DOMContentLoaded', function () {
+    require('./blocks/mouse-color');
+    require('./blocks/preloader');
+    require('./blocks/mouse-images');
+});

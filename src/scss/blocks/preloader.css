@@ -47,20 +47,3 @@
   visibility: visible;
   opacity: 1;
 }
-
-.mouse-images {
-
-}
-
-.mouse-images__image {
-    display: none;
-}
-
-html, body {
-  margin: 0; }
-
-main {
-  padding: 10px; }
-
-
-/*# sourceMappingURL=app.css.map*/
