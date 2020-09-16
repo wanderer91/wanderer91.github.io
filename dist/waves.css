@@ -1,0 +1,74 @@
+@keyframes wave {
+  0% {
+    left: 0%; }
+  100% {
+    left: 200%; } }
+
+@keyframes wave2 {
+  0% {
+    left: -60%; }
+  100% {
+    left: 140%; } }
+
+@keyframes wave3 {
+  0% {
+    left: -200%; }
+  100% {
+    left: 0%; } }
+
+@keyframes wave4 {
+  0% {
+    left: -260%; }
+  100% {
+    left: -60%; } }
+
+.waves {
+  height: 200px;
+  position: relative;
+  overflow: hidden; }
+
+.waves__item {
+  position: absolute;
+  width: 200%;
+  height: 100%; }
+
+.waves__item:nth-child(1) {
+  left: 0%;
+  animation: wave;
+  animation-duration: 7s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; }
+
+.waves__item:nth-child(2) {
+  left: -60%;
+  animation: wave2;
+  animation-duration: 7s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; }
+
+.waves__item:nth-child(3) {
+  left: -200%;
+  animation: wave3;
+  animation-duration: 7s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; }
+
+.waves__item:nth-child(4) {
+  left: -150%;
+  animation: wave4;
+  animation-duration: 7s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; }
+
+.waves__item:nth-child(odd) {
+  z-index: 1;
+  background-color: #1e509f;
+  opacity: 0.6; }
+
+.waves__item:nth-child(even) {
+  z-index: 0;
+  background-color: #28ade1;
+  opacity: 0.8; }
+
+
+/*# sourceMappingURL=waves.css.map*/
