@@ -1,1 +1,1 @@
-.waves{position:relative;overflow:hidden}.waves__item{width:200%;position:absolute;height:200%;top:0}.waves__item_front{background-color:#1e509f;opacity:.6;z-index:1}.waves__item_back{background-color:#28ade1;opacity:.8;z-index:0}
+.waves{position:relative;overflow:hidden}.waves__item{position:absolute;height:200%;bottom:-190%}.waves__item_front{opacity:.6}.waves__item_back{opacity:.8}.waves__item:nth-child(odd){background-color:#1e509f}.waves__item:nth-child(2n){background-color:#28ade1}
