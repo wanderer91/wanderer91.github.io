@@ -1,73 +1,66 @@
 import "../../scss/blocks/waves.scss";
 
-function factorial(n) {
-    if (n > 1) {
-        return n * factorial(n - 1);
-    }
-    return 1;
-}
+function generateBorderRadiuses(waveWidth) {
 
-function combination(n, k) {
-    return factorial(n) / (factorial(k) * factorial(n - k));
-}
-
-function bezierFunc(t, points) {
-
-    let point = [0, 0];
-
-    points.forEach(function (p, i, arr) {
-
-        point[0] += combination(arr.length - 1, i) * Math.pow(1 - t, arr.length - 1 - i) * Math.pow(t, i) * p[0];
-        point[1] += combination(arr.length - 1, i) * Math.pow(1 - t, arr.length - 1 - i) * Math.pow(t, i) * p[1];
-
-    });
-
-    return point;
-
-}
-
-function generateBezierPoints(waveWidth, waveHeight) {
-    return [
-        [0, 0.9 * waveHeight],
-        [0.25 * waveWidth, 0.8 * waveHeight],
-        [0.25 * waveWidth, 0],
-        [0.5 * waveWidth, 0],
-        [0.75 * waveWidth, 0],
-        [0.75 * waveWidth, 0.8 * waveHeight],
-        [waveWidth, 0.9 * waveHeight]
+    const radiuses = [
+        `${(Math.random() * 0.4 * waveWidth + 0.6 * waveWidth) / waveWidth * 100}%`,
+        `${(Math.random() * 0.4 * waveWidth + 0.6 * waveWidth) / waveWidth * 100}%`,
+        `${(Math.random() * 0.4 * waveWidth + 0.6 * waveWidth) / waveWidth * 100}%`,
+        `${(Math.random() * 0.4 * waveWidth + 0.6 * waveWidth) / waveWidth * 100}%`,
     ];
+
+    return radiuses.join(' ');
+
 }
 
 const waveWrapper = document.querySelector('.waves');
-const waveWidth = waveWrapper.offsetWidth;
-const waveHeight = waveWrapper.offsetHeight;
+const wavePercWidth = parseInt(waveWrapper.dataset.wavePercWidth);
+const waveWrapperWidth = waveWrapper.offsetWidth;
+const waveWrapperHeight = waveWrapper.offsetHeight;
+const frontWavesCount = parseInt(waveWrapper.dataset.frontWavesCount);
+const backWavesCount = parseInt(waveWrapper.dataset.backWavesCount);
+const animationDuration = waveWrapper.dataset.animationDuration;
 
-const waves = waveWrapper.querySelectorAll('.waves__item');
+let wavesStyle = '';
 
-for (let j = 0; j < waves.length; j++) {
+[
+    {perspective: 'front', count: frontWavesCount, rotateDir: 1, minPercRight: 0},
+    {perspective: 'back', count: backWavesCount, rotateDir: -1, minPercRight: -30}
+].forEach(function (data, i) {
 
-    let clipPath = ['0% 100%'];
+    for (let j = 0; j < data.count; j++) {
 
-    let t = 0;
+        const wave = document.createElement('div');
+        wave.className = `waves__item waves__item_${data.perspective}`;
+        wave.setAttribute('id', `perspective${i + 1}-wave${j + 1}`);
+        waveWrapper.appendChild(wave);
 
-    const bezierPoints = generateBezierPoints(waveWidth, waveHeight);
+        const waveWidth = waveWrapperWidth * wavePercWidth / 100;
+        const waveHeight = 0.9 * waveWidth;
 
-    do {
+        const radiuses = generateBorderRadiuses(waveWidth);
+        const widthDiff = Math.abs(waveWrapperWidth - waveWidth);
 
-        const point = bezierFunc(t, bezierPoints);
+        const translateY = Math.random() * waveWrapperHeight / 2 + waveWrapperHeight / 2;
 
-        clipPath.push(`${point[0] / waveWidth * 100}% ${point[1] / waveHeight * 100}%`);
+        wavesStyle += `.waves__item#perspective${i + 1}-wave${j + 1} {` +
+            `width: ${waveHeight}px;` +
+            `height: ${0.9 * waveWidth}px;` +
+            `right: ${Math.random() * widthDiff / 5 + waveWrapperWidth * data.minPercRight / 100}px;` +
+            `border-radius: ${radiuses};` +
+            `transform: translate(0, ${translateY}px) rotate(0deg);` +
+            `animation-name: wave${i + 1}-${j + 1};` +
+            `animation-duration: ${animationDuration};` +
+            `animation-timing-function: linear;` +
+            `animation-iteration-count: infinite;` +
+            `}`;
 
-        t += 0.01;
+        wavesStyle += `@keyframes wave${i + 1}-${j + 1} {` +
+            `0% {transform: translate(0, ${translateY}px) rotate(0deg)}` +
+            `50% {transform: translate(0, ${translateY - Math.random() * 0.5 * waveWrapperHeight}px) rotate(${data.rotateDir * 180}deg)}` +
+            `100% {transform: translate(0, ${translateY}px) rotate(${data.rotateDir * 360}deg)}}`
+    }
 
-    } while (t <= 1.04);
+});
 
-    clipPath.push('100% 100%');
-
-    clipPath = clipPath.join(',');
-
-    waveWrapper.innerHTML += `<style>.waves__item:nth-child(${j + 1}) {` +
-        `clip-path: polygon(${clipPath});` +
-        `-webkit-clip-path: polygon(${clipPath});` +
-        '} </style>';
-}
+waveWrapper.innerHTML += `<style>${wavesStyle}</style>`;
