@@ -90,35 +90,203 @@
 /*!**************************************!*\
   !*** ./src/js/blocks/mouse-color.js ***!
   \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _scss_blocks_mouse_color_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../scss/blocks/mouse-color.scss */ "./src/scss/blocks/mouse-color.scss");
+/* harmony import */ var _scss_blocks_mouse_color_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_blocks_mouse_color_scss__WEBPACK_IMPORTED_MODULE_0__);
 
 document.addEventListener('DOMContentLoaded', function () {
-  var mouseColor = document.querySelector('.mouse-color');
-  var boundingRect = mouseColor.getBoundingClientRect();
-  var blockMiddleX = mouseColor.offsetWidth / 2;
-  var blockMiddleY = mouseColor.offsetHeight / 2; // параметры уравнения прямой, проходящей через середину блока параллельно оси Y
+  var colorBlocks = document.querySelectorAll('.mouse-color');
+  var colorBlocksData = [];
 
-  var middleA = -blockMiddleY;
-  var middleB = 0;
-  mouseColor.addEventListener('mousemove', function (event) {
-    var mouseXOnBlock = event.clientX - boundingRect.left,
-        mouseYOnBlock = event.clientY - boundingRect.top,
-        r,
-        g,
-        b;
-    var A = mouseYOnBlock - blockMiddleY;
-    var B = blockMiddleX - mouseXOnBlock;
-    var phiRadians = Math.acos((A * middleA + B * middleB) / (Math.sqrt(Math.pow(A, 2) + Math.pow(B, 2)) * Math.sqrt(Math.pow(middleA, 2) + Math.pow(middleB, 2)))); // -180 <= phi <= 180
+  function getParentbyClassName(elem, className) {
+    while (elem.parentNode) {
+      if (elem.parentNode.classList && elem.parentNode.classList.contains(className)) {
+        return elem.parentNode;
+      }
 
-    var phi = phiRadians * 180 / Math.PI * (mouseXOnBlock < blockMiddleX ? -1 : 1);
-    var absPhi = Math.abs(phi);
-    r = 255 * (180 - absPhi) / 180;
-    g = 255 * (absPhi > 45 ? Math.abs(absPhi - 45) / 135 : 0);
-    b = 255 * (phi < 0 ? absPhi : 0) / 180;
-    mouseColor.style.backgroundColor = "rgba(".concat(r, ", ").concat(g, ", ").concat(b, ", 1)");
-  });
+      elem = elem.parentNode;
+    }
+
+    return false;
+  }
+
+  function colorAllocation(colors, rotateDir) {
+    var angle = 360 / colors.length;
+
+    if (rotateDir < 0) {
+      colors = colors.reverse();
+    }
+
+    return colors.map(function (color, i) {
+      return {
+        value: color,
+        angle: angle * i
+      };
+    });
+  }
+
+  function hexToRgb(hex) {
+    var alph = {
+      0: 0,
+      1: 1,
+      2: 2,
+      3: 3,
+      4: 4,
+      5: 5,
+      6: 6,
+      7: 7,
+      8: 8,
+      9: 9,
+      a: 10,
+      b: 11,
+      c: 12,
+      d: 13,
+      e: 14,
+      f: 15
+    };
+    var rgb = [];
+
+    for (var i = 0; i < 6; i += 2) {
+      var hexNumber = hex.substring(i, i + 2);
+      var dec = 0;
+
+      for (var j = 0; j < hexNumber.length; j++) {
+        dec += parseInt(alph[hexNumber[j].toLowerCase()]) * Math.pow(16, hexNumber.length - j - 1);
+      }
+
+      rgb.push(dec);
+    }
+
+    return rgb;
+  }
+
+  function betweenLinesAngle(line1, line2) {
+    var num = line1.A * line2.A + line1.B * line2.B;
+    var delim = Math.sqrt(Math.pow(line1.A, 2) + Math.pow(line1.B, 2)) * Math.sqrt(Math.pow(line2.A, 2) + Math.pow(line2.B, 2));
+    var phiRadians = Math.acos(num / delim);
+    return phiRadians * 180 / Math.PI;
+  }
+
+  function findColorRange(angle, blockIndex) {
+    var blockColors = colorBlocksData[blockIndex].colors;
+
+    for (var i = 0; i < blockColors.length; i++) {
+      if (blockColors[i].angle > angle) {
+        continue;
+      }
+
+      var nextAngleIndex = i < blockColors.length - 1 ? i + 1 : 0;
+      var nextAngle = i < blockColors.length - 1 ? blockColors[i + 1].angle : 360;
+
+      if (blockColors[i].angle <= angle && nextAngle >= angle) {
+        return [{
+          angle: blockColors[i].angle,
+          rgb: hexToRgb(blockColors[i].value)
+        }, {
+          angle: nextAngle,
+          rgb: hexToRgb(blockColors[nextAngleIndex].value)
+        }];
+      }
+    }
+  }
+
+  function calcColor(event, block, index) {
+    var triggerBlocks = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+    var mouseXOnBlock = arguments.length > 4 ? arguments[4] : undefined;
+    var mouseYOnBlock = arguments.length > 5 ? arguments[5] : undefined;
+    var parent;
+
+    if (parent = getParentbyClassName(block, 'mouse-color')) {
+      block = parent;
+    }
+
+    event = event.type === 'touchmove' ? event.targetTouches[0] : event;
+
+    if (!mouseXOnBlock) {
+      mouseXOnBlock = event.clientX - colorBlocksData[index].rect.left;
+    }
+
+    if (!mouseYOnBlock) {
+      mouseYOnBlock = event.clientY - colorBlocksData[index].rect.top;
+    }
+
+    var blockMiddleX = block.offsetWidth / 2;
+    var blockMiddleY = block.offsetHeight / 2;
+    var angle = betweenLinesAngle({
+      A: mouseYOnBlock - blockMiddleY,
+      B: blockMiddleX - mouseXOnBlock
+    }, {
+      A: -blockMiddleY,
+      B: 0
+    });
+    angle = mouseXOnBlock < blockMiddleX ? 360 - angle : angle;
+    var colorRange = findColorRange(angle, index);
+    var ratio = Math.abs(angle - colorRange[0].angle) / Math.abs(colorRange[1].angle - colorRange[0].angle);
+    var r = colorRange[0].rgb[0] + Math.round((colorRange[1].rgb[0] - colorRange[0].rgb[0]) * ratio);
+    var g = colorRange[0].rgb[1] + Math.round((colorRange[1].rgb[1] - colorRange[0].rgb[1]) * ratio);
+    var b = colorRange[0].rgb[2] + Math.round((colorRange[1].rgb[2] - colorRange[0].rgb[2]) * ratio);
+    block.style.backgroundColor = "rgb(".concat(r, ", ").concat(g, ", ").concat(b, ")");
+
+    if (triggerBlocks) {
+      colorBlocks.forEach(function (colorBlock, i) {
+        if (i !== index) {
+          calcColor(event, colorBlock, i, false, mouseXOnBlock * colorBlock.offsetWidth / block.offsetWidth, mouseYOnBlock * colorBlock.offsetHeight / block.offsetHeight);
+        }
+      });
+    }
+  }
+
+  function attachColorBlockEvents(block, index) {
+    block.addEventListener("mousemove", function (event) {
+      calcColor(event, event.target, index);
+    });
+    block.addEventListener("touchmove", function (event) {
+      calcColor(event, event.target, index);
+    });
+  }
+
+  function initColorBlocks() {
+    colorBlocks.forEach(function (colorBlock, i) {
+      var colors = colorBlock.dataset.colors;
+
+      if (!colors) {
+        return;
+      }
+
+      colors = colorBlock.dataset.colors.trim().split(/\s*,\s*/);
+
+      if (!colors.length) {
+        return;
+      }
+
+      var rotateDir = parseInt(colorBlock.dataset.rotateDir);
+      colorBlocksData[i] = {
+        colors: colorAllocation(colors, rotateDir),
+        rect: colorBlock.getBoundingClientRect(),
+        rotateDir: rotateDir
+      };
+      colorBlock.style.backgroundColor = "#".concat(colors[Math.floor(Math.random() * colors.length)]);
+      attachColorBlockEvents(colorBlock, i);
+    });
+  }
+
+  initColorBlocks();
 });
+
+/***/ }),
+
+/***/ "./src/scss/blocks/mouse-color.scss":
+/*!******************************************!*\
+  !*** ./src/scss/blocks/mouse-color.scss ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ })
 

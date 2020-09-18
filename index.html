@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="dist/waves.css" />
     <link rel="stylesheet" href="dist/mouse-images.css" />
     <link rel="stylesheet" href="dist/preloader.css" />
+    <link rel="stylesheet" href="dist/mouse-color.css" />
 
     <style>
         html, body {
@@ -25,14 +26,23 @@
 
     <section>
         <h2>Эффект смены цвета объекта при движении мыши</h2>
-        <div>
+        <div style="height: 400px; display: flex">
+            <div class="mouse-color" style="width: 400px; height: 100%;" data-colors="3914AF,00BA3F,009898,D50061,7009A9,FFEC00"
+                data-rotate-dir="1">
+                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </span>
+            </div>
 
-            <div class="mouse-color" style="height: 400px; background-color: rgba(83, 172, 171, 1);"></div>
-
+            <div class="mouse-color" style="width: 700px; height: 100%; margin-left: 100px;" data-colors="3914AF,00BA3F,009898,D50061,7009A9,FFEC00"
+                 data-rotate-dir="-1">
+                <span>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+            </div>
         </div>
     </section>
 
-    <section>
+    <section style="display: none;">
         <h2>Прелоадер</h2>
         <div data-preloader style="width: 800px;">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -54,25 +64,25 @@
     <section>
         <h2>Картинки, меняющиеся по движению мыши</h2>
         <div class="mouse-images" style="width: 1000px; height: 500px;">
-            <img src="https://dummyimage.com/1000x500/000/0011ff" loading="lazy" class="mouse-images__image"/>
-            <img src="https://dummyimage.com/1000x500/333/aeff00" loading="lazy" class="mouse-images__image"/>
-            <img src="https://dummyimage.com/1000x500/444/2211ff" loading="lazy" class="mouse-images__image"/>
-            <img src="https://dummyimage.com/1000x500/666/4411ff" loading="lazy" class="mouse-images__image"/>
-            <img src="https://dummyimage.com/1000x500/aaa/6611ff" loading="lazy" class="mouse-images__image"/>
-            <img src="https://dummyimage.com/1000x500/ccc/7711ff" loading="lazy" class="mouse-images__image"/>
-            <img src="https://dummyimage.com/1000x500/eee/aa11ff" loading="lazy" class="mouse-images__image"/>
-            <img src="https://dummyimage.com/1000x500/aa33ff/cc11ff" loading="lazy" class="mouse-images__image"/>
-            <img src="https://dummyimage.com/1000x500/cc33ff/ff11ff" loading="lazy" class="mouse-images__image"/>
-            <img src="https://dummyimage.com/1000x500/dd33ff/0011aa" loading="lazy" class="mouse-images__image"/>
-            <img src="https://dummyimage.com/1000x500/1133ff/0011dd" loading="lazy" class="mouse-images__image"/>
-            <img src="https://dummyimage.com/1000x500/4433ff/dd11ff" loading="lazy" class="mouse-images__image"/>
-            <img src="https://dummyimage.com/1000x500/7733ff/bb11ff" loading="lazy" class="mouse-images__image"/>
-            <img src="https://dummyimage.com/1000x500/bb33ff/3311aa" loading="lazy" class="mouse-images__image"/>
-            <img src="https://dummyimage.com/1000x500/dd33ff/bb11aa" loading="lazy" class="mouse-images__image"/>
-            <img src="https://dummyimage.com/1000x500/aa55ff/3f11aa" loading="lazy" class="mouse-images__image"/>
-            <img src="https://dummyimage.com/1000x500/aa77ff/af11aa" loading="lazy" class="mouse-images__image"/>
-            <img src="https://dummyimage.com/1000x500/aa3399/cf11aa" loading="lazy" class="mouse-images__image"/>
-            <img src="https://dummyimage.com/1000x500/aaff88/7711aa" loading="lazy" class="mouse-images__image"/>
+            <img src="https://dummyimage.com/1000x500/000/0011ff" class="mouse-images__image"/>
+            <img src="https://dummyimage.com/1000x500/333/aeff00" class="mouse-images__image"/>
+            <img src="https://dummyimage.com/1000x500/444/2211ff" class="mouse-images__image"/>
+            <img src="https://dummyimage.com/1000x500/666/4411ff" class="mouse-images__image"/>
+            <img src="https://dummyimage.com/1000x500/aaa/6611ff" class="mouse-images__image"/>
+            <img src="https://dummyimage.com/1000x500/ccc/7711ff" class="mouse-images__image"/>
+            <img src="https://dummyimage.com/1000x500/eee/aa11ff" class="mouse-images__image"/>
+            <img src="https://dummyimage.com/1000x500/aa33ff/cc11ff" class="mouse-images__image"/>
+            <img src="https://dummyimage.com/1000x500/cc33ff/ff11ff" class="mouse-images__image"/>
+            <img src="https://dummyimage.com/1000x500/dd33ff/0011aa" class="mouse-images__image"/>
+            <img src="https://dummyimage.com/1000x500/1133ff/0011dd" class="mouse-images__image"/>
+            <img src="https://dummyimage.com/1000x500/4433ff/dd11ff" class="mouse-images__image"/>
+            <img src="https://dummyimage.com/1000x500/7733ff/bb11ff" class="mouse-images__image"/>
+            <img src="https://dummyimage.com/1000x500/bb33ff/3311aa" class="mouse-images__image"/>
+            <img src="https://dummyimage.com/1000x500/dd33ff/bb11aa" class="mouse-images__image"/>
+            <img src="https://dummyimage.com/1000x500/aa55ff/3f11aa" class="mouse-images__image"/>
+            <img src="https://dummyimage.com/1000x500/aa77ff/af11aa" class="mouse-images__image"/>
+            <img src="https://dummyimage.com/1000x500/aa3399/cf11aa" class="mouse-images__image"/>
+            <img src="https://dummyimage.com/1000x500/aaff88/7711aa" class="mouse-images__image"/>
         </div>
     </section>
 
