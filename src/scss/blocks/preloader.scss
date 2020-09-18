@@ -1,3 +1,4 @@
+/*
 .preloader {
   width: 100%;
   position: relative;
@@ -46,4 +47,41 @@
   height: 100%;
   visibility: visible;
   opacity: 1;
+}
+*/
+
+.preloader {
+
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 2s ease-in-out, visibility 2s ease-in-out;
+  visibility: visible;
+  z-index: 999999;
+}
+
+.preloader.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.preloader__digits, .preloader__canvas {
+  position: relative;
+}
+
+.preloader__digits {
+  color: white;
+  z-index: 1;
+  padding: 10px;
+}
+
+.preloader__canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
