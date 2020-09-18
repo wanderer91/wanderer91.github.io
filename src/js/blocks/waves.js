@@ -16,7 +16,7 @@ function generateBorderRadiuses(waveWidth) {
 let wavesStyle = '';
 let count, counter, isMobile, waveWrapperWidth;
 
-function generateWaveStyles({id, waveWidth, waveHeight, rotateDir}) {
+function generateWaveStyles({id, waveWidth, waveHeight, rotateDir, animationDuration}) {
 
     return `.waves__item#${id} {` +
         `width: ${waveHeight}px;` +
@@ -37,18 +37,21 @@ function generateWaveStyles({id, waveWidth, waveHeight, rotateDir}) {
 
 }
 
-function initWaves() {
+function initWaves(wrapper) {
+
+    const wavePercWidth = parseInt(wrapper.dataset.wavePercWidth);
+    const animationDuration = wrapper.dataset.animationDuration;
 
     count = counter = 0;
-    isMobile = window.innerWidth < 640;
+    isMobile = window.innerWidth <= 980;
 
-    waveWrapperWidth = waveWrapper.offsetWidth;
+    waveWrapperWidth = wrapper.offsetWidth;
 
-    waveWrapper.innerHTML = '';
+    wrapper.innerHTML = '';
 
     const wavesData = [
-        {perspective: 'front', count: waveWrapper.dataset.frontWavesCount},
-        {perspective: 'back', count: waveWrapper.dataset.backWavesCount}
+        {perspective: 'front', count: wrapper.dataset.frontWavesCount},
+        {perspective: 'back', count: wrapper.dataset.backWavesCount}
     ];
 
     wavesData.forEach(function (data) {
@@ -85,7 +88,7 @@ function initWaves() {
 
             wave.className = `waves__item waves__item_${data.perspective}`;
             wave.setAttribute('id', id);
-            waveWrapper.appendChild(wave);
+            wrapper.appendChild(wave);
 
             const waveWidth = waveWrapperWidth * wavePercWidth / 100;
             const waveHeight = 0.9 * waveWidth;
@@ -94,7 +97,8 @@ function initWaves() {
                 id,
                 waveWidth,
                 waveHeight,
-                rotateDir
+                rotateDir,
+                animationDuration
             });
 
             counter ++;
@@ -103,15 +107,18 @@ function initWaves() {
 
     });
 
-    waveWrapper.innerHTML += `<style>${wavesStyle}</style>`;
+    wrapper.innerHTML += `<style>${wavesStyle}</style>`;
 
 }
 
-const waveWrapper = document.querySelector('.waves');
+const waveWrapper = document.querySelectorAll('.waves');
 
-const wavePercWidth = parseInt(waveWrapper.dataset.wavePercWidth);
-const animationDuration = waveWrapper.dataset.animationDuration;
+waveWrapper.forEach(function (wrapper) {
 
-initWaves();
+    initWaves(wrapper);
 
-window.addEventListener('resize', initWaves);
+    window.addEventListener('resize', function () {
+        initWaves(wrapper)
+    });
+
+});
