@@ -1,19 +1,26 @@
-const mouseImages = document.querySelector('.mouse-images');
-const boundingRect = mouseImages.getBoundingClientRect();
-const images = Array.from(mouseImages.children);
-const overlayWidth = mouseImages.offsetWidth / images.length;
+import "../../scss/blocks/mouse-images.scss";
 
-let visibleIndex = 0;
+document.addEventListener('DOMContentLoaded', function () {
 
-images[visibleIndex].style.display = 'block';
+    const mouseImages = document.querySelector('.mouse-images');
+    const boundingRect = mouseImages.getBoundingClientRect();
+    const images = Array.from(mouseImages.children);
+    const overlayWidth = mouseImages.offsetWidth / images.length;
 
-mouseImages.addEventListener('mousemove', function (event) {
+    let visibleIndex = 0;
 
-    const x = event.clientX - boundingRect.left;
-    const imageIndex = Math.floor(x / overlayWidth);
+    images[visibleIndex].style.display = 'block';
 
-    images[visibleIndex].style = null;
-    images[imageIndex].style.display = 'block';
-    visibleIndex = imageIndex;
+    mouseImages.addEventListener('mousemove', function (event) {
+
+        const x = event.clientX - boundingRect.left;
+        const imageIndex = Math.floor(x / overlayWidth);
+
+        images[visibleIndex].style = null;
+        images[imageIndex].style.display = 'block';
+        visibleIndex = imageIndex;
+
+    });
+
 
 });

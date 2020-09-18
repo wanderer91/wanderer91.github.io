@@ -1,45 +1,52 @@
-const preloadedContent = document.querySelectorAll('[data-preloader]');
+import "../../scss/blocks/preloader.scss";
 
-function launchPreloader(preloaded) {
+document.addEventListener('DOMContentLoaded', function () {
 
-    const progressBar = preloaded.querySelector('.preloader__progressbar');
-    const progressBarLine = progressBar.querySelector('.preloader__progressbar-line');
-    const progressBarWidth = progressBar.offsetWidth;
+    const preloadedContent = document.querySelectorAll('[data-preloader]');
 
-    const growthTimeStep = 50;
-    const growthUpTime = 4000;
-    const stepsCount = Math.round(growthUpTime / growthTimeStep);
-    const growthWidthStep = Math.round(progressBarWidth / stepsCount);
+    function launchPreloader(preloaded) {
 
-    let counter = 0;
+        const progressBar = preloaded.querySelector('.preloader__progressbar');
+        const progressBarLine = progressBar.querySelector('.preloader__progressbar-line');
+        const progressBarWidth = progressBar.offsetWidth;
 
-    function increaseProgressLine() {
+        const growthTimeStep = 50;
+        const growthUpTime = 4000;
+        const stepsCount = Math.round(growthUpTime / growthTimeStep);
+        const growthWidthStep = Math.round(progressBarWidth / stepsCount);
 
-        counter ++;
+        let counter = 0;
 
-        progressBarLine.style.width = `${counter * growthWidthStep}px`;
+        function increaseProgressLine() {
 
-        if (counter < stepsCount) {
-            setTimeout(increaseProgressLine, growthTimeStep);
-        } else {
-            progressBar.classList.add('expanded');
-            preloaded.querySelector('.preloader__content').classList.add('visible');
+            counter ++;
+
+            progressBarLine.style.width = `${counter * growthWidthStep}px`;
+
+            if (counter < stepsCount) {
+                setTimeout(increaseProgressLine, growthTimeStep);
+            } else {
+                progressBar.classList.add('expanded');
+                preloaded.querySelector('.preloader__content').classList.add('visible');
+            }
         }
+
+        setTimeout(increaseProgressLine, 0);
+
     }
 
-    setTimeout(increaseProgressLine, 0);
+    preloadedContent.forEach((preloaded) => {
 
-}
+        preloaded.innerHTML = `<div class="preloader" style="height: ${preloaded.offsetHeight}px;">` +
+            `<div class="preloader__progressbar">` +
+            `<div class="preloader__progressbar-line"></div>` +
+            `</div>` +
+            `<div class="preloader__content">${preloaded.innerHTML}</div>` +
+            `</div>`;
 
-preloadedContent.forEach((preloaded) => {
+        launchPreloader(preloaded);
 
-    preloaded.innerHTML = `<div class="preloader" style="height: ${preloaded.offsetHeight}px;">` +
-        `<div class="preloader__progressbar">` +
-        `<div class="preloader__progressbar-line"></div>` +
-        `</div>` +
-        `<div class="preloader__content">${preloaded.innerHTML}</div>` +
-        `</div>`;
+    });
 
-    launchPreloader(preloaded);
 
 });

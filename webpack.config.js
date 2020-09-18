@@ -6,8 +6,10 @@ const cleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
     entry: {
-        app: './src/js/app.js',
         waves: './src/js/blocks/waves.js',
+        'mouse-color': './src/js/blocks/mouse-color.js',
+        preloader: './src/js/blocks/preloader.js',
+        'mouse-images': './src/js/blocks/mouse-images.js',
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
