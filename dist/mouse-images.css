@@ -1,1 +1,1 @@
-.mouse-images__image{display:none}
+.mouse-images{width:1000px;height:500px;object-fit:cover}@media (max-width:980px){.mouse-images{width:100%;height:auto}}.mouse-images__image{display:none;width:100%}

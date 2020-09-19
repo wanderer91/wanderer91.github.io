@@ -1,10 +1,8 @@
 import "../../scss/blocks/preloader.scss";
 
 document.addEventListener('DOMContentLoaded', function () {
-    let preloader, progress = 0, timeout, canvas, context;
+    let preloader, digits, progress = 0, timeout, canvas, context, canvasWidth, canvasHeight;
     let lightningStopped = false;
-
-    document.body.style.overflow = 'hidden';
 
     window.onload = () => {
 
@@ -16,21 +14,25 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 2000);
 
         progress = 100;
-        preloader.querySelector('.preloader__digits').innerText = `${progress}%`;
+        digits.innerText = `${progress}%`;
         preloader.classList.add('hidden');
 
     };
 
-    preloader = document.querySelector('.preloader');
+    function initPreloader() {
+        document.body.style.overflow = 'hidden';
 
-    const fontSize = preloader.dataset.fontSize;
-    const fontFamily = preloader.dataset.fontFamily;
-    const backgroundColor = preloader.dataset.backgroundColor;
-    const digits = preloader.querySelector('.preloader__digits');
+        preloader = document.querySelector(window.innerWidth > 980 ? '.preloader_desktop' : '.preloader_mobile');
+        digits = preloader.querySelector('.preloader__digits');
+        canvas = preloader.querySelector('.preloader__canvas');
 
-    preloader.style = `font-size: ${fontSize}px; font-family: ${fontFamily}; background-color: #${backgroundColor}`;
+        preloader.style = `font-size: ${preloader.dataset.fontSize}px;` +
+            `font-family: ${preloader.dataset.fontFamily};` +
+            `background-color: #${preloader.dataset.backgroundColor}`;
 
-    //digits.style.backgroundColor = `#${backgroundColor}`;
+        initCanvas();
+
+    }
 
     function launchCounter() {
         progress += 1;
@@ -42,99 +44,157 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
 
-    function generateLightning() {
-        const sides = ['left', 'top', 'right', 'bottom'];
-        const randomSide = Math.floor(Math.random() * sides.length);
 
-        for (let i = 0; i < Math.round(Math.random() * 3); i++) {
-            const startPoint = sides[randomSide] === 'left' ? [10, Math.random() * canvas.offsetHeight]
-                : (sides[randomSide] === 'top' ? [Math.random() * canvas.offsetWidth, 10]
-                    : (sides[randomSide] === 'right' ? [canvas.offsetWidth - 10, Math.random() * canvas.offsetHeight]
-                        : [Math.random() * canvas.offsetWidth, canvas.offsetHeight - 10]));
 
-            const canvasMiddlePoint = [canvas.offsetWidth / 2, canvas.offsetHeight / 2];
-            const digitsMiddlePoint = [digits.offsetWidth / 2, digits.offsetHeight / 2];
-            const endPoint = sides[randomSide] === 'left' ? [
-                    canvasMiddlePoint[0] - digitsMiddlePoint[0] - Math.random() * 30,
-                    canvasMiddlePoint[1] + digitsMiddlePoint[1] * (2 * Math.random() - 1)
-                ]
-                : (sides[randomSide] === 'top' ? [
-                        canvasMiddlePoint[0] + digitsMiddlePoint[0] * (2 * Math.random() - 1),
-                        canvasMiddlePoint[1] - digitsMiddlePoint[1] - Math.random() * 20
-                    ]
-                    : (sides[randomSide] === 'right' ? [
-                            canvasMiddlePoint[0] + digitsMiddlePoint[0] + Math.random() * 30,
-                            canvasMiddlePoint[1] + digitsMiddlePoint[1] * (2 * Math.random() - 1)
-                        ]
-                        : [
-                            canvasMiddlePoint[0] + digitsMiddlePoint[0] * (2 * Math.random() - 1),
-                            canvasMiddlePoint[1] + digitsMiddlePoint[1] + Math.random() * 20
-                        ]));
+    class Lightning {
 
-            const diffX = endPoint[0] - startPoint[0];
-            const diffY = endPoint[1] - startPoint[1];
-            const stepsCount = Math.random() * 50 + 20;
+        constructor(start, end, side) {
+
+            this.start = start;
+            this.end = end;
+            this.side = side;
+            this.points = [];
+
+            this.offsetValue = Math.random() * 30 - 50;
+
+        }
+
+        static sides() {
+            return ['left', 'top', 'right', 'bottom'];
+        }
+
+        static verticalSides() {
+            return [this.sides()[0], this.sides()[2]];
+        }
+
+        generate() {
+
+            const diffX = this.end[0] - this.start[0];
+            const diffY = this.end[1] - this.start[1];
+            const isVerticalSide = Lightning.verticalSides().indexOf(this.side) >= 0;
+            const stepsCount = Math.random() * (isVerticalSide ? canvasHeight / 25 : canvasWidth / 50) + 10;
 
             const xInc = diffX / stepsCount;
             const yInc = diffY / stepsCount;
 
-            context.lineWidth = 3;
-            context.beginPath();
-            context.strokeStyle = `rgba(255, 255, 255, ${Math.random() * 0.8 + 0.2})`;
-
-            let pointsStack = [startPoint];
+            this.points.push(this.start);
             let stepsCounter = 0;
 
             do {
 
-                const prevPoint = pointsStack[pointsStack.length - 1];
+                let nextPoint, prevPoint = this.points[this.points.length - 1];
 
-                context.moveTo(...prevPoint);
+                if (isVerticalSide) {
 
-                const nextPoint = [
-                    prevPoint[0] + xInc + (Math.random() < 0.5 ? -1 : 1) * (Math.random() * 20),
-                    prevPoint[1] + yInc + (Math.random() < 0.5 ? -1 : 1) * (Math.random() * 10)
-                ];
+                    nextPoint = [
+                        prevPoint[0] + xInc * (Math.random() * 0.3 + 0.7),
+                        prevPoint[1] + yInc + (Math.random() < 0.5 ? -1 : 1) * Math.random() * this.offsetValue
+                    ];
 
-                context.lineTo(...nextPoint);
+                } else {
+
+                    nextPoint = [
+                        prevPoint[0] + xInc + (Math.random() < 0.5 ? -1 : 1) * Math.random() * this.offsetValue,
+                        prevPoint[1] + yInc * (Math.random() * 0.3 + 0.7),
+                    ];
+
+                }
+
+                this.points.push(nextPoint);
 
                 stepsCounter++;
 
-                pointsStack.push(nextPoint);
-
             } while (stepsCounter < stepsCount);
 
-            context.moveTo(...pointsStack[pointsStack.length - 1]);
-            context.lineTo(...endPoint);
+            this.points.push(this.end);
 
-            context.stroke();
-            context.closePath();
+            return this;
+
+        }
+
+        draw(ctx) {
+
+            ctx.lineWidth = Math.ceil(Math.random() * 3) + 1;
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(255, 255, 255, ${Math.random() * 0.9 + 0.1})`;
+
+            for (let i = 0; i < this.points.length - 1; i++) {
+
+                ctx.moveTo(...this.points[i]);
+                ctx.lineTo(...this.points[i + 1]);
+
+            }
+
+            ctx.stroke();
+            ctx.closePath();
+
+        }
+
+    }
+
+    function generateLightnings() {
+        const randomSide = Math.floor(Math.random() * Lightning.sides().length);
+        const sideName = Lightning.sides()[randomSide];
+
+        for (let i = 0; i < Math.round(Math.random() * 3); i++) {
+            const startPoint = sideName === 'left' ? [10, Math.random() * canvasHeight]
+                : (sideName === 'top' ? [Math.random() * canvasWidth, 10]
+                    : (sideName === 'right' ? [canvasWidth - 10, Math.random() * canvasHeight]
+                        : [Math.random() * canvasWidth, canvasHeight - 10]));
+
+            const endPoint = sideName === 'left' ? [
+                    canvasWidth / 2 - digits.offsetWidth / 2 - Math.random() * 30,
+                    canvasHeight / 2 + digits.offsetHeight / 2 * (2 * Math.random() - 1)
+                ]
+                : (sideName === 'top' ? [
+                        canvasWidth / 2 + digits.offsetWidth / 2 * (2 * Math.random() - 1),
+                        canvasHeight / 2 - digits.offsetHeight / 2 - Math.random() * 20
+                    ]
+                    : (sideName === 'right' ? [
+                            canvasWidth / 2 + digits.offsetWidth / 2 + Math.random() * 30,
+                            canvasHeight / 2 + digits.offsetHeight / 2 * (2 * Math.random() - 1)
+                        ]
+                        : [
+                            canvasWidth / 2 + digits.offsetWidth / 2 * (2 * Math.random() - 1),
+                            canvasHeight / 2 + digits.offsetHeight / 2 + Math.random() * 20
+                        ]));
+
+            const lightning = (new Lightning(startPoint, endPoint, sideName)).generate();
+
+            lightning.draw(context);
+
         }
 
     }
 
     function initCanvas() {
-        canvas = preloader.querySelector('.preloader__canvas');
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
+        canvasWidth = canvas.offsetWidth;
+        canvasHeight = canvas.offsetHeight;
+
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
         context = canvas.getContext('2d');
         context.fillStyle = 'rgb(0, 0, 0)';
         context.lineCap = 'round';
     }
 
     function launchLightningLoop() {
-        context.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+        context.clearRect(0, 0, canvasWidth, canvasHeight);
 
-        generateLightning();
+        generateLightnings();
 
         if (!lightningStopped) {
             setTimeout(launchLightningLoop, 50 + Math.random() * 150);
         }
     }
 
+    initPreloader();
     launchCounter();
-    initCanvas();
     launchLightningLoop();
+
+    window.addEventListener('resize', function () {
+        initCanvas();
+    });
 
     /*const preloadedContent = document.querySelectorAll('[data-preloader]');
 
