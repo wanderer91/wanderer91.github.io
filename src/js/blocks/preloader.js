@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const diffX = this.end[0] - this.start[0];
             const diffY = this.end[1] - this.start[1];
             const isVerticalSide = Lightning.verticalSides().indexOf(this.side) >= 0;
-            const stepsCount = Math.random() * (isVerticalSide ? canvasHeight / 25 : canvasWidth / 50) + 10;
+            const stepsCount = Math.ceil(Math.random() * (isVerticalSide ? canvasHeight : canvasWidth) / 50) + 10;
 
             const xInc = diffX / stepsCount;
             const yInc = diffY / stepsCount;
