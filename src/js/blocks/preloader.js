@@ -4,11 +4,14 @@ document.addEventListener('DOMContentLoaded', function () {
     let preloader, progress = 0, timeout, canvas, context;
     let lightningStopped = false;
 
+    document.body.style.overflow = 'hidden';
+
     window.onload = () => {
 
         clearTimeout(timeout);
 
         setTimeout(() => {
+            document.body.style.overflow = 'auto';
             lightningStopped = true;
         }, 2000);
 
@@ -26,7 +29,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const digits = preloader.querySelector('.preloader__digits');
 
     preloader.style = `font-size: ${fontSize}px; font-family: ${fontFamily}; background-color: #${backgroundColor}`;
-    digits.style.backgroundColor = `#${backgroundColor}`;
+
+    //digits.style.backgroundColor = `#${backgroundColor}`;
 
     function launchCounter() {
         progress += 1;
@@ -41,18 +45,34 @@ document.addEventListener('DOMContentLoaded', function () {
     function generateLightning() {
         const sides = ['left', 'top', 'right', 'bottom'];
         const randomSide = Math.floor(Math.random() * sides.length);
-        const endPoint = [canvas.offsetWidth / 2, canvas.offsetHeight / 2];
 
-        for (let i = 0; i < Math.round(Math.random() * 5); i++) {
+        for (let i = 0; i < Math.round(Math.random() * 3); i++) {
             const startPoint = sides[randomSide] === 'left' ? [10, Math.random() * canvas.offsetHeight]
                 : (sides[randomSide] === 'top' ? [Math.random() * canvas.offsetWidth, 10]
                     : (sides[randomSide] === 'right' ? [canvas.offsetWidth - 10, Math.random() * canvas.offsetHeight]
-                        : [Math.random() * canvas.offsetWidth, canvas.offsetHeight - 10] ));
+                        : [Math.random() * canvas.offsetWidth, canvas.offsetHeight - 10]));
+
+            const canvasMiddlePoint = [canvas.offsetWidth / 2, canvas.offsetHeight / 2];
+            const digitsMiddlePoint = [digits.offsetWidth / 2, digits.offsetHeight / 2];
+            const endPoint = sides[randomSide] === 'left' ? [
+                    canvasMiddlePoint[0] - digitsMiddlePoint[0] - Math.random() * 30,
+                    canvasMiddlePoint[1] + digitsMiddlePoint[1] * (2 * Math.random() - 1)
+                ]
+                : (sides[randomSide] === 'top' ? [
+                        canvasMiddlePoint[0] + digitsMiddlePoint[0] * (2 * Math.random() - 1),
+                        canvasMiddlePoint[1] - digitsMiddlePoint[1] - Math.random() * 20
+                    ]
+                    : (sides[randomSide] === 'right' ? [
+                            canvasMiddlePoint[0] + digitsMiddlePoint[0] + Math.random() * 30,
+                            canvasMiddlePoint[1] + digitsMiddlePoint[1] * (2 * Math.random() - 1)
+                        ]
+                        : [
+                            canvasMiddlePoint[0] + digitsMiddlePoint[0] * (2 * Math.random() - 1),
+                            canvasMiddlePoint[1] + digitsMiddlePoint[1] + Math.random() * 20
+                        ]));
 
             const diffX = endPoint[0] - startPoint[0];
             const diffY = endPoint[1] - startPoint[1];
-            const xCoeff = diffX < 0 ? -1 : 1;
-            const yCoeff = diffY < 0 ? -1 : 1;
             const stepsCount = Math.random() * 50 + 20;
 
             const xInc = diffX / stepsCount;
@@ -73,12 +93,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const nextPoint = [
                     prevPoint[0] + xInc + (Math.random() < 0.5 ? -1 : 1) * (Math.random() * 20),
-                    prevPoint[1] + yInc + (Math.random() < 0.5 ? -1 : 1) * (Math.random() * 20)
+                    prevPoint[1] + yInc + (Math.random() < 0.5 ? -1 : 1) * (Math.random() * 10)
                 ];
 
                 context.lineTo(...nextPoint);
 
-                stepsCounter ++;
+                stepsCounter++;
 
                 pointsStack.push(nextPoint);
 
@@ -99,8 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
         canvas.height = canvas.offsetHeight;
         context = canvas.getContext('2d');
         context.fillStyle = 'rgb(0, 0, 0)';
-
-        console.log(canvas.offsetWidth, canvas.offsetHeight);
+        context.lineCap = 'round';
     }
 
     function launchLightningLoop() {
