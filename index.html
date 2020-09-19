@@ -23,9 +23,17 @@
 <body>
 
 <main>
-    <div class="preloader preloader_desktop" data-font-size="32" data-font-family="Arial" data-background-color="000000">
+    <div class="preloader preloader_desktop" data-font-size="32" data-font-family="Arial" data-background-color="000000"
+        data-digits-color="ffffff">
         <div class="preloader__digits">0%</div>
         <canvas class="preloader__canvas"></canvas>
+    </div>
+    <div class="preloader preloader_mobile" data-font-size="32" data-font-family="Arial" data-background-color="ffffff"
+        data-progress-color="000000" data-digits-color="ffffff">
+        <div class="preloader__digits">0%</div>
+        <div class="preloader__inner">
+            <div class="preloader__progressbar"></div>
+        </div>
     </div>
 
     <section>

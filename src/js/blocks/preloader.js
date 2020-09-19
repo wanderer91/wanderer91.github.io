@@ -1,7 +1,11 @@
 import "../../scss/blocks/preloader.scss";
 
 document.addEventListener('DOMContentLoaded', function () {
-    let preloader, digits, progress = 0, timeout, canvas, context, canvasWidth, canvasHeight;
+    const isMobile = window.innerWidth <= 980;
+    const preloaderSelector = `.preloader_${isMobile ? 'mobile' : 'desktop'}`;
+    const digitsSelector = '.preloader__digits';
+
+    let preloader, digits, progress = 0, progressBar, timeout, canvas, context, canvasWidth, canvasHeight;
     let lightningStopped = false;
 
     window.onload = () => {
@@ -14,37 +18,74 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 2000);
 
         progress = 100;
+
         digits.innerText = `${progress}%`;
+
+        if (progressBar) {
+            progressBar.style.width = `${progress}%`;
+        }
+
         preloader.classList.add('hidden');
 
     };
 
-    function initPreloader() {
+    function initCommonPreloader() {
+
         document.body.style.overflow = 'hidden';
 
-        preloader = document.querySelector(window.innerWidth > 980 ? '.preloader_desktop' : '.preloader_mobile');
-        digits = preloader.querySelector('.preloader__digits');
-        canvas = preloader.querySelector('.preloader__canvas');
+        preloader = document.querySelector(preloaderSelector);
+        digits = preloader.querySelector(digitsSelector);
 
         preloader.style = `font-size: ${preloader.dataset.fontSize}px;` +
             `font-family: ${preloader.dataset.fontFamily};` +
             `background-color: #${preloader.dataset.backgroundColor}`;
 
-        initCanvas();
-
+        digits.style = `color: #${preloader.dataset.digitsColor}`;
     }
 
-    function launchCounter() {
-        progress += 1;
-        digits.innerText = `${progress}%`;
+    function initDesktopPreloader() {
+        canvas = preloader.querySelector('.preloader__canvas');
 
-        if (progress < 100) {
-            timeout = setTimeout(launchCounter, 50);
+        function launchCounter() {
+            progress += 1;
+            digits.innerText = `${progress}%`;
+
+            if (progress < 100) {
+                timeout = setTimeout(launchCounter, 50);
+            }
+
         }
 
+        initCanvas();
+        launchLightningLoop();
+        launchCounter();
+
     }
 
+    function initMobilePreloader() {
 
+        progressBar = preloader.querySelector('.preloader__progressbar');
+        progressBar.style.backgroundColor = `#${preloader.dataset.progressColor}`;
+
+        function launchCounter() {
+            progress += 1;
+
+            const progressText = `${progress}%`;
+
+            digits.innerText = progressText;
+            digits.setAttribute('data-progress', progressText);
+
+            progressBar.style.width = progressText;
+
+            if (progress < 100) {
+                timeout = setTimeout(launchCounter, 50);
+            }
+
+        }
+
+        launchCounter();
+
+    }
 
     class Lightning {
 
@@ -143,20 +184,20 @@ document.addEventListener('DOMContentLoaded', function () {
                         : [Math.random() * canvasWidth, canvasHeight - 10]));
 
             const endPoint = sideName === 'left' ? [
-                    canvasWidth / 2 - digits.offsetWidth / 2 - Math.random() * 30,
+                    canvasWidth / 2 - Math.random() * 30,
                     canvasHeight / 2 + digits.offsetHeight / 2 * (2 * Math.random() - 1)
                 ]
                 : (sideName === 'top' ? [
                         canvasWidth / 2 + digits.offsetWidth / 2 * (2 * Math.random() - 1),
-                        canvasHeight / 2 - digits.offsetHeight / 2 - Math.random() * 20
+                        canvasHeight / 2 - Math.random() * 20
                     ]
                     : (sideName === 'right' ? [
-                            canvasWidth / 2 + digits.offsetWidth / 2 + Math.random() * 30,
+                            canvasWidth / 2 + Math.random() * 30,
                             canvasHeight / 2 + digits.offsetHeight / 2 * (2 * Math.random() - 1)
                         ]
                         : [
                             canvasWidth / 2 + digits.offsetWidth / 2 * (2 * Math.random() - 1),
-                            canvasHeight / 2 + digits.offsetHeight / 2 + Math.random() * 20
+                            canvasHeight / 2 + Math.random() * 20
                         ]));
 
             const lightning = (new Lightning(startPoint, endPoint, sideName)).generate();
@@ -188,59 +229,15 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    initPreloader();
-    launchCounter();
-    launchLightningLoop();
-
-    window.addEventListener('resize', function () {
-        initCanvas();
-    });
-
-    /*const preloadedContent = document.querySelectorAll('[data-preloader]');
-
-    function launchPreloader(preloaded) {
-
-        const progressBar = preloaded.querySelector('.preloader__progressbar');
-        const progressBarLine = progressBar.querySelector('.preloader__progressbar-line');
-        const progressBarWidth = progressBar.offsetWidth;
-
-        const growthTimeStep = 50;
-        const growthUpTime = 4000;
-        const stepsCount = Math.round(growthUpTime / growthTimeStep);
-        const growthWidthStep = Math.round(progressBarWidth / stepsCount);
-
-        let counter = 0;
-
-        function increaseProgressLine() {
-
-            counter ++;
-
-            progressBarLine.style.width = `${counter * growthWidthStep}px`;
-
-            if (counter < stepsCount) {
-                setTimeout(increaseProgressLine, growthTimeStep);
-            } else {
-                progressBar.classList.add('expanded');
-                preloaded.querySelector('.preloader__content').classList.add('visible');
-            }
-        }
-
-        setTimeout(increaseProgressLine, 0);
-
+    function init() {
+        initCommonPreloader();
+        isMobile ? initMobilePreloader() : initDesktopPreloader();
     }
 
-    preloadedContent.forEach((preloaded) => {
+    init();
 
-        preloaded.innerHTML = `<div class="preloader" style="height: ${preloaded.offsetHeight}px;">` +
-            `<div class="preloader__progressbar">` +
-            `<div class="preloader__progressbar-line"></div>` +
-            `</div>` +
-            `<div class="preloader__content">${preloaded.innerHTML}</div>` +
-            `</div>`;
-
-        launchPreloader(preloaded);
-
-    });*/
-
+    window.addEventListener('resize', function () {
+        init();
+    });
 
 });
