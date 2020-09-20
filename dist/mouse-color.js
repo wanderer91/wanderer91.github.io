@@ -1,1 +1,294 @@
-!function(n){var r={};function o(t){if(r[t])return r[t].exports;var e=r[t]={i:t,l:!1,exports:{}};return n[t].call(e.exports,e,e.exports,o),e.l=!0,e.exports}o.m=n,o.c=r,o.d=function(t,e,n){o.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:n})},o.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return o.d(e,"a",e),e},o.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},o.p="",o(o.s=2)}([,,function(t,e,n){"use strict";n.r(e);n(3);document.addEventListener("DOMContentLoaded",function(){var j=document.querySelectorAll(".mouse-color"),w=[];function A(t){for(var e={0:0,1:1,2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9,a:10,b:11,c:12,d:13,e:14,f:15},n=[],r=0;r<6;r+=2){for(var o=t.substring(r,r+2),a=0,u=0;u<o.length;u++)a+=parseInt(e[o[u].toLowerCase()])*Math.pow(16,o.length-u-1);n.push(a)}return n}function B(n,r,o,t,e,a){var u,c=!(3<arguments.length&&void 0!==t)||t,l=4<arguments.length?e:void 0,i=5<arguments.length?a:void 0;(u=function(t,e){for(;t.parentNode;){if(t.parentNode.classList&&t.parentNode.classList.contains(e))return t.parentNode;t=t.parentNode}return!1}(r,"mouse-color"))&&(r=u),n="touchmove"===n.type?n.targetTouches[0]:n,l=l||n.clientX-w[o].rect.left,i=i||n.clientY-w[o].rect.top;var f,s,g,d,h=r.offsetWidth/2,p=r.offsetHeight/2,b=(g=(f={A:i-p,B:h-l}).A*(s={A:-p,B:0}).A+f.B*s.B,d=Math.sqrt(Math.pow(f.A,2)+Math.pow(f.B,2))*Math.sqrt(Math.pow(s.A,2)+Math.pow(s.B,2)),180*Math.acos(g/d)/Math.PI),v=function(t,e){for(var n=w[e].colors,r=0;r<n.length;r++)if(!(n[r].angle>t)){var o=r<n.length-1?r+1:0,a=r<n.length-1?n[r+1].angle:360;if(n[r].angle<=t&&t<=a)return[{angle:n[r].angle,rgb:A(n[r].value)},{angle:a,rgb:A(n[o].value)}]}}(b=l<h?360-b:b,o),M=Math.abs(b-v[0].angle)/Math.abs(v[1].angle-v[0].angle),m=v[0].rgb[0]+Math.round((v[1].rgb[0]-v[0].rgb[0])*M),y=v[0].rgb[1]+Math.round((v[1].rgb[1]-v[0].rgb[1])*M),O=v[0].rgb[2]+Math.round((v[1].rgb[2]-v[0].rgb[2])*M);r.style.backgroundColor="rgb(".concat(m,", ").concat(y,", ").concat(O,")"),c&&j.forEach(function(t,e){e!==o&&B(n,t,e,!1,l*t.offsetWidth/r.offsetWidth,i*t.offsetHeight/r.offsetHeight)})}j.forEach(function(t,e){var n,r,o,a,u,c,l=t.dataset.colors;l&&(l=t.dataset.colors.trim().split(/\s*,\s*/)).length&&(n=parseInt(t.dataset.rotateDir),w[e]={colors:(o=n,a=360/(r=l).length,o<0&&(r=r.reverse()),r.map(function(t,e){return{value:t,angle:a*e}})),rect:t.getBoundingClientRect(),rotateDir:n},t.style.backgroundColor="#".concat(l[Math.floor(Math.random()*l.length)]),c=e,(u=t).addEventListener("mousemove",function(t){B(t,t.target,c)}),u.addEventListener("touchmove",function(t){B(t,t.target,c)}))})})},function(t,e,n){}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/js/blocks/mouse-color.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./src/js/blocks/mouse-color.js":
+/*!**************************************!*\
+  !*** ./src/js/blocks/mouse-color.js ***!
+  \**************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _scss_blocks_mouse_color_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../scss/blocks/mouse-color.scss */ "./src/scss/blocks/mouse-color.scss");
+/* harmony import */ var _scss_blocks_mouse_color_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_blocks_mouse_color_scss__WEBPACK_IMPORTED_MODULE_0__);
+
+document.addEventListener('DOMContentLoaded', function () {
+  var colorBlocks = document.querySelectorAll('.mouse-color');
+  var colorBlocksData = [];
+
+  function getParentbyClassName(elem, className) {
+    while (elem.parentNode) {
+      if (elem.parentNode.classList && elem.parentNode.classList.contains(className)) {
+        return elem.parentNode;
+      }
+
+      elem = elem.parentNode;
+    }
+
+    return false;
+  }
+
+  function colorAllocation(colors, rotateDir) {
+    var angle = 360 / colors.length;
+
+    if (rotateDir < 0) {
+      colors = colors.reverse();
+    }
+
+    return colors.map(function (color, i) {
+      return {
+        value: color,
+        angle: angle * i
+      };
+    });
+  }
+
+  function hexToRgb(hex) {
+    var alph = {
+      0: 0,
+      1: 1,
+      2: 2,
+      3: 3,
+      4: 4,
+      5: 5,
+      6: 6,
+      7: 7,
+      8: 8,
+      9: 9,
+      a: 10,
+      b: 11,
+      c: 12,
+      d: 13,
+      e: 14,
+      f: 15
+    };
+    var rgb = [];
+
+    for (var i = 0; i < 6; i += 2) {
+      var hexNumber = hex.substring(i, i + 2);
+      var dec = 0;
+
+      for (var j = 0; j < hexNumber.length; j++) {
+        dec += parseInt(alph[hexNumber[j].toLowerCase()]) * Math.pow(16, hexNumber.length - j - 1);
+      }
+
+      rgb.push(dec);
+    }
+
+    return rgb;
+  }
+
+  function betweenLinesAngle(line1, line2) {
+    var num = line1.A * line2.A + line1.B * line2.B;
+    var delim = Math.sqrt(Math.pow(line1.A, 2) + Math.pow(line1.B, 2)) * Math.sqrt(Math.pow(line2.A, 2) + Math.pow(line2.B, 2));
+    var phiRadians = Math.acos(num / delim);
+    return phiRadians * 180 / Math.PI;
+  }
+
+  function findColorRange(angle, blockIndex) {
+    var blockColors = colorBlocksData[blockIndex].colors;
+
+    for (var i = 0; i < blockColors.length; i++) {
+      if (blockColors[i].angle > angle) {
+        continue;
+      }
+
+      var nextAngleIndex = i < blockColors.length - 1 ? i + 1 : 0;
+      var nextAngle = i < blockColors.length - 1 ? blockColors[i + 1].angle : 360;
+
+      if (blockColors[i].angle <= angle && nextAngle >= angle) {
+        return [{
+          angle: blockColors[i].angle,
+          rgb: hexToRgb(blockColors[i].value)
+        }, {
+          angle: nextAngle,
+          rgb: hexToRgb(blockColors[nextAngleIndex].value)
+        }];
+      }
+    }
+  }
+
+  function calcColor(event, block, index) {
+    var triggerBlocks = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+    var mouseXOnBlock = arguments.length > 4 ? arguments[4] : undefined;
+    var mouseYOnBlock = arguments.length > 5 ? arguments[5] : undefined;
+    var parent;
+
+    if (parent = getParentbyClassName(block, 'mouse-color')) {
+      block = parent;
+    }
+
+    event = event.type === 'touchmove' ? event.targetTouches[0] : event;
+
+    if (!mouseXOnBlock) {
+      mouseXOnBlock = event.clientX - colorBlocksData[index].rect.left;
+    }
+
+    if (!mouseYOnBlock) {
+      mouseYOnBlock = event.clientY - colorBlocksData[index].rect.top;
+    }
+
+    var blockMiddleX = block.offsetWidth / 2;
+    var blockMiddleY = block.offsetHeight / 2;
+    var angle = betweenLinesAngle({
+      A: mouseYOnBlock - blockMiddleY,
+      B: blockMiddleX - mouseXOnBlock
+    }, {
+      A: -blockMiddleY,
+      B: 0
+    });
+    angle = mouseXOnBlock < blockMiddleX ? 360 - angle : angle;
+    var colorRange = findColorRange(angle, index);
+    var ratio = Math.abs(angle - colorRange[0].angle) / Math.abs(colorRange[1].angle - colorRange[0].angle);
+    var r = colorRange[0].rgb[0] + Math.round((colorRange[1].rgb[0] - colorRange[0].rgb[0]) * ratio);
+    var g = colorRange[0].rgb[1] + Math.round((colorRange[1].rgb[1] - colorRange[0].rgb[1]) * ratio);
+    var b = colorRange[0].rgb[2] + Math.round((colorRange[1].rgb[2] - colorRange[0].rgb[2]) * ratio);
+    block.style.backgroundColor = "rgb(".concat(r, ", ").concat(g, ", ").concat(b, ")");
+
+    if (triggerBlocks) {
+      colorBlocks.forEach(function (colorBlock, i) {
+        if (i !== index) {
+          calcColor(event, colorBlock, i, false, mouseXOnBlock * colorBlock.offsetWidth / block.offsetWidth, mouseYOnBlock * colorBlock.offsetHeight / block.offsetHeight);
+        }
+      });
+    }
+  }
+
+  function attachColorBlockEvents(block, index) {
+    block.addEventListener("mousemove", function (event) {
+      calcColor(event, event.target, index);
+    });
+    block.addEventListener("touchmove", function (event) {
+      calcColor(event, event.target, index);
+    });
+  }
+
+  function initColorBlocks() {
+    colorBlocks.forEach(function (colorBlock, i) {
+      var colors = colorBlock.dataset.colors;
+
+      if (!colors) {
+        return;
+      }
+
+      colors = colorBlock.dataset.colors.trim().split(/\s*,\s*/);
+
+      if (!colors.length) {
+        return;
+      }
+
+      var rotateDir = parseInt(colorBlock.dataset.rotateDir);
+      colorBlocksData[i] = {
+        colors: colorAllocation(colors, rotateDir),
+        rect: colorBlock.getBoundingClientRect(),
+        rotateDir: rotateDir
+      };
+      colorBlock.style.backgroundColor = "#".concat(colors[Math.floor(Math.random() * colors.length)]);
+      attachColorBlockEvents(colorBlock, i);
+    });
+  }
+
+  initColorBlocks();
+});
+
+/***/ }),
+
+/***/ "./src/scss/blocks/mouse-color.scss":
+/*!******************************************!*\
+  !*** ./src/scss/blocks/mouse-color.scss ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ })
+
+/******/ });
+//# sourceMappingURL=mouse-color.js.map

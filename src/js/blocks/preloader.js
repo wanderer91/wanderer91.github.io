@@ -158,6 +158,8 @@ document.addEventListener('DOMContentLoaded', function () {
             ctx.lineWidth = Math.ceil(Math.random() * 3) + 1;
             ctx.beginPath();
             ctx.strokeStyle = `rgba(255, 255, 255, ${Math.random() * 0.9 + 0.1})`;
+            ctx.shadowColor = `rgba(255, 255, 255, ${Math.random() * 0.9 + 0.1})`;
+            ctx.shadowBlur = Math.round(Math.random() * 20 + 5);
 
             for (let i = 0; i < this.points.length - 1; i++) {
 
