@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let colorBlocks = document.querySelectorAll('.mouse-color');
     let colorBlocksData = [];
+    let changeColorTimeout, angle = 0;
 
     function getParentbyClassName(elem, className) {
 
@@ -93,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
 
-    function calcColor(event, block, index, triggerBlocks = true, mouseXOnBlock, mouseYOnBlock) {
+    function calcColor(event, block, index, mouseXOnBlock, mouseYOnBlock, triggerBlocks = true) {
 
         let parent;
 
@@ -101,14 +102,18 @@ document.addEventListener('DOMContentLoaded', function () {
             block = parent;
         }
 
-        event = event.type === 'touchmove' ? event.targetTouches[0] : event;
+        if (event) {
 
-        if (!mouseXOnBlock) {
-            mouseXOnBlock = event.clientX - colorBlocksData[index].rect.left;
-        }
+            event = event.type === 'touchmove' ? event.targetTouches[0] : event;
 
-        if (!mouseYOnBlock) {
-            mouseYOnBlock = event.clientY - colorBlocksData[index].rect.top;
+            if (!mouseXOnBlock) {
+                mouseXOnBlock = event.clientX - colorBlocksData[index].rect.left;
+            }
+
+            if (!mouseYOnBlock) {
+                mouseYOnBlock = event.clientY - colorBlocksData[index].rect.top;
+            }
+
         }
 
         const blockMiddleX = block.offsetWidth / 2;
@@ -137,9 +142,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         event,
                         colorBlock,
                         i,
-                        false,
                         mouseXOnBlock * colorBlock.offsetWidth / block.offsetWidth,
-                        mouseYOnBlock * colorBlock.offsetHeight / block.offsetHeight
+                        mouseYOnBlock * colorBlock.offsetHeight / block.offsetHeight,
+                        false
                     );
                 }
             })
@@ -149,11 +154,47 @@ document.addEventListener('DOMContentLoaded', function () {
     function attachColorBlockEvents(block, index) {
 
         block.addEventListener("mousemove", (event) => {
+            stopChangeColor();
             calcColor(event, event.target, index);
         });
         block.addEventListener("touchmove", (event) => {
+            stopChangeColor();
             calcColor(event, event.target, index);
         });
+
+        block.addEventListener("mouseout", (event) => {
+            launchChangeColor(colorBlocks[0], 0);
+        });
+        block.addEventListener("touchend", (event) => {
+            launchChangeColor(colorBlocks[0], 0);
+        });
+
+    }
+
+    function launchChangeColor (block, index) {
+
+        angle += 5;
+        angle = angle >= 360 ? angle - 360 : angle;
+
+        calcColor(
+            null,
+            block,
+            index,
+            block.offsetWidth / 2 + block.offsetWidth / 3 * Math.sin(angle * Math.PI / 180),
+            block.offsetHeight / 2 - block.offsetHeight / 3 * Math.cos(angle * Math.PI / 180)
+        );
+
+        changeColorTimeout = setTimeout(() => {
+
+            launchChangeColor(block, index);
+
+        }, 50);
+
+    }
+
+    function stopChangeColor() {
+
+        clearTimeout(changeColorTimeout);
 
     }
 
@@ -192,5 +233,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     initColorBlocks();
+
+    launchChangeColor(colorBlocks[0], 0);
 
 });

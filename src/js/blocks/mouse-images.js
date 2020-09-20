@@ -16,13 +16,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
         index = index > images.length - 1 ? images.length - 1 : (index < 0 ? 0 : index);
 
-        images[visibleIndex].style = null;
+        images[visibleIndex].style.display = 'none';
         images[indexes[index]].style.display = 'block';
         visibleIndex = indexes[index];
     }
 
     function init() {
         overlayWidth = mouseImages.offsetWidth / images.length;
+
+        images.forEach((image) => {
+           image.style.display = 'none';
+        });
+
         visibleIndex = indexes[0];
         images[visibleIndex].style.display = 'block';
     }
