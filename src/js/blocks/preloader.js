@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const digitsSelector = '.preloader__digits';
 
     let preloader, digits, progress = 0, progressBar, timeout, canvas, context, canvasWidth, canvasHeight;
-    let lightningStopped = false;
+    let lightningStopped = false, counterLaunched = false, initialized = false;
 
     window.onload = () => {
 
@@ -58,7 +58,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         initCanvas();
         launchLightningLoop();
-        launchCounter();
+
+        if (!counterLaunched) {
+            launchCounter();
+            counterLaunched = true;
+        }
 
     }
 
@@ -83,7 +87,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         }
 
-        launchCounter();
+        if (!counterLaunched) {
+            launchCounter();
+            counterLaunched = true;
+        }
 
     }
 
@@ -232,7 +239,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function init() {
-        initCommonPreloader();
+
+        if (!initialized) {
+            initCommonPreloader();
+            initialized = true;
+        }
+
         isMobile ? initMobilePreloader() : initDesktopPreloader();
     }
 
