@@ -24,19 +24,19 @@
 
 <main>
     <div class="preloader preloader_desktop" data-font-size="32" data-font-family="Arial" data-background-color="000000"
-        data-digits-color="ffffff">
+        data-digits-color="ffffff"  style="display: none;">
         <div class="preloader__digits">0%</div>
         <canvas class="preloader__canvas"></canvas>
     </div>
     <div class="preloader preloader_mobile" data-font-size="32" data-font-family="Arial" data-background-color="ffffff"
-        data-progress-color="000000" data-digits-color="ffffff">
+        data-progress-color="000000" data-digits-color="ffffff" style="display: none;">
         <div class="preloader__digits">0%</div>
         <div class="preloader__inner">
             <div class="preloader__progressbar"></div>
         </div>
     </div>
 
-    <section>
+    <section style="display: none;">
         <h2>Эффект смены цвета объекта при движении мыши</h2>
         <div style="height: 400px; display: flex">
             <div class="mouse-color" style="width: 400px; height: 100%;" data-colors="3914AF,00BA3F,009898,D50061,7009A9,FFEC00"
@@ -54,7 +54,7 @@
         </div>
     </section>
 
-    <section>
+    <section style="display: none;">
         <h2>Картинки, меняющиеся по движению мыши</h2>
         <div class="mouse-images" style="height: 500px;">
             <img src="https://dummyimage.com/1000x500/000/0011ff" class="mouse-images__image"/>

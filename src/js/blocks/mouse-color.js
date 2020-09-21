@@ -2,7 +2,7 @@ import '../../scss/blocks/mouse-color.scss';
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    let colorBlocks = document.querySelectorAll('.mouse-color');
+    let colorBlocks = document.querySelectorAll('.mouse-color') || [];
     let colorBlocksData = [];
     let changeColorTimeout, angle = 0;
 
