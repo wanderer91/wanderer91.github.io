@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const text = new Blotter.Text(textEl.innerHTML, {
                 family: "sans-serif",
                 weight: 700,
-                size: 100,
+                size: elem.dataset.fontSize,
                 paddingLeft: 100,
                 paddingRight: 100,
                 paddingTop: 100,
