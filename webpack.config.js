@@ -10,6 +10,7 @@ module.exports = {
         'mouse-color': './src/js/blocks/mouse-color.js',
         preloader: './src/js/blocks/preloader.js',
         'mouse-images': './src/js/blocks/mouse-images.js',
+        'liquid-text': './src/js/blocks/liquid-text.js',
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
