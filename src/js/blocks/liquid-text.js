@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 paddingRight: 100,
                 paddingTop: 100,
                 paddingBottom: 100,
-                fill: "white"
+                fill: elem.dataset.fillColor
             });
             elem.removeChild(textEl);
 
