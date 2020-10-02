@@ -20,6 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isTopOfPage) {
 
             timer = setTimeout( refresh , 600 );
+            waitMenu.classList.add('t461_cyan');
+
+        } else {
+
+            waitMenu.classList.remove('t461_cyan');
 
         }
     });
