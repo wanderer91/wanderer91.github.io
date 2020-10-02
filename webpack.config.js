@@ -11,6 +11,7 @@ module.exports = {
         preloader: './src/js/blocks/preloader.js',
         'mouse-images': './src/js/blocks/mouse-images.js',
         'liquid-text': './src/js/blocks/liquid-text.js',
+        'menu': './src/js/blocks/menu.js',
     },
     output: {
         path: path.resolve(__dirname, 'dist'),

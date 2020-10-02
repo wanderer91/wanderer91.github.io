@@ -1,0 +1,15 @@
+.t461{
+  margin-bottom: 20px;
+  transform: translateY(-100%);
+  transition: 0.5s ease-in-out;
+}
+.slideDwn{
+  transform: translateY(0%);
+}
+div[data-record-type="257"]{
+  padding-bottom: 60px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 990;
+}
