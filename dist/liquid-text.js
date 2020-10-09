@@ -119,6 +119,8 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   function drawLiquidText() {
+    alert('start drawing');
+
     try {
       Blotter.LiquidDistortMaterial = function () {
         Blotter.Material.apply(this, arguments);

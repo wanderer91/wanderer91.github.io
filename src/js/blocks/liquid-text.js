@@ -32,6 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function drawLiquidText() {
 
+        alert('start drawing');
+
         try {
             Blotter.LiquidDistortMaterial = function() {
                 Blotter.Material.apply(this, arguments);
@@ -183,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             pointRotatingTimeout = setTimeout(elemPointRotating, 0);
 
-            createBlotterText()
+            createBlotterText();
         } catch (e) {
 
             alert(e.message);
