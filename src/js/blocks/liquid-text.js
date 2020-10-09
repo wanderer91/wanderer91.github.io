@@ -8,6 +8,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const liquidTextSelector = '.liquid-text';
     const liquidTextContentSelector = '.liquid-text__content';
 
+    const elem = document.querySelector(liquidTextSelector);
+    const textEl = elem.querySelector(liquidTextContentSelector);
+
+    let angle = 0, mousePos = {}, pointRotatingTimeout = null, mouseMoving = false;
+
+    const elemPointRotating = () => {
+
+        if (angle >= 360) {
+
+            angle = 360 - angle;
+
+        }
+
+        angle += 0.1;
+
+        mousePos.x = elem.offsetWidth / 2 * (1 + Math.sin(angle * Math.PI / 180));
+        mousePos.y = elem.offsetHeight / 2 * (1 + Math.cos(angle * Math.PI / 180));
+
+        pointRotatingTimeout = setTimeout(elemPointRotating);
+
+    };
+
     function drawLiquidText() {
 
         (function() {
@@ -98,11 +120,15 @@ document.addEventListener('DOMContentLoaded', () => {
             return { x: posx, y: posy };
         };
 
-        let mousePos = { x: winsize.width / 2, y: winsize.height / 2 };
-        window.addEventListener("mousemove", ev => (mousePos = getMousePos(ev)));
+        mousePos = { x: winsize.width / 2, y: winsize.height / 2 };
 
-        const elem = document.querySelector(liquidTextSelector);
-        const textEl = elem.querySelector(liquidTextContentSelector);
+        window.addEventListener("mousemove", (ev) => {
+            mousePos = getMousePos(ev);
+
+            clearTimeout(pointRotatingTimeout);
+
+            pointRotatingTimeout = setTimeout(elemPointRotating, 0);
+        });
 
         const createBlotterText = () => {
             const text = new Blotter.Text(textEl.innerHTML, {
@@ -156,6 +182,8 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             requestAnimationFrame(render);
         };
+
+        pointRotatingTimeout = setTimeout(elemPointRotating, 0);
 
         createBlotterText()
 
