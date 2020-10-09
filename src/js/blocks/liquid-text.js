@@ -122,13 +122,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         mousePos = { x: winsize.width / 2, y: winsize.height / 2 };
 
-        window.addEventListener("mousemove", (ev) => {
+        const moveHandler = (ev) => {
             mousePos = getMousePos(ev);
 
             clearTimeout(pointRotatingTimeout);
 
             pointRotatingTimeout = setTimeout(elemPointRotating, 0);
-        });
+        };
+
+        window.addEventListener("mousemove", moveHandler);
+        window.addEventListener("touchmove", moveHandler);
 
         const createBlotterText = () => {
             const text = new Blotter.Text(textEl.innerHTML, {
