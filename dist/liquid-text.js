@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   function drawLiquidText() {
-    (function () {
+    try {
       Blotter.LiquidDistortMaterial = function () {
         Blotter.Material.apply(this, arguments);
       };
@@ -152,122 +152,124 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         };
       }());
-    })();
 
-    var body = document.body;
-    var docEl = document.documentElement;
-    var MathUtils = {
-      lineEq: function lineEq(y2, y1, x2, x1, currentVal) {
-        // y = mx + b
-        var m = (y2 - y1) / (x2 - x1),
-            b = y1 - m * x1;
-        return m * currentVal + b;
-      },
-      lerp: function lerp(a, b, n) {
-        return (1 - n) * a + n * b;
-      },
-      distance: function distance(x1, x2, y1, y2) {
-        var a = x1 - x2;
-        var b = y1 - y2;
-        return Math.hypot(a, b);
-      }
-    };
-    var winsize;
-
-    var calcWinsize = function calcWinsize() {
-      return winsize = {
-        width: window.innerWidth,
-        height: window.innerHeight
+      var body = document.body;
+      var docEl = document.documentElement;
+      var MathUtils = {
+        lineEq: function lineEq(y2, y1, x2, x1, currentVal) {
+          // y = mx + b
+          var m = (y2 - y1) / (x2 - x1),
+              b = y1 - m * x1;
+          return m * currentVal + b;
+        },
+        lerp: function lerp(a, b, n) {
+          return (1 - n) * a + n * b;
+        },
+        distance: function distance(x1, x2, y1, y2) {
+          var a = x1 - x2;
+          var b = y1 - y2;
+          return Math.hypot(a, b);
+        }
       };
-    };
+      var winsize;
 
-    calcWinsize();
-    window.addEventListener("resize", calcWinsize);
-
-    var getMousePos = function getMousePos(ev) {
-      var posx = 0;
-      var posy = 0;
-      if (!ev) ev = window.event;
-
-      if (ev.pageX || ev.pageY) {
-        posx = ev.pageX;
-        posy = ev.pageY;
-      } else if (ev.clientX || ev.clientY) {
-        posx = ev.clientX + body.scrollLeft + docEl.scrollLeft;
-        posy = ev.clientY + body.scrollTop + docEl.scrollTop;
-      }
-
-      return {
-        x: posx,
-        y: posy
+      var calcWinsize = function calcWinsize() {
+        return winsize = {
+          width: window.innerWidth,
+          height: window.innerHeight
+        };
       };
-    };
 
-    mousePos = {
-      x: winsize.width / 2,
-      y: winsize.height / 2
-    };
+      calcWinsize();
+      window.addEventListener("resize", calcWinsize);
 
-    var moveHandler = function moveHandler(ev) {
-      mousePos = getMousePos(ev);
-      clearTimeout(pointRotatingTimeout);
-      pointRotatingTimeout = setTimeout(elemPointRotating, 0);
-    };
+      var getMousePos = function getMousePos(ev) {
+        var posx = 0;
+        var posy = 0;
+        if (!ev) ev = window.event;
 
-    window.addEventListener("mousemove", moveHandler);
-    window.addEventListener("touchmove", moveHandler);
+        if (ev.pageX || ev.pageY) {
+          posx = ev.pageX;
+          posy = ev.pageY;
+        } else if (ev.clientX || ev.clientY) {
+          posx = ev.clientX + body.scrollLeft + docEl.scrollLeft;
+          posy = ev.clientY + body.scrollTop + docEl.scrollTop;
+        }
 
-    var createBlotterText = function createBlotterText() {
-      var text = new Blotter.Text(textEl.innerHTML, {
-        family: "sans-serif",
-        weight: 700,
-        size: elem.dataset.fontSize,
-        paddingLeft: 100,
-        paddingRight: 100,
-        paddingTop: 100,
-        paddingBottom: 100,
-        fill: elem.dataset.fillColor
-      });
-      elem.removeChild(textEl);
-      var material = new Blotter.LiquidDistortMaterial();
-      material.uniforms.uSpeed.value = 1;
-      material.uniforms.uVolatility.value = 0;
-      material.uniforms.uSeed.value = 0.1;
-      var blotter = new Blotter(material, {
-        texts: text
-      });
-      var scope = blotter.forText(text);
-      scope.appendTo(elem);
-      var lastMousePosition = {
+        return {
+          x: posx,
+          y: posy
+        };
+      };
+
+      mousePos = {
         x: winsize.width / 2,
         y: winsize.height / 2
       };
-      var volatility = 0;
 
-      var render = function render() {
-        var docScrolls = {
-          left: body.scrollLeft + docEl.scrollLeft,
-          top: body.scrollTop + docEl.scrollTop
+      var moveHandler = function moveHandler(ev) {
+        mousePos = getMousePos(ev);
+        clearTimeout(pointRotatingTimeout);
+        pointRotatingTimeout = setTimeout(elemPointRotating, 0);
+      };
+
+      window.addEventListener("mousemove", moveHandler);
+      window.addEventListener("touchmove", moveHandler);
+
+      var createBlotterText = function createBlotterText() {
+        var text = new Blotter.Text(textEl.innerHTML, {
+          family: "sans-serif",
+          weight: 700,
+          size: elem.dataset.fontSize,
+          paddingLeft: 100,
+          paddingRight: 100,
+          paddingTop: 100,
+          paddingBottom: 100,
+          fill: elem.dataset.fillColor
+        });
+        elem.removeChild(textEl);
+        var material = new Blotter.LiquidDistortMaterial();
+        material.uniforms.uSpeed.value = 1;
+        material.uniforms.uVolatility.value = 0;
+        material.uniforms.uSeed.value = 0.1;
+        var blotter = new Blotter(material, {
+          texts: text
+        });
+        var scope = blotter.forText(text);
+        scope.appendTo(elem);
+        var lastMousePosition = {
+          x: winsize.width / 2,
+          y: winsize.height / 2
         };
-        var relmousepos = {
-          x: mousePos.x - docScrolls.left,
-          y: mousePos.y - docScrolls.top
+        var volatility = 0;
+
+        var render = function render() {
+          var docScrolls = {
+            left: body.scrollLeft + docEl.scrollLeft,
+            top: body.scrollTop + docEl.scrollTop
+          };
+          var relmousepos = {
+            x: mousePos.x - docScrolls.left,
+            y: mousePos.y - docScrolls.top
+          };
+          var mouseDistance = MathUtils.distance(lastMousePosition.x, relmousepos.x, lastMousePosition.y, relmousepos.y);
+          volatility = MathUtils.lerp(volatility, Math.min(MathUtils.lineEq(0.9, 0, 100, 0, mouseDistance), 0.9), 0.05);
+          material.uniforms.uVolatility.value = volatility;
+          lastMousePosition = {
+            x: relmousepos.x,
+            y: relmousepos.y
+          };
+          requestAnimationFrame(render);
         };
-        var mouseDistance = MathUtils.distance(lastMousePosition.x, relmousepos.x, lastMousePosition.y, relmousepos.y);
-        volatility = MathUtils.lerp(volatility, Math.min(MathUtils.lineEq(0.9, 0, 100, 0, mouseDistance), 0.9), 0.05);
-        material.uniforms.uVolatility.value = volatility;
-        lastMousePosition = {
-          x: relmousepos.x,
-          y: relmousepos.y
-        };
+
         requestAnimationFrame(render);
       };
 
-      requestAnimationFrame(render);
-    };
-
-    pointRotatingTimeout = setTimeout(elemPointRotating, 0);
-    createBlotterText();
+      pointRotatingTimeout = setTimeout(elemPointRotating, 0);
+      createBlotterText();
+    } catch (e) {
+      alert(e.message);
+    }
   }
 });
 
