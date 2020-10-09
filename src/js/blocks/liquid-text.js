@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         angle += 0.1;
 
-        mousePos.x = elem.offsetWidth / 2 * (1 + Math.sin(angle * Math.PI / 180));
-        mousePos.y = elem.offsetHeight / 2 * (1 + Math.cos(angle * Math.PI / 180));
+        mousePos.x = window.innerWidth / 2 * (1 + Math.sin(angle * Math.PI / 180));
+        mousePos.y = window.innerHeight / 2 * (1 + Math.cos(angle * Math.PI / 180));
 
         pointRotatingTimeout = setTimeout(elemPointRotating);
 
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             Blotter._extendWithGettersSetters(Blotter.LiquidDistortMaterial.prototype, (function () {
 
                 function _mainImageSrc () {
-                    var mainImageSrc = [
+                    return [
                         Blotter.Assets.Shaders.Noise3D,
 
                         "void mainImage( out vec4 mainImage, in vec2 fragCoord )",
@@ -59,8 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         "}"
                     ].join("\n");
-
-                    return mainImageSrc;
                 }
 
                 return {
