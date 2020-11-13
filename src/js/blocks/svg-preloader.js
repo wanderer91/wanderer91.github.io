@@ -56,6 +56,8 @@ const launchColorAnimation = (colors) => {
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    document.body.style.overflow = 'hidden';
+
     preloader = document.querySelector(preloaderSelector);
     preloaderSvg = preloader.querySelector(`${preloaderSelector}__svg`);
 
@@ -76,13 +78,14 @@ window.addEventListener('load', () => {
 
     setTimeout(() => {
         preloader.classList.add('hidden');
-        preloaderSvg.style = `width: ${parseFloat(getComputedStyle(preloaderSvg).width) * 0.35}px;`;
+        preloaderSvg.style = `width: ${parseFloat(getComputedStyle(preloaderSvg).width) * 0.4}px;`;
+
+        document.body.style.overflow = 'visible';
 
         setTimeout(() => {
-            document.body.style.overflow = 'hidden';
 
             clearTimeout(animationTimeout);
-        }, 600);
+        }, 300);
     }, 1000);
 
 });

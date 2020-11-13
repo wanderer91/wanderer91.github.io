@@ -232,8 +232,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
 
-    //initColorBlocks();
+    initColorBlocks();
 
-    //launchChangeColor(colorBlocks[0], 0);
+    launchChangeColor(colorBlocks[0], 0);
 
 });

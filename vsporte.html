@@ -5,6 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>VSporte sandbox</title>
     <link rel="stylesheet" href="dist/svg-preloader.css" />
+    <link rel="stylesheet" href="dist/mouse-color.css" />
+
+    <style>
+        .svg-preloader {
+            z-index: 9999;
+        }
+
+        .mouse-color {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .scroll-skew {
+            background-color: #fff;
+            padding: 60px 40px;
+            margin-bottom: 120px;
+            font-size: 2.5vw;
+            font-family: "Arial Black", sans-serif;
+        }
+    </style>
 </head>
 <body>
 
@@ -40,9 +72,30 @@
         </div>
     </div>
 
+    <div class="mouse-color" data-colors="3914AF,00BA3F,009898,D50061,7009A9,FFEC00" data-rotate-dir="1"></div>
+
+    <div class="content">
+
+        <div class="scroll-skew">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </div>
+        <div class="scroll-skew">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </div>
+        <div class="scroll-skew">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </div>
+        <div class="scroll-skew">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </div>
+
+    </div>
+
 </main>
 
 
 <script src="dist/svg-preloader.js"></script>
+<script src="dist/mouse-color.js"></script>
+<script src="dist/scroll-skew.js"></script>
 </body>
 </html>

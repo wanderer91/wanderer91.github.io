@@ -13,6 +13,7 @@ module.exports = {
         'liquid-text': './src/js/blocks/liquid-text.js',
         'menu': './src/js/blocks/menu.js',
         'svg-preloader': './src/js/blocks/svg-preloader.js',
+        'scroll-skew': './src/js/blocks/scroll-skew.js',
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
