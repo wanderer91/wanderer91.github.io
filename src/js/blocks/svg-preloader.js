@@ -47,7 +47,7 @@ const launchColorAnimation = (colors) => {
 
         preloaderStyle.textContent = `${preloaderSelector}__svg .svg-path { fill: ${colors[index]}; }`;
 
-        animationTimeout = setTimeout(animateColor, 10);
+        animationTimeout = setTimeout(animateColor, 30);
     };
 
     animationTimeout = setTimeout(animateColor, 0);
@@ -70,16 +70,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     launchColorAnimation(generateRandomColors(colorsCount));
 
-});
-
-window.addEventListener('load', () => {
-
-    preloader.classList.add('hidden');
-
     setTimeout(() => {
-        document.body.style.overflow = 'hidden';
+        preloader.classList.add('hidden');
+        preloaderSvg.style.width = '0';
 
-        clearTimeout(animationTimeout);
+        setTimeout(() => {
+            document.body.style.overflow = 'hidden';
+
+            clearTimeout(animationTimeout);
+        }, 800);
     }, 1000);
 
 });
