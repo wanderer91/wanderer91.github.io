@@ -31,7 +31,7 @@ const skewElements = (elements) => {
     lastScrollY = Math.floor(lastScrollY * 100) / 100;
 
     const diff = window.scrollY - lastScrollY;
-    const deg = -diff / window.innerHeight * 4;
+    const deg = -diff / window.innerHeight * 10;
 
     skewSubFunction(deg);
 

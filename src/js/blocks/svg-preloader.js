@@ -8,7 +8,8 @@ const retrieveOptions = (preloader) => {
     const options = [
         {name: 'backgroundColor', default: '#242424'},
         {name: 'svgWidth', default: '260px'},
-        {name: 'colorsCount', default: 10}
+        {name: 'colorsCount', default: 10},
+        {name: 'animationTime', default: 300}
     ];
 
     let optionValues = {};
@@ -63,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const {backgroundColor, svgWidth, colorsCount} = retrieveOptions(preloader);
 
-    preloader.style.backgroundColor = `${backgroundColor}`;
+    preloader.style = `background-color: ${backgroundColor};`;
     preloaderSvg.style= `width: ${svgWidth}px;`;
 
     preloaderStyle = document.createElement('style');
@@ -77,13 +78,14 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
 
     setTimeout(() => {
-        document.body.style.overflow = 'visible';
 
-        preloader.classList.add('hidden');
         preloaderSvg.style = `width: ${parseFloat(getComputedStyle(preloaderSvg).width) * 0.4}px;`;
 
         setTimeout(() => {
             clearTimeout(animationTimeout);
+
+            document.body.style.overflow = 'visible';
+            preloader.classList.add('hidden');
         }, 300);
     }, 1000);
 

@@ -10,13 +10,12 @@
   opacity: 1;
   visibility: visible;
 
-  &__svg {
-    transition: all 0.3s ease-in-out;
-  }
-
   &.hidden {
-    transition: all 0.3s ease-in-out;
     opacity: 0;
     visibility: hidden;
+  }
+
+  &.hidden, &__svg {
+    transition: all 0.3s ease-in-out;
   }
 }
