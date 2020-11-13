@@ -1,4 +1,8 @@
-let skewedElements;
+import {interp} from '../helpers/math';
+
+let skewedElements, lastScrollY = 0;
+
+const raf = requestAnimationFrame || webkitRequestAnimationFrame || mozRequestAnimationFrame;
 
 const initScrollSkews = () => {
 
@@ -8,10 +12,14 @@ const initScrollSkews = () => {
         return;
     }
 
-    skewByScroll(skewedElements);
+    if (raf) {
+
+        raf(skewByScroll);
+
+    }
 };
 
-const skewElements = (elements, diff) => {
+const skewElements = (elements) => {
 
     const skewSubFunction = (deg) => {
         elements.forEach((el) => {
@@ -19,48 +27,35 @@ const skewElements = (elements, diff) => {
         });
     };
 
-    skewSubFunction(diff / 70);
+    lastScrollY = interp(lastScrollY, window.scrollY, 0.1);
+    lastScrollY = Math.floor(lastScrollY * 100) / 100;
 
-    new Promise((resolve) => {
-        setTimeout(resolve, 250);
-    }).then(() => {
-        skewSubFunction(-diff / 70);
+    const diff = window.scrollY - lastScrollY;
+    const deg = -diff / window.innerHeight * 4;
 
-        return new Promise((resolve => {
-            setTimeout(resolve, 250);
-        }))
-    }).then(() => {
-        skewSubFunction(0);
-    });
+    skewSubFunction(deg);
 
 };
 
-const skewByScroll = (skewedElements) => {
+const skewByScroll = () => {
 
-    let scrollTop = window.scrollY;
+    let viewPortElements = [];
 
-    window.addEventListener('scroll', () => {
+    skewedElements.forEach((skewedEl) => {
 
-        const scrollDiff = window.scrollY - scrollTop;
-        let viewPortElements = [];
+        const boundingRect = skewedEl.getBoundingClientRect();
 
-        scrollTop = window.scrollY;
+        if ((boundingRect.top > 0 && boundingRect.top < window.innerHeight) ||
+            (boundingRect.bottom > 0 && boundingRect.bottom < window.innerHeight)) {
 
-        skewedElements.forEach((skewedEl) => {
-
-            const boundingRect = skewedEl.getBoundingClientRect();
-
-            if ((boundingRect.top > 0 && boundingRect.top < window.innerHeight) ||
-                (boundingRect.bottom > 0 && boundingRect.bottom < window.innerHeight)) {
-
-                viewPortElements.push(skewedEl);
-            }
-
-        });
-
-        skewElements(viewPortElements, scrollDiff);
+            viewPortElements.push(skewedEl);
+        }
 
     });
+
+    skewElements(viewPortElements);
+
+    raf(skewByScroll);
 
 };
 

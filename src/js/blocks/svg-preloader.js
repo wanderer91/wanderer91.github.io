@@ -77,13 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
 
     setTimeout(() => {
+        document.body.style.overflow = 'visible';
+
         preloader.classList.add('hidden');
         preloaderSvg.style = `width: ${parseFloat(getComputedStyle(preloaderSvg).width) * 0.4}px;`;
 
-        document.body.style.overflow = 'visible';
-
         setTimeout(() => {
-
             clearTimeout(animationTimeout);
         }, 300);
     }, 1000);
