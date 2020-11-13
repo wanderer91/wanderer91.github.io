@@ -1,1 +1,1 @@
-.svg-preloader{position:fixed;left:0;right:0;top:0;bottom:0;align-items:center;justify-content:center;display:flex;opacity:1;visibility:visible}.svg-preloader__svg{width:0;transition:all .8s ease-in-out}.svg-preloader.hidden{transition:all .8s ease-in-out;opacity:0;visibility:hidden}
+.svg-preloader{position:fixed;left:0;right:0;top:0;bottom:0;align-items:center;justify-content:center;display:flex;opacity:1;visibility:visible}.svg-preloader.hidden,.svg-preloader__svg{transition:all .64s ease-in-out}.svg-preloader.hidden{opacity:0;visibility:hidden}

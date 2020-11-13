@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const {backgroundColor, svgWidth, colorsCount} = retrieveOptions(preloader);
 
     preloader.style.backgroundColor = `${backgroundColor}`;
-    preloaderSvg.style.width = `${svgWidth}`;
+    preloaderSvg.style= `width: ${svgWidth}px;`;
 
     preloaderStyle = document.createElement('style');
     preloaderStyle.id = preloaderSelector.substring(1);
@@ -70,15 +70,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     launchColorAnimation(generateRandomColors(colorsCount));
 
+});
+
+window.addEventListener('load', () => {
+
     setTimeout(() => {
         preloader.classList.add('hidden');
-        preloaderSvg.style.width = '0';
+        preloaderSvg.style = `width: ${parseFloat(getComputedStyle(preloaderSvg).width) * 0.35}px;`;
 
         setTimeout(() => {
             document.body.style.overflow = 'hidden';
 
             clearTimeout(animationTimeout);
-        }, 800);
+        }, 600);
     }, 1000);
 
 });
