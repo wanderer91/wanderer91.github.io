@@ -47,7 +47,7 @@ const launchColorAnimation = (colors) => {
 
         preloaderStyle.textContent = `${preloaderSelector}__svg .svg-path { fill: ${colors[index]}; }`;
 
-        animationTimeout = setTimeout(animateColor, 30);
+        animationTimeout = setTimeout(animateColor, 50);
     };
 
     animationTimeout = setTimeout(animateColor, 0);
