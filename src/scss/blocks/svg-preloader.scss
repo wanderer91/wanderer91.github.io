@@ -1,0 +1,18 @@
+.svg-preloader {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+
+  &.hidden {
+    transition: all 1s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+  }
+}

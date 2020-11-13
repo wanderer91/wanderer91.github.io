@@ -12,6 +12,7 @@ module.exports = {
         'mouse-images': './src/js/blocks/mouse-images.js',
         'liquid-text': './src/js/blocks/liquid-text.js',
         'menu': './src/js/blocks/menu.js',
+        'svg-preloader': './src/js/blocks/svg-preloader.js',
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
