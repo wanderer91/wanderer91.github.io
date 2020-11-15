@@ -14,6 +14,7 @@ module.exports = {
         'menu': './src/js/blocks/menu.js',
         'svg-preloader': './src/js/blocks/svg-preloader.js',
         'scroll-skew': './src/js/blocks/scroll-skew.js',
+        'scrollbar': './src/js/blocks/scrollbar',
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -27,7 +28,8 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env']
+                        presets: ['@babel/preset-env'],
+                        plugins: ['@babel/plugin-proposal-class-properties']
                     }
                 }
             },

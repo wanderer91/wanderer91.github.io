@@ -6,6 +6,7 @@
     <title>VSporte sandbox</title>
     <link rel="stylesheet" href="dist/svg-preloader.css" />
     <link rel="stylesheet" href="dist/mouse-color.css" />
+    <link rel="stylesheet" href="dist/scrollbar.css" />
 
     <style>
         body {
@@ -43,7 +44,14 @@
         }
     </style>
 </head>
-<body>
+<body style="overflow: hidden">
+
+<div class="scrollbar" data-indicator-color="#17f060" data-line-color="rgba(0, 0, 0, 0.1)" data-slider-color="rgba(0, 0, 0, 0.8)"
+    data-slow-param="3" data-width="20">
+    <div class="scrollbar__slider">
+        <div class="scrollbar__fulfil-progress"></div>
+    </div>
+</div>
 
 <main>
 
@@ -100,6 +108,7 @@
 
 
 <script src="dist/svg-preloader.js"></script>
+<script src="dist/scrollbar.js"></script>
 <script src="dist/mouse-color.js"></script>
 <script src="dist/scroll-skew.js"></script>
 </body>

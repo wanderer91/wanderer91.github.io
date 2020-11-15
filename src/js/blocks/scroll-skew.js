@@ -28,10 +28,8 @@ const skewElements = (elements) => {
     };
 
     lastScrollY = interp(lastScrollY, window.scrollY, 0.1);
-    lastScrollY = Math.floor(lastScrollY * 100) / 100;
 
-    const diff = window.scrollY - lastScrollY;
-    const deg = -diff / window.innerHeight * 10;
+    const deg = (lastScrollY - window.scrollY) / window.innerHeight * 10;
 
     skewSubFunction(deg);
 
@@ -39,21 +37,7 @@ const skewElements = (elements) => {
 
 const skewByScroll = () => {
 
-    let viewPortElements = [];
-
-    skewedElements.forEach((skewedEl) => {
-
-        const boundingRect = skewedEl.getBoundingClientRect();
-
-        if ((boundingRect.top > 0 && boundingRect.top < window.innerHeight) ||
-            (boundingRect.bottom > 0 && boundingRect.bottom < window.innerHeight)) {
-
-            viewPortElements.push(skewedEl);
-        }
-
-    });
-
-    skewElements(viewPortElements);
+    skewElements(skewedElements);
 
     raf(skewByScroll);
 
