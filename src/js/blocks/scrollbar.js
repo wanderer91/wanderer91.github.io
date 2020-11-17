@@ -160,18 +160,18 @@ class Scrollbar {
         })
     }
 
-    scrollDecay(scrollDiff = 200, time = 1000, diff = 20, step = 0) {
+    scrollDecay(time = 1000, diff = 20, step = 0) {
 
         if (diff < 0) {
             return;
         }
 
-        this.data.scrollTop += this.data.scrollDir * diff;
+        this.data.scrollTop += this.data.scrollDir * diff / this.options['slowParam'];
 
         if (time > 0) {
             setTimeout(() => {
-               this.scrollDecay(scrollDiff - 10, time - 20, diff - step, ++step);
-            }, 50);
+               this.scrollDecay(time - 100, diff - step, ++step);
+            }, 100);
         }
     }
 

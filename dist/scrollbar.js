@@ -265,21 +265,20 @@ var Scrollbar = /*#__PURE__*/function () {
     value: function scrollDecay() {
       var _this5 = this;
 
-      var scrollDiff = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 200;
-      var time = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1000;
-      var diff = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 20;
-      var step = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+      var time = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1000;
+      var diff = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 20;
+      var step = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
 
       if (diff < 0) {
         return;
       }
 
-      this.data.scrollTop += this.data.scrollDir * diff;
+      this.data.scrollTop += this.data.scrollDir * diff / this.options['slowParam'];
 
       if (time > 0) {
         setTimeout(function () {
-          _this5.scrollDecay(scrollDiff - 10, time - 20, diff - step, ++step);
-        }, 50);
+          _this5.scrollDecay(time - 100, diff - step, ++step);
+        }, 100);
       }
     }
   }, {
