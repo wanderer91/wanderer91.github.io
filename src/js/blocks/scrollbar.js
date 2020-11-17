@@ -13,6 +13,8 @@ class Scrollbar {
 
     constructor() {
 
+        this.el = document.querySelector('.scrollbar');
+
         /**
          * @see https://learn.javascript.ru/mousewheel
          * @type {string}
@@ -73,7 +75,6 @@ class Scrollbar {
     }
 
     initScrollBar() {
-        this.el = document.querySelector('.scrollbar');
 
         if (!this.el) {
             return;
