@@ -24,6 +24,7 @@ class Scrollbar {
         this.isDesktop = window.innerWidth > 1100;
 
         this.initData();
+        this.getOptions();
         this.data.scrollTop = window.scrollY;
 
         if (!this.isDesktop) {
@@ -79,8 +80,6 @@ class Scrollbar {
         if (!this.el) {
             return;
         }
-
-        this.getOptions();
 
         this.slider = this.el.querySelector('.scrollbar__slider');
         this.progress = this.slider.querySelector('.scrollbar__fulfil-progress');
