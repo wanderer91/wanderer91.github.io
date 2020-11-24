@@ -160,7 +160,7 @@ class Scrollbar {
         })
     }
 
-    scrollDecay(time = 1000, diff = 20, step = 0) {
+    scrollDecay(time = 1000, diff = 30, step = 0) {
 
         if (diff < 0) {
             return;
@@ -177,6 +177,7 @@ class Scrollbar {
 
     sliderDragStart(event) {
         this.clickedTarget = event.target.closest('.scrollbar__slider');
+        this.touchStartY = event.pageY;
         this.sliderClicked = true;
     }
 

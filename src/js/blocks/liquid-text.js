@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function drawLiquidText() {
 
-        alert('start drawing');
+        //alert('start drawing');
 
         try {
             Blotter.LiquidDistortMaterial = function() {

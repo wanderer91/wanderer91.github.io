@@ -9,8 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let overlayWidth, visibleIndex;
 
-    function changeImage (event) {
-
+    function changeImage(event) {
         const x = (event.type === 'touchmove' ? event.targetTouches[0].clientX : event.clientX) - boundingRect.left;
         let index = Math.floor(x / overlayWidth);
 
@@ -25,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
         overlayWidth = mouseImages.offsetWidth / images.length;
 
         images.forEach((image) => {
-           image.style.display = 'none';
+            image.style.display = 'none';
         });
 
         visibleIndex = indexes[0];
@@ -35,8 +34,8 @@ document.addEventListener('DOMContentLoaded', function () {
     init();
     window.addEventListener('resize', init);
 
-    mouseImages.addEventListener('mousemove',changeImage);
-    mouseImages.addEventListener('touchmove',changeImage);
+    document.addEventListener('mousemove', changeImage);
+    document.addEventListener('touchmove', changeImage);
 
 
 });
