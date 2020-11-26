@@ -23,7 +23,7 @@ const skewElements = (elements) => {
 
     const skewSubFunction = (deg) => {
         elements.forEach((el) => {
-            el.style = `transform: skewY(${deg}deg);`
+            el.style.transform = `skewY(${deg}deg)`;
         });
     };
 
