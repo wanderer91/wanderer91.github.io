@@ -1,21 +1,23 @@
 const path = require('path');
+const fs = require('fs');
 const miniCssWebpackPlugin = require('mini-css-extract-plugin');
 const uglifyJsWebpackPlugin = require('uglifyjs-webpack-plugin');
 const optimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cleanWebpackPlugin = require("clean-webpack-plugin");
 
+const entryPointPath = path.resolve(__dirname, 'src/js/blocks');
+let entryPoints = {};
+
+const getEntryPoints = () => {
+    fs.readdirSync(entryPointPath).forEach((path) => {
+       entryPoints[path.replace(/\.[^\.]+$/, '')] = `${entryPointPath}/${path}`;
+    });
+};
+
+getEntryPoints();
+
 module.exports = {
-    entry: {
-        waves: './src/js/blocks/waves.js',
-        'mouse-color': './src/js/blocks/mouse-color.js',
-        preloader: './src/js/blocks/preloader.js',
-        'mouse-images': './src/js/blocks/mouse-images.js',
-        'liquid-text': './src/js/blocks/liquid-text.js',
-        'menu': './src/js/blocks/menu.js',
-        'svg-preloader': './src/js/blocks/svg-preloader.js',
-        'scroll-skew': './src/js/blocks/scroll-skew.js',
-        'scrollbar': './src/js/blocks/scrollbar',
-    },
+    entry: entryPoints,
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js'

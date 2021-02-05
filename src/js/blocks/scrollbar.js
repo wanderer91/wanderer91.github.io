@@ -1,60 +1,116 @@
 import "../../scss/blocks/scrollbar.scss";
 
+import {wheelEvent} from '../helpers/events';
+
 class Scrollbar {
 
-    static defaultOptions = [
-        { name: 'indicatorColor', default: 'transparent' },
-        { name: 'lineColor', default: 'transparent' },
-        { name: 'sliderColor', default: '#000000' },
-        { name: 'slowParam', default: 1 },
-        { name: 'width', default: 10 },
-        { name: 'decay', default: 10 },
-    ];
+    static eventHandlers = {
+        desktop: [
+            {
+                event: wheelEvent(),
+                target: document,
+                handler: function (event) {
+                    this.calcScrollHeight();
+                    this.handleWheelEvent(event);
+                    this.data.mouseWheel = true;
+                }
+            },
+            {
+                event: 'scroll',
+                target: window,
+                handler: function () {
+                    if (this.data.mouseWheel) {
+                        return;
+                    }
+
+                    this.data.scrollTop = window.scrollY;
+                }
+            }
+        ],
+        touch: [
+            {
+                event: 'touchstart',
+                target: document,
+                handler: function (event) {
+                    this.calcScrollHeight();
+
+                    this.data.touch = true;
+                    this.data.touchY = event.changedTouches[0].pageY;
+                    this.data.prevScrollY = this.data.scrollTop;
+                }
+            },
+            {
+                event: 'touchmove',
+                target: document,
+                handler: function (event) {
+                    if (!this.data.touch) {
+                        return;
+                    }
+
+                    const scrollDiff = event.changedTouches[0].pageY - this.data.touchY;
+
+                    this.data.scrollTop = this.data._scrollTop - scrollDiff;
+                    this.data.scrollDir = Math.sign(scrollDiff);
+                }
+            },
+            {
+                event: 'touchend',
+                target: document,
+                handler: function () {
+                    this.data.touch = false;
+                    //this.scrollDecay();
+                }
+            }
+        ]
+    };
 
     constructor() {
 
-        this.el = document.querySelector('.scrollbar');
-
-        /**
-         * @see https://learn.javascript.ru/mousewheel
-         * @type {string}
-         */
-        this.event = 'onwheel' in document ? 'wheel' : ('onmousewheel' in document ? 'mousewheel' : 'MozMousePixelScroll');
-        this.data = {_scrollTop: 0, scrollDir: 1};
-        this.isDesktop = window.innerWidth > 1100;
+        this.data = {
+            _scrollTop: 0,
+            _isDesktop: true,
+            scrollDir: 1,
+            attachedHandlers: [],
+            mouseWheel: false,
+            touch: false,
+            touchY: 0,
+            prevScrollY: 0,
+            scrollHeight: 0,
+            currentEvents: '',
+            slowParam: 5
+        };
 
         this.initData();
-        this.getOptions();
         this.data.scrollTop = window.scrollY;
 
-        if (!this.isDesktop) {
-            this.attachTouchEvents();
-            return;
-        }
+        this.launch();
 
-        this.calcScrollHeight();
-        this.attachEvents();
-
-        this.initScrollBar();
     }
 
     calcScrollHeight() {
         this.data.scrollHeight = document.body.scrollHeight - window.innerHeight;
     }
 
+    launch() {
+        this.data.isDesktop = window.innerWidth > 1100;
+
+        /****************************************************************************************/
+        document.head.innerHTML += '<style>.body-ov-hidden{overflow: hidden !important;}</style>';
+        document.body.classList.add('body-ov-hidden');
+        /****************************************************************************************/
+    }
+
     initData() {
+        const _this = this;
 
         Object.defineProperty(this.data, 'scrollTop', {
             enumerable: true,
-            get: function() {
+            get: function () {
                 return this._scrollTop;
             },
-            set: function(value) {
-                if (value < 0) {
-                    value = 0;
-                } else if (value > this.scrollHeight) {
-                    value = this.scrollHeight;
-                }
+            set: function (value) {
+                value = value < 0 ? 0 : (value > this.scrollHeight ? this.scrollHeight : value);
+
                 this.scrollDir = Math.sign(value - this._scrollTop);
                 this._scrollTop = value;
                 window.scrollTo({
@@ -63,152 +119,79 @@ class Scrollbar {
             }
         });
 
-    }
+        Object.defineProperty(this.data, 'isDesktop', {
+            enumerable: true,
+            get: function () {
+                return this._isDesktop;
+            },
+            set: function (value) {
+                this._isDesktop = value;
 
-    getOptions() {
+                if (_this.data.currentEvents) {
+                    _this.detachEvents();
+                }
 
-        this.options = [];
+                _this.data.currentEvents = `${value ? 'desktop' : 'touch'}`;
+                _this.attachEvents();
 
-        Scrollbar.defaultOptions.forEach((option) => {
-            this.options[option.name] = this.el.dataset[option.name] || option.default;
+            }
+        });
+
+        let windowResizeTimeout;
+        window.addEventListener('resize', () => {
+            if (windowResizeTimeout) {
+                clearTimeout(windowResizeTimeout);
+            }
+
+            windowResizeTimeout = setTimeout(() => {
+                this.data.isDesktop = window.innerWidth > 1100;
+            }, 50);
         });
 
     }
 
-    initScrollBar() {
+    detachEvents() {
+        if (this.data.attachedHandlers.length) {
+            this.data.attachedHandlers.forEach((data) => {
+                data.target.removeEventListener(data.event, data.handler);
+            });
 
-        if (!this.el) {
-            return;
+            this.data.attachedHandlers.splice(0);
         }
-
-        this.slider = this.el.querySelector('.scrollbar__slider');
-        this.progress = this.slider.querySelector('.scrollbar__fulfil-progress');
-
-        this.setOptions();
-
-        this.attachScrollbarEvents();
-    }
-
-    setOptions() {
-        this.el.style.backgroundColor = this.options['lineColor'];
-        this.el.style.setProperty('--width', `${this.options['width']}px`);
-
-        this.slider.style.backgroundColor = this.options['sliderColor'];
-
-        this.progress.style.backgroundColor = this.options['indicatorColor'];
     }
 
     attachEvents() {
-        document.addEventListener(this.event, (event) => {
-            this.handleWheelEvent(event);
+        Scrollbar.eventHandlers[this.data.currentEvents].forEach((data) => {
+            const handler = data.handler.bind(this);
+
+            data.target.addEventListener(data.event, handler);
+            this.data.attachedHandlers.push({
+                ...data, handler
+            });
         });
     }
 
-    attachScrollbarEvents() {
+    scrollDecay(time, diff = 30, step = 0) {
 
-        window.addEventListener('scroll', () => {
-            this.calcScrollHeight();
-            this.calcSliderPosition();
-        });
+        const timeStep = 100;
 
-        window.addEventListener('resize', () => {
-            this.calcScrollHeight();
-            this.calcSliderPosition();
-        });
+        time = time || 1000;
 
-        this.el.addEventListener('click', (event) => {
-            if (event.target.closest('.scrollbar__slider') || this.clickedTarget) {
-                return;
-            }
-
-            this.data.scrollTop = event.offsetY / event.target.offsetHeight * this.data.scrollHeight;
-        });
-
-        this.slider.addEventListener('mousedown', (event) => {
-            this.sliderDragStart(event);
-        });
-
-        document.addEventListener('mousemove', (event) => {
-            this.sliderDragMove(event);
-        });
-
-        document.addEventListener('mouseup', (event) => {
-            this.sliderDragEnd(event)
-        });
-
-    }
-
-    attachTouchEvents() {
-        document.addEventListener('touchstart', (event) => {
-            this.touch = true;
-            this.touchY = event.changedTouches[0].pageY;
-            this.prevScrollY = this.data.scrollTop;
-        });
-
-        document.addEventListener('touchmove', (event) => {
-            if (!this.touch) {
-                return;
-            }
-
-            const scrollDiff = event.changedTouches[0].pageY - this.touchY;
-            this.data.scrollTop = this.prevScrollY - scrollDiff;
-        });
-
-        document.addEventListener('touchend', (event) => {
-            this.touch = false;
-            this.scrollDecay();
-        })
-    }
-
-    scrollDecay(time = 1000, diff = 30, step = 0) {
-
-        if (diff < 0) {
+        if (diff < 0 || time < 0) {
+            this.data.mouseWheel = false;
             return;
         }
 
-        this.data.scrollTop += this.data.scrollDir * diff / this.options['slowParam'];
+        this.data.scrollTop += this.data.scrollDir * diff / this.data.slowParam;
 
-        if (time > 0) {
-            setTimeout(() => {
-               this.scrollDecay(time - 100, diff - step, ++step);
-            }, 100);
-        }
-    }
-
-    sliderDragStart(event) {
-        this.clickedTarget = event.target.closest('.scrollbar__slider');
-        this.touchStartY = event.pageY;
-        this.sliderClicked = true;
-    }
-
-    sliderDragMove(event) {
-        if (!this.sliderClicked) {
-            return;
-        }
-
-        this.data.scrollTop = event.clientY / this.el.offsetHeight * this.data.scrollHeight;
-    }
-
-    sliderDragEnd(event) {
-        if (this.clickedTarget) {
-            this.sliderClicked = false;
-            this.clickedTarget = null;
-        }
+        setTimeout(() => {
+            this.scrollDecay(time - timeStep, diff - step, ++step);
+        }, timeStep);
     }
 
     handleWheelEvent(event) {
-        this.data.scrollTop += event.deltaY / this.options['slowParam'];
-        this.scrollDecay();
-    }
-
-    calcSliderPosition() {
-        const scrollRatio = window.scrollY / this.data.scrollHeight;
-
-        const sliderTop = (this.el.offsetHeight - this.slider.offsetHeight) * scrollRatio;
-        const progressHeight = this.slider.offsetHeight * scrollRatio;
-
-        this.slider.style.top = `${sliderTop}px`;
-        this.progress.style.height = `${progressHeight}px`;
+        this.data.scrollTop += event.deltaY / this.data.slowParam;
+        //this.scrollDecay();
     }
 
 }

@@ -22,16 +22,20 @@ const initScrollSkews = () => {
 const skewElements = (elements) => {
 
     const skewSubFunction = (deg) => {
+
         elements.forEach((el) => {
             el.style.transform = `skewY(${deg}deg)`;
         });
+
     };
 
     lastScrollY = interp(lastScrollY, window.scrollY, 0.1);
 
     const deg = (lastScrollY - window.scrollY) / window.innerHeight * 10;
 
-    skewSubFunction(deg);
+    if (Math.abs(deg) > 1e-3) { // 0.001
+        skewSubFunction(deg);
+    }
 
 };
 
