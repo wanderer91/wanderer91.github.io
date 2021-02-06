@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>VSporte sandbox</title>
     <link rel="stylesheet" href="dist/svg-preloader.css" />
-    <link rel="stylesheet" href="dist/mouse-color.css" />
-    <link rel="stylesheet" href="dist/scrollbar.css" />
+    <!--<link rel="stylesheet" href="dist/mouse-color.css" />-->
+    <!--<link rel="stylesheet" href="dist/scrollbar.css" />-->
 
     <style>
         body {
@@ -42,10 +42,25 @@
             font-size: 2.5vw;
             font-family: "Arial Black", sans-serif;
         }
+
+        .hover-color-wrapper {
+            font-size: 24px;
+        }
+
+        .hover-color-wrapper a {
+            margin-right: 20px;
+            display: inline-block;
+        }
     </style>
     <style>
         body {
             position: relative;
+        }
+    </style>
+    <style>
+        body {
+            background-color: #bbb;
+            transition: background-color 0.3s ease-in-out;
         }
     </style>
 </head>
@@ -59,6 +74,15 @@
 </div>-->
 
 <main>
+
+    <div class="hover-color-wrapper">
+        <a href="#" class="hover-color" data-color="#3914AF">First</a>
+        <a href="#" class="hover-color" data-color="#00BA3F">Second</a>
+        <a href="#" class="hover-color" data-color="#009898">Third</a>
+        <a href="#" class="hover-color" data-color="#D50061">Fourth</a>
+        <a href="#" class="hover-color" data-color="#7009A9">Fifth</a>
+        <a href="#" class="hover-color" data-color="#FFEC00">Sixth</a>
+    </div>
 
     <div class="svg-preloader" data-background-color="#242424" data-svg-width="260" data-colors-count="20">
         <div class="svg-preloader__content">
@@ -90,7 +114,7 @@
         </div>
     </div>
 
-    <div class="mouse-color" data-colors="3914AF,00BA3F,009898,D50061,7009A9,FFEC00" data-rotate-dir="1"></div>
+    <!--<div class="mouse-color" data-colors="3914AF,00BA3F,009898,D50061,7009A9,FFEC00" data-rotate-dir="1"></div>-->
 
     <div class="content">
 
@@ -118,7 +142,8 @@
 
 <script src="dist/svg-preloader.js"></script>
 <script src="dist/scrollbar.js"></script>
-<script src="dist/mouse-color.js"></script>
+<!--<script src="dist/mouse-color.js"></script>-->
 <script src="dist/scroll-skew.js"></script>
+<script src="dist/hover-color.js"></script>
 </body>
 </html>

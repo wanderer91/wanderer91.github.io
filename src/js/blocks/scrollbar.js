@@ -1,5 +1,3 @@
-import "../../scss/blocks/scrollbar.scss";
-
 import {wheelEvent} from '../helpers/events';
 
 class Scrollbar {
@@ -36,7 +34,6 @@ class Scrollbar {
 
                     this.data.touch = true;
                     this.data.touchY = event.changedTouches[0].pageY;
-                    this.data.prevScrollY = this.data.scrollTop;
                 }
             },
             {
@@ -50,7 +47,8 @@ class Scrollbar {
                     const scrollDiff = event.changedTouches[0].pageY - this.data.touchY;
 
                     this.data.scrollTop = this.data._scrollTop - scrollDiff;
-                    this.data.scrollDir = Math.sign(scrollDiff);
+                    this.data.prevScrollY = this.data.scrollTop;
+                    this.data.scrollDir = Math.sign(-scrollDiff);
                 }
             },
             {
@@ -58,7 +56,7 @@ class Scrollbar {
                 target: document,
                 handler: function () {
                     this.data.touch = false;
-                    //this.scrollDecay();
+                    this.scrollDecay(2000, 50);
                 }
             }
         ]
@@ -171,9 +169,9 @@ class Scrollbar {
         });
     }
 
-    scrollDecay(time, diff = 30, step = 0) {
+    scrollDecay(time, dt, step = 0) {
 
-        const timeStep = 100;
+        const timeStep = 50;
 
         time = time || 1000;
 
@@ -191,7 +189,6 @@ class Scrollbar {
 
     handleWheelEvent(event) {
         this.data.scrollTop += event.deltaY / this.data.slowParam;
-        //this.scrollDecay();
     }
 
 }
