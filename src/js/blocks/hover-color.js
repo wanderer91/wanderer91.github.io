@@ -1,4 +1,6 @@
-document.addEventListener('DOMContentLoaded', () =>{
+document.addEventListener('DOMContentLoaded', () => {
+
+    document.body.style.backgroundColor = defaultBackColor;
 
     document.querySelectorAll('.hover-color').forEach((el) => {
 
@@ -14,6 +16,10 @@ document.addEventListener('DOMContentLoaded', () =>{
 
             document.body.style.backgroundColor = `#${color}`;
 
+        });
+
+        el.addEventListener('mouseout', () => {
+            document.body.style.backgroundColor = defaultBackColor;
         });
 
     });
