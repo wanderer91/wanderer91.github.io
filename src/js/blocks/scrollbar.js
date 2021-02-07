@@ -56,7 +56,6 @@ class Scrollbar {
                 target: document,
                 handler: function () {
                     this.data.touch = false;
-                    this.scrollDecay(2000, 50);
                 }
             }
         ]
@@ -169,7 +168,7 @@ class Scrollbar {
         });
     }
 
-    scrollDecay(time, dt, step = 0) {
+    scrollDecay(time, diff = 30, step = 0) {
 
         const timeStep = 50;
 
