@@ -7,23 +7,21 @@ class Scrollbar {
             {
                 event: wheelEvent(),
                 target: document,
-                options: {
-                    passive: false,
-                },
                 handler: function (event) {
-                    event.preventDefault();
-
                     this.calcScrollHeight();
                     this.handleWheelEvent(event);
                     this.data.mouseWheel = true;
-
-                    if (this.decayTimeout) {
-                        clearTimeout(this.decayTimeout);
+                }
+            },
+            {
+                event: 'scroll',
+                target: window,
+                handler: function () {
+                    if (this.data.mouseWheel) {
+                        return;
                     }
 
-                    this.decayTimeout = setTimeout(() => {
-                        this.scrollDecay();
-                    }, 10);
+                    this.data.scrollTop = window.scrollY;
                 }
             }
         ],
@@ -58,6 +56,7 @@ class Scrollbar {
                 target: document,
                 handler: function () {
                     this.data.touch = false;
+                    this.scrollDecay(2000, 50);
                 }
             }
         ]
@@ -76,43 +75,29 @@ class Scrollbar {
             prevScrollY: 0,
             scrollHeight: 0,
             currentEvents: '',
-            slowParam: 5,
-            page: null
+            slowParam: 5
         };
 
-        this.initDOM();
         this.initData();
-
-        this.holdOnTop();
-        this.data.scrollTop = 0;
+        this.data.scrollTop = window.scrollY;
 
         this.launch();
 
     }
 
     calcScrollHeight() {
-        this.data.scrollHeight = this.data.page.offsetHeight - window.innerHeight;
-    }
-
-    initDOM() {
-        document.head.innerHTML += '<style>' +
-            '.body-ov-hidden{overflow: hidden !important; height: 100vh;}' +
-            '</style>';
-        document.body.classList.add('body-ov-hidden');
-
-        this.data.page = document.getElementById('page');
-    }
-
-    holdOnTop() {
-        window.scrollTo(0, 0);
-
-        setTimeout(() => {
-            this.holdOnTop();
-        }, 100);
+        this.data.scrollHeight = document.body.scrollHeight - window.innerHeight;
     }
 
     launch() {
         this.data.isDesktop = window.innerWidth > 1100;
+
+        /****************************************************************************************/
+        document.head.innerHTML += '<style>.' +
+            'body-ov-hidden{overflow: hidden !important;}' +
+            '</style>';
+        document.body.classList.add('body-ov-hidden');
+        /****************************************************************************************/
     }
 
     initData() {
@@ -124,18 +109,13 @@ class Scrollbar {
                 return this._scrollTop;
             },
             set: function (value) {
-                const isBorder = value < 0 || value > this.scrollHeight;
-
                 value = value < 0 ? 0 : (value > this.scrollHeight ? this.scrollHeight : value);
 
                 this.scrollDir = Math.sign(value - this._scrollTop);
                 this._scrollTop = value;
-
-                this.page.style.transform = `translateY(${-this._scrollTop}px)`;
-
-                if (!isBorder) {
-                    window.dispatchEvent(_this.createTranslatePageEvent(this._scrollTop));
-                }
+                window.scrollTo({
+                    top: this._scrollTop,
+                });
             }
         });
 
@@ -170,10 +150,6 @@ class Scrollbar {
 
     }
 
-    createTranslatePageEvent(scrollTop) {
-        return new CustomEvent('translatePage', {detail: {scrollTop}});
-    }
-
     detachEvents() {
         if (this.data.attachedHandlers.length) {
             this.data.attachedHandlers.forEach((data) => {
@@ -188,8 +164,7 @@ class Scrollbar {
         Scrollbar.eventHandlers[this.data.currentEvents].forEach((data) => {
             const handler = data.handler.bind(this);
 
-            data.options ? data.target.addEventListener(data.event, handler, data.options)
-                : data.target.addEventListener(data.event, handler);
+            data.target.addEventListener(data.event, handler);
             this.data.attachedHandlers.push({
                 ...data, handler
             });
@@ -209,10 +184,6 @@ class Scrollbar {
 
         this.data.scrollTop += this.data.scrollDir * diff / this.data.slowParam;
 
-        if (this.data.scrollTop < 0 || this.data.scrollTop > this.data.scrollHeight) {
-            return;
-        }
-
         setTimeout(() => {
             this.scrollDecay(time - timeStep, diff - step, ++step);
         }, timeStep);
@@ -220,6 +191,12 @@ class Scrollbar {
 
     handleWheelEvent(event) {
         this.data.scrollTop += event.deltaY / this.data.slowParam;
+
+        const isTouchPad = Math.abs(event.wheelDeltaY) !== 120;
+
+        if (!isTouchPad) {
+            this.scrollDecay();
+        }
     }
 
 }
