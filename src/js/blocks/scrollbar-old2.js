@@ -199,6 +199,8 @@ class Scrollbar {
 
         if (diff < 0 || time < 0) {
             this.data.mouseWheel = false;
+            this.data.isTouchpad = false;
+
             return;
         }
 
