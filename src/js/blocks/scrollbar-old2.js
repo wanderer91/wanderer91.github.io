@@ -2,15 +2,34 @@ import {wheelEvent} from '../helpers/events';
 
 class Scrollbar {
 
+    decayTimeout = null;
+
     static eventHandlers = {
         desktop: [
             {
                 event: wheelEvent(),
                 target: document,
                 handler: function (event) {
+                    this.data.isTouchpad = Math.abs(event.wheelDeltaY) !== 120;
+
+                    if (this.data.mouseWheel && !this.data.isTouchpad) {
+                        return;
+                    }
+
                     this.calcScrollHeight();
                     this.handleWheelEvent(event);
+
                     this.data.mouseWheel = true;
+
+                    if (this.decayTimeout) {
+                        clearTimeout(this.decayTimeout);
+                    }
+
+                    this.decayTimeout = setTimeout(() => {
+                        if (!this.data.isTouchpad) {
+                            this.scrollDecay(2000, 100);
+                        }
+                    }, 10);
                 }
             },
             {
@@ -75,7 +94,8 @@ class Scrollbar {
             prevScrollY: 0,
             scrollHeight: 0,
             currentEvents: '',
-            slowParam: 5
+            slowParam: 5,
+            isTouchpad: false
         };
 
         this.initData();
@@ -191,12 +211,6 @@ class Scrollbar {
 
     handleWheelEvent(event) {
         this.data.scrollTop += event.deltaY / this.data.slowParam;
-
-        const isTouchPad = Math.abs(event.wheelDeltaY) !== 120;
-
-        if (!isTouchPad) {
-            this.scrollDecay();
-        }
     }
 
 }
