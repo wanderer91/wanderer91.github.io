@@ -100,6 +100,7 @@ class Scrollbar {
     initDOM() {
         document.head.innerHTML += '<style>' +
             '.body-ov-hidden{overflow: hidden !important; height: 100vh;}' +
+            '#scrolled-page{transition: transform 0.05s linear;}' +
             '</style>';
         document.body.classList.add('body-ov-hidden');
         document.body.innerHTML = `<div id="scrolled-page">${document.body.innerHTML}</div>`;
@@ -108,7 +109,7 @@ class Scrollbar {
     holdOnTop() {
         window.scrollTo(0, 0);
 
-        setTimeout(() => {
+        debounce(() => {
             this.holdOnTop();
         }, 100);
     }
@@ -159,9 +160,11 @@ class Scrollbar {
             }
         });
 
-        debounce(() => {
-            this.data.isDesktop = window.innerWidth > 1100;
-        }, 50);
+        window.addEventListener('resize', () => {
+            debounce(() => {
+                this.data.isDesktop = window.innerWidth > 1100;
+            }, 50);
+        });
 
     }
 
