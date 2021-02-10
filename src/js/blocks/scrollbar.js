@@ -22,7 +22,7 @@ class Scrollbar {
 
                     debounce(() => {
                         if (!this.data.isTouchpad) {
-                            this.scrollDecay(2000, 100);
+                            this.scrollDecay(2000, 150);
                         }
                     }, 10);
                 }
@@ -59,7 +59,7 @@ class Scrollbar {
                 target: document,
                 handler: function () {
                     this.data.touch = false;
-                    this.scrollDecay(1500, 100);
+                    this.scrollDecay(1500, 150);
                 }
             }
         ]
@@ -100,7 +100,7 @@ class Scrollbar {
     initDOM() {
         document.head.innerHTML += '<style>' +
             '.body-ov-hidden{overflow: hidden !important; height: 100vh;}' +
-            '#scrolled-page{transition: transform 0.05s linear;}' +
+            '#scrolled-page{transition: transform 0.2s linear;}' +
             '</style>';
         document.body.classList.add('body-ov-hidden');
         document.body.innerHTML = `<div id="scrolled-page">${document.body.innerHTML}</div>`;
