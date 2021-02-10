@@ -1,4 +1,5 @@
 import {wheelEvent} from '../helpers/events';
+import debounce from '../helpers/debounce';
 
 class Scrollbar {
 
@@ -13,16 +14,16 @@ class Scrollbar {
                 handler: function (event) {
                     event.preventDefault();
 
+                    this.data.isTouchpad = Math.abs(event.wheelDeltaY) !== 120;
+
                     this.calcScrollHeight();
                     this.handleWheelEvent(event);
                     this.data.mouseWheel = true;
 
-                    if (this.decayTimeout) {
-                        clearTimeout(this.decayTimeout);
-                    }
-
-                    this.decayTimeout = setTimeout(() => {
-                        this.scrollDecay();
+                    debounce(() => {
+                        if (!this.data.isTouchpad) {
+                            this.scrollDecay(2000, 100);
+                        }
                     }, 10);
                 }
             }
@@ -36,6 +37,7 @@ class Scrollbar {
 
                     this.data.touch = true;
                     this.data.touchY = event.changedTouches[0].pageY;
+                    this.data.prevScrollY = this.data.scrollTop;
                 }
             },
             {
@@ -48,8 +50,7 @@ class Scrollbar {
 
                     const scrollDiff = event.changedTouches[0].pageY - this.data.touchY;
 
-                    this.data.scrollTop = this.data._scrollTop - scrollDiff;
-                    this.data.prevScrollY = this.data.scrollTop;
+                    this.data.scrollTop = this.data.prevScrollY - scrollDiff;
                     this.data.scrollDir = Math.sign(-scrollDiff);
                 }
             },
@@ -58,6 +59,7 @@ class Scrollbar {
                 target: document,
                 handler: function () {
                     this.data.touch = false;
+                    this.scrollDecay(1500, 100);
                 }
             }
         ]
@@ -77,7 +79,8 @@ class Scrollbar {
             scrollHeight: 0,
             currentEvents: '',
             slowParam: 5,
-            page: null
+            page: null,
+            isTouchpad: false,
         };
 
         this.initDOM();
@@ -91,7 +94,7 @@ class Scrollbar {
     }
 
     calcScrollHeight() {
-        this.data.scrollHeight = this.data.page.offsetHeight - window.innerHeight;
+        this.data.scrollHeight = document.getElementById('scrolled-page').offsetHeight - window.innerHeight;
     }
 
     initDOM() {
@@ -99,8 +102,7 @@ class Scrollbar {
             '.body-ov-hidden{overflow: hidden !important; height: 100vh;}' +
             '</style>';
         document.body.classList.add('body-ov-hidden');
-
-        this.data.page = document.getElementById('page');
+        document.body.innerHTML = `<div id="scrolled-page">${document.body.innerHTML}</div>`;
     }
 
     holdOnTop() {
@@ -131,7 +133,7 @@ class Scrollbar {
                 this.scrollDir = Math.sign(value - this._scrollTop);
                 this._scrollTop = value;
 
-                this.page.style.transform = `translateY(${-this._scrollTop}px)`;
+                document.getElementById('scrolled-page').style.transform = `translateY(${-this._scrollTop}px)`;
 
                 if (!isBorder) {
                     window.dispatchEvent(_this.createTranslatePageEvent(this._scrollTop));
@@ -157,16 +159,9 @@ class Scrollbar {
             }
         });
 
-        let windowResizeTimeout;
-        window.addEventListener('resize', () => {
-            if (windowResizeTimeout) {
-                clearTimeout(windowResizeTimeout);
-            }
-
-            windowResizeTimeout = setTimeout(() => {
-                this.data.isDesktop = window.innerWidth > 1100;
-            }, 50);
-        });
+        debounce(() => {
+            this.data.isDesktop = window.innerWidth > 1100;
+        }, 50);
 
     }
 
@@ -203,6 +198,7 @@ class Scrollbar {
         time = time || 1000;
 
         if (diff < 0 || time < 0) {
+            this.data.isTouchpad = false;
             this.data.mouseWheel = false;
             return;
         }
@@ -213,7 +209,7 @@ class Scrollbar {
             return;
         }
 
-        setTimeout(() => {
+        debounce(() => {
             this.scrollDecay(time - timeStep, diff - step, ++step);
         }, timeStep);
     }
