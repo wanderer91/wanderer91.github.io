@@ -17,6 +17,11 @@ class Scrollbar {
                     this.data.isTouchpad = Math.abs(event.wheelDeltaY) !== 120;
 
                     this.calcScrollHeight();
+
+                    if (!this.data.scrollable) {
+                        return;
+                    }
+
                     this.handleWheelEvent(event);
                     this.data.mouseWheel = true;
 
@@ -34,6 +39,10 @@ class Scrollbar {
                 target: document,
                 handler: function (event) {
                     this.calcScrollHeight();
+
+                    if (!this.data.scrollable) {
+                        return;
+                    }
 
                     this.data.touch = true;
                     this.data.touchY = event.changedTouches[0].pageY;
@@ -81,6 +90,7 @@ class Scrollbar {
             slowParam: 5,
             page: null,
             isTouchpad: false,
+            scrollable: false
         };
 
         this.initDOM();
@@ -95,12 +105,14 @@ class Scrollbar {
 
     calcScrollHeight() {
         this.data.scrollHeight = document.getElementById('scrolled-page').offsetHeight - window.innerHeight;
+        this.data.scrollable = this.data.scrollHeight > 0;
     }
 
     initDOM() {
         document.head.innerHTML += '<style>' +
             '.body-ov-hidden{overflow: hidden !important; height: 100vh;}' +
             '#scrolled-page{transition: transform 0.2s linear;}' +
+            '#scrolled-page.smooth{transition: transform 1s cubic-bezier(1, 0, 0, 1);}' +
             '</style>';
         document.body.classList.add('body-ov-hidden');
         document.body.innerHTML = `<div id="scrolled-page">${document.body.innerHTML}</div>`;
@@ -166,6 +178,9 @@ class Scrollbar {
             }, 50);
         });
 
+        window._getScrollTop = () => this.data.scrollTop;
+        this.calcScrollHeight();
+
     }
 
     createTranslatePageEvent(scrollTop) {
@@ -191,6 +206,19 @@ class Scrollbar {
             this.data.attachedHandlers.push({
                 ...data, handler
             });
+        });
+
+        const _this = this;
+
+        window.addEventListener('translatePageTriggered', (event) => {
+            const page = document.getElementById('scrolled-page');
+            page.classList.add('smooth');
+
+            _this.data.scrollTop = event.detail.scrollTop;
+
+            setTimeout(() => {
+                page.classList.remove('smooth');
+            }, 1000);
         });
     }
 

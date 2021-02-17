@@ -1,98 +1,40 @@
 import "../../scss/blocks/preloader.scss";
 
 document.addEventListener('DOMContentLoaded', function () {
-    const isMobile = window.innerWidth <= 980;
-    const preloaderSelector = `.preloader_${isMobile ? 'mobile' : 'desktop'}`;
-    const digitsSelector = '.preloader__digits';
 
-    let preloader, digits, progress = 0, progressBar, timeout, canvas, context, canvasWidth, canvasHeight;
-    let lightningStopped = false, counterLaunched = false, initialized = false;
+    let isMobile = window.innerWidth <= 980,
+        preloader,
+        digits,
+        progress = 0,
+        progressBar,
+        timeout,
+        canvas,
+        context,
+        canvasWidth,
+        canvasHeight;
+    let lightningStopped = false,
+        counterLaunched = false;
 
-    window.onload = () => {
-
-        clearTimeout(timeout);
-
-        setTimeout(() => {
-            document.body.style.overflow = 'auto';
-            lightningStopped = true;
-        }, 2000);
-
-        progress = 100;
-
-        digits.innerText = `${progress}%`;
-
-        if (progressBar) {
-            progressBar.style.width = `${progress}%`;
+    const preloaderData = {
+        desktop: {
+            'font-size': '32',
+            'font-family': 'Arial',
+            'background-color': '000000',
+            'digits-color': 'ffffff',
+            'progress-color': null,
+            'class': 'preloader_desktop',
+            'html': '<canvas class="preloader__canvas"></canvas>'
+        },
+        mobile: {
+            'font-size': '32',
+            'font-family': 'Arial',
+            'background-color': 'ffffff',
+            'digits-color': 'ffffff',
+            'progress-color': '000000',
+            'class': 'preloader_mobile',
+            'html': '<div class="preloader__inner"><div class="preloader__progressbar"></div></div>'
         }
-
-        preloader.classList.add('hidden');
-
     };
-
-    function initCommonPreloader() {
-
-        document.body.style.overflow = 'hidden';
-
-        preloader = document.querySelector(preloaderSelector);
-        digits = preloader.querySelector(digitsSelector);
-
-        preloader.style = `font-size: ${preloader.dataset.fontSize}px;` +
-            `font-family: ${preloader.dataset.fontFamily};` +
-            `background-color: #${preloader.dataset.backgroundColor}`;
-
-        digits.style = `color: #${preloader.dataset.digitsColor}`;
-    }
-
-    function initDesktopPreloader() {
-        canvas = preloader.querySelector('.preloader__canvas');
-
-        function launchCounter() {
-            progress += 1;
-            digits.innerText = `${progress}%`;
-
-            if (progress < 100) {
-                timeout = setTimeout(launchCounter, 50);
-            }
-
-        }
-
-        initCanvas();
-        launchLightningLoop();
-
-        if (!counterLaunched) {
-            launchCounter();
-            counterLaunched = true;
-        }
-
-    }
-
-    function initMobilePreloader() {
-
-        progressBar = preloader.querySelector('.preloader__progressbar');
-        progressBar.style.backgroundColor = `#${preloader.dataset.progressColor}`;
-
-        function launchCounter() {
-            progress += 1;
-
-            const progressText = `${progress}%`;
-
-            digits.innerText = progressText;
-            digits.setAttribute('data-progress', progressText);
-
-            progressBar.style.width = progressText;
-
-            if (progress < 100) {
-                timeout = setTimeout(launchCounter, 50);
-            }
-
-        }
-
-        if (!counterLaunched) {
-            launchCounter();
-            counterLaunched = true;
-        }
-
-    }
 
     class Lightning {
 
@@ -182,6 +124,100 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
 
+    window.addEventListener('load', () => {
+
+        clearTimeout(timeout);
+
+        setTimeout(() => {
+            lightningStopped = true;
+        }, 2000);
+
+        progress = 100;
+
+        digits.innerText = `${progress}%`;
+
+        if (progressBar) {
+            progressBar.style.width = `${progress}%`;
+        }
+
+        preloader.classList.add('hidden');
+
+    });
+
+    function createPreloader() {
+
+        const data = preloaderData[isMobile ? 'mobile' : 'desktop'];
+
+        preloader = document.createElement('div');
+        preloader.classList.add('preloader', data.class);
+        preloader.style = `font-size: ${data['font-size']}px; font-family: ${data['font-family']};` +
+            `background-color: #${data['background-color']};`;
+
+        digits = document.createElement('div');
+        digits.classList.add('preloader__digits');
+        digits.style.color = `#${data['digits-color']}`;
+        digits.innerText = `${progress}%`;
+        preloader.appendChild(digits);
+
+        preloader.innerHTML += data.html;
+
+        if (data['progress-color']) {
+            progressBar = preloader.querySelector('.preloader__progressbar');
+            progressBar.style.backgroundColor = `#${data['progress-color']}`;
+        }
+
+        document.body.appendChild(preloader);
+        digits = preloader.querySelector('.preloader__digits');
+
+        isMobile ? initMobilePreloader() : initDesktopPreloader();
+    }
+
+    function initDesktopPreloader() {
+        canvas = preloader.querySelector('.preloader__canvas');
+
+        function launchCounter() {
+            progress += 1;
+            digits.innerText = `${progress}%`;
+
+            if (progress < 100) {
+                timeout = setTimeout(launchCounter, 50);
+            }
+
+        }
+
+        initCanvas();
+        launchLightningLoop();
+
+        if (!counterLaunched) {
+            launchCounter();
+            counterLaunched = true;
+        }
+
+    }
+
+    function initMobilePreloader() {
+
+        function launchCounter() {
+            progress += 1;
+
+            const progressText = `${progress}%`;
+
+            digits.innerText = progressText;
+            progressBar.style.width = progressText;
+
+            if (progress < 100) {
+                timeout = setTimeout(launchCounter, 50);
+            }
+
+        }
+
+        if (!counterLaunched) {
+            launchCounter();
+            counterLaunched = true;
+        }
+
+    }
+
     function generateLightnings() {
         const randomSide = Math.floor(Math.random() * Lightning.sides().length);
         const sideName = Lightning.sides()[randomSide];
@@ -239,19 +275,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function init() {
-
-        if (!initialized) {
-            initCommonPreloader();
-            initialized = true;
-        }
-
-        isMobile ? initMobilePreloader() : initDesktopPreloader();
+        createPreloader();
     }
 
     init();
-
-    window.addEventListener('resize', function () {
-        init();
-    });
 
 });
