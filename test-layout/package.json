@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "dependencies": {
     "gulp": "^4.0.2",
-    "stylus": ""
+    "stylus": "^0.54.8"
   }
 }
