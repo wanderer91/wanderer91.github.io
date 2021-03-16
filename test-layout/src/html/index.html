@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Test Layout</title>
-</head>
-<body>
+{% extends "layouts/layout.html" %}
 
-</body>
-</html>
+{% block content %}
+{% include "chunks/content.html" %}
+{% endblock %}
+
+{% block leftbar %}
+{% include "chunks/leftbar.html" %}
+{% endblock %}
+
+{% block rightbar %}
+{% include "chunks/rightbar.html" %}
+{% endblock %}

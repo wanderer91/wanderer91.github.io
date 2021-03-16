@@ -8,26 +8,11 @@
 <body>
 <main>
     <div class="app">
-        
-<div class="leftbar">
+        {% block leftbar %}{% endblock %}
 
-</div>
+        {% block content %}{% endblock %}
 
-
-
-        
-<div class="content">
-
-</div>
-
-
-
-        
-<div class="rightbar">
-
-</div>
-
-
+        {% block rightbar %}{% endblock %}
     </div>
 </main>
 
