@@ -1,0 +1,18 @@
+.section {
+  @include mq(320, 768) {
+    padding: 2rem 0;
+  }
+  &__title {
+    @include mq(320, 768) {
+      font-size: 1.5rem;
+      line-height: 1.8rem;
+      padding-bottom: 1rem;
+    }
+  }
+
+  &__star {
+    @include mq(320, 768) {
+      display: none;
+    }
+  }
+}

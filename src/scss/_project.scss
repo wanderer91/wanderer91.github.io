@@ -1,0 +1,83 @@
+.project {
+	&__container {
+		@include mq(320, 768) {
+			width: 100%;
+		}
+	}
+	&__images {
+		display: flex;
+		flex-wrap: wrap;
+		&-item {
+			width: 100%;
+			&_mobile, &_tablet {
+				width: 50%;
+			}
+			&_desktop {
+				width: 100%;
+			}
+			padding: 0 1rem;
+			@include mq(480, 1024) {
+				padding: 0 1.5rem;
+			}
+			@include mq(320, 480) {
+				padding: 0 1rem;
+			}
+		}
+	}
+	&__resolution {
+		font-size: 60px;
+		text-align: center;
+		color: $secondary;
+		@include mq(320, 768) {
+			font-size: 36px;
+		}
+		@include mq(768, 1024) {
+			font-size: 42px;
+		}
+	}
+	&__row {
+		&-block {
+			display: block;
+			width: 100%;
+			max-width: 100%;
+			flex: auto;
+		}
+	}
+	& &__row &__title {
+		@include mq(320, 768) {
+			font-size: 1.2rem;
+		}
+	}
+	&__star {
+		display: none;
+	}
+	&__description {
+		@include mq(320, 768) {
+			margin: 0.5rem 0;
+		}
+	}
+	&__screenshot {
+		border: 1px solid $light-gray;
+		box-shadow: 0 0 6px rgba(0,0,0,0.1);
+		&_desktop {
+			width: 100%;
+		}
+	}
+
+	& &__modal {
+		@include mq(768, 1024) {
+			padding: 2rem;
+		}
+	}
+	& &__modal &__close-button {
+		z-index: 1;
+		@include mq(320, 768) {
+			display: block !important;
+			top: 1rem;
+			right: 1rem;
+			&-icon {
+				font-size: 2rem;
+			}
+		}
+	}
+}

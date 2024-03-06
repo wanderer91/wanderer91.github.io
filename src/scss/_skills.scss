@@ -1,0 +1,108 @@
+.skills {
+  &__list {
+    margin-top: 10px;
+  }
+  &__star {
+    @include mq(320, 768) {
+      display: none;
+    }
+  }
+
+  &__caption {
+    width: 100%;
+    font-weight: 700;
+    font-size: 2em;
+    font-family: Montserrat;
+  }
+
+  &__item {
+
+    &-text {
+      margin-left: 20px;
+      border-bottom: 2px solid white;
+      letter-spacing: 0.05em;
+    }
+
+    &-icon {
+      background: url(../img/icons/sprite.webp);
+      width: 48px;
+      height: 48px;
+
+      &_html {
+        background-position: -0 -144px;
+      }
+
+      &_js {
+        background-position: -144px -96px;
+      }
+
+      &_bs {
+        background-position: -192px -48px;
+      }
+
+      &_css {
+        background-position: -192px -0;
+      }
+
+      &_njs {
+        background-position: -48px -96px;
+      }
+
+      &_php {
+        background-position: -0 -96px;
+      }
+
+      &_apache {
+        background-position: -192px -96px;
+      }
+
+      &_drupal {
+        background-position: -144px -144px;
+      }
+
+      &_git {
+        background-position: -96px -144px;
+      }
+
+      &_gulp {
+        background-position: -48px -144px;
+      }
+
+      &_laravel {
+        background-position: -144px -48px;
+      }
+
+      &_mysql {
+        background-position: -144px -0;
+      }
+
+      &_nginx {
+        background-position: -96px -96px;
+      }
+
+      &_sass {
+        background-position: -96px -48px;
+      }
+
+      &_symfony {
+        background-position: -96px -0;
+      }
+
+      &_vuejs {
+        background-position: -48px -48px;
+      }
+
+      &_webp {
+        background-position: -0 -48px;
+      }
+
+      &_wp {
+        background-position: -48px -0;
+      }
+
+      &_yii {
+        background-position: -0 -0;
+      }
+    }
+  }
+}

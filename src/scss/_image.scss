@@ -1,0 +1,15 @@
+.image {
+  &_main {
+    border-radius: 50%;
+    width: 280px;
+    height: 280px;
+    @include mq(320, 768) {
+      width: 200px;
+      height: 200px;
+    }
+    @include mq(768, 1024) {
+      width: 240px;
+      height: 240px;
+    }
+  }
+}

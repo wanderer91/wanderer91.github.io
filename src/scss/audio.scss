@@ -1,0 +1,124 @@
+audio {
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+audio.no-player {
+}
+
+.audio-player {
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+
+  &-wrapper {
+    max-width: 600px;
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__play-btn {
+    --btn-width: 20px;
+    --btn-height: 22px;
+    width: var(--btn-width);
+    height: var(--btn-height);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    outline: none;
+
+    &:before {
+      position: absolute;
+      content: '';
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-color: transparent transparent transparent #e74c3c;
+      border-style: solid;
+      border-width: calc(var(--btn-height) / 2) calc(var(--btn-width))  calc(var(--btn-height) / 2)  calc(var(--btn-width));
+    }
+
+    &--playing {
+      &:before, &:after {
+        position: absolute;
+        content: '';
+        width: calc(var(--btn-width) / 5);
+        height: 100%;
+        left: calc(var(--btn-width) / 6);
+        top: 0;
+        background-color: #e74c3c;
+        border: none;
+      }
+
+      &:after {
+        left: auto;
+        right: calc(var(--btn-width) / 6);
+      }
+    }
+  }
+
+  &__progress {
+    --height: 10px;
+    height: var(--height);
+    border-radius: calc(var(--height) / 2);
+    width: 50%;
+    max-width: 50%;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    &-slider {
+      width: calc(var(--height) + 6px);
+      height: calc(var(--height) + 6px);
+      border-radius: 50%;
+      position: relative;
+      left: 0;
+      top: -3px;
+      background-color: #e74c3c;
+    }
+  }
+
+  &__duration,
+  &__speed-text,
+  &__speed-item {
+    color: #000000;
+    mix-blend-mode: revert;
+  }
+
+  &__speed {
+    position: relative;
+    cursor: pointer;
+
+    &-list {
+      position: absolute;
+      left: 0;
+      display: none;
+      background-color: rgba(0, 0, 0, 0.2);
+      z-index: 2;
+
+      &.visible {
+        display: block;
+      }
+    }
+
+    &-item {
+      padding: 6px 8px;
+
+      &:hover,
+      &.selected {
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+    }
+  }
+}

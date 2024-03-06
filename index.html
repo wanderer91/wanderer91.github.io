@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="twitter:card" content="summary" />
+    <meta property="og:type" content="website" />
+    <meta name="keywords" content="Web-developer's Portfolio, Freelancer, Web-developer PHP JS NodeJS Laravel Yii Wordpress Vue React Docker" />
+    <meta name="description" content="I develop, support and maintain sites and web-applications: Wordpress, Laravel, Yii, NodeJS, Javascript, Vue, React, Docker" />
+    <meta property="og:description" content="I develop, support and maintain sites and web-applications: Wordpress, Laravel, Yii, NodeJS, Javascript, Vue, React, Docker" />
+    <meta property="twitter:description" content="I develop, support and maintain sites and web-applications: Wordpress, Laravel, Yii, NodeJS, Javascript, Vue, React, Docker" />
+    <meta property="og:title" content="Portfolio Page | Nikita Churilov" />
+    <meta property="twitter:title" content="Portfolio Page | Nikita Churilov" />
+    <title>Portfolio Page | Nikita Churilov</title>
+
+    <style>@font-face{font-family:FontAwesome;src:url(dist/fonts/fontawesome-webfont.eot);src:url(dist/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0) format('embedded-opentype'),url(dist/fonts/fontawesome-webfont.woff2) format('woff2'),url(dist/fonts/fontawesome-webfont.woff) format('woff'),url(dist/fonts/fontawesome-webfont.ttf) format('truetype'),url(dist/img/fontawesome-webfont.svg#fontawesomeregular) format('svg');font-weight:400;font-style:normal}.fa{display:inline-block;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.fa-bars:before{content:"\f0c9"}:root{--blue:#007bff;--indigo:#6610f2;--purple:#6f42c1;--pink:#e83e8c;--red:#dc3545;--orange:#fd7e14;--yellow:#ffc107;--green:#28a745;--teal:#20c997;--cyan:#17a2b8;--white:#fff;--gray:#6c757d;--gray-dark:#343a40;--primary:#007bff;--secondary:#6c757d;--success:#28a745;--info:#17a2b8;--warning:#ffc107;--danger:#dc3545;--light:#f8f9fa;--dark:#343a40;--breakpoint-xs:0;--breakpoint-sm:576px;--breakpoint-md:768px;--breakpoint-lg:992px;--breakpoint-xl:1200px;--font-family-sans-serif:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--font-family-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}*,::after,::before{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%}header,nav{display:block}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff}hr{box-sizing:content-box;height:0;overflow:visible}h1,h2{margin-top:0;margin-bottom:.5rem}ul{margin-top:0;margin-bottom:1rem}a{color:#007bff;text-decoration:none;background-color:transparent}img{vertical-align:middle;border-style:none}button{border-radius:0}button{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button{overflow:visible}button{text-transform:none}[type=button],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,button::-moz-focus-inner{padding:0;border-style:none}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}h1,h2{margin-bottom:.5rem;font-weight:500;line-height:1.2}h1{font-size:2.5rem}h2{font-size:2rem}hr{margin-top:1rem;margin-bottom:1rem;border:0;border-top:1px solid rgba(0,0,0,.1)}.img-fluid{max-width:100%;height:auto}.container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}@media (min-width:576px){.container{max-width:540px}}@media (min-width:768px){.container{max-width:720px}}@media (min-width:992px){.container{max-width:960px}}@media (min-width:1200px){.container{max-width:1140px}}@media (min-width:576px){.container{max-width:540px}}@media (min-width:768px){.container{max-width:720px}}@media (min-width:992px){.container{max-width:960px}}@media (min-width:1200px){.container{max-width:1140px}}.collapse:not(.show){display:none}.nav{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;padding-left:0;margin-bottom:0;list-style:none}.nav-link{display:block;padding:.5rem 1rem}.navbar{position:relative;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-ms-flex-align:center;align-items:center;-ms-flex-pack:justify;justify-content:space-between;padding:.5rem 1rem}.navbar .container{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-ms-flex-align:center;align-items:center;-ms-flex-pack:justify;justify-content:space-between}.navbar-brand{display:inline-block;padding-top:.3125rem;padding-bottom:.3125rem;margin-right:1rem;font-size:1.25rem;line-height:inherit;white-space:nowrap}.navbar-nav{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;padding-left:0;margin-bottom:0;list-style:none}.navbar-nav .nav-link{padding-right:0;padding-left:0}.navbar-collapse{-ms-flex-preferred-size:100%;flex-basis:100%;-ms-flex-positive:1;flex-grow:1;-ms-flex-align:center;align-items:center}.navbar-toggler{padding:.25rem .75rem;font-size:1.25rem;line-height:1;background-color:transparent;border:1px solid transparent;border-radius:.25rem}@media (max-width:991.98px){.navbar-expand-lg>.container{padding-right:0;padding-left:0}}@media (min-width:992px){.navbar-expand-lg{-ms-flex-flow:row nowrap;flex-flow:row nowrap;-ms-flex-pack:start;justify-content:flex-start}.navbar-expand-lg .navbar-nav{-ms-flex-direction:row;flex-direction:row}.navbar-expand-lg .navbar-nav .nav-link{padding-right:.5rem;padding-left:.5rem}.navbar-expand-lg>.container{-ms-flex-wrap:nowrap;flex-wrap:nowrap}.navbar-expand-lg .navbar-collapse{display:-ms-flexbox!important;display:flex!important;-ms-flex-preferred-size:auto;flex-basis:auto}.navbar-expand-lg .navbar-toggler{display:none}}.bg-primary{background-color:#007bff!important}.bg-secondary{background-color:#6c757d!important}.rounded{border-radius:.25rem!important}.d-block{display:block!important}.fixed-top{position:fixed;top:0;right:0;left:0;z-index:1030}.mx-0{margin-right:0!important}.mb-0{margin-bottom:0!important}.mx-0{margin-left:0!important}.mb-5{margin-bottom:3rem!important}.px-0{padding-right:0!important}.px-0{padding-left:0!important}.py-3{padding-top:1rem!important}.py-3{padding-bottom:1rem!important}.mx-auto{margin-right:auto!important}.ml-auto,.mx-auto{margin-left:auto!important}@media (min-width:992px){.mx-lg-1{margin-right:.25rem!important}.mx-lg-1{margin-left:.25rem!important}.px-lg-3{padding-right:1rem!important}.px-lg-3{padding-left:1rem!important}}.text-center{text-align:center!important}.text-uppercase{text-transform:uppercase!important}.font-weight-light{font-weight:300!important}.text-white{color:#fff!important}.flag-icon{background-size:contain;background-position:50%;background-repeat:no-repeat;position:relative;display:inline-block;width:1.33333333em;line-height:1em}.flag-icon:before{content:"\00a0"}.flag-icon-ru{background-image:url(dist/img/ru.svg)}button::-moz-focus-inner{padding:0;border:0}@font-face{font-family:Montserrat;font-display:swap;src:url(dist/fonts/Montserrat-Bold.ttf) format("truetype"),url(dist/fonts/Montserrat-Bold.otf) format("opentype")}@font-face{font-family:Lato;font-display:swap;src:url(dist/fonts/Lato-Regular.ttf) format("truetype")}body{font-family:Lato}h1,h2{font-weight:700;font-family:Montserrat}hr.star-light{max-width:15rem;padding:0;text-align:center;border:none;border-top:solid .25rem;margin-top:2.5rem;margin-bottom:2.5rem}hr.star-light:after{position:relative;top:-.8em;display:inline-block;padding:0 .25em;content:'\f005';font-family:FontAwesome;font-size:2em}hr.star-light{border-color:#fff}hr.star-light:after{color:#fff;background-color:#18bc9c}#mainNav{padding-top:1rem;padding-bottom:1rem;font-weight:700;font-family:Montserrat}#mainNav .navbar-brand{color:#fff}@media screen and (min-width:320px) and (max-width:479px){ #mainNav .navbar-brand{font-size:.9rem}}#mainNav .navbar-nav{margin-top:1rem;letter-spacing:.0625rem}#mainNav .navbar-nav li.nav-item a.nav-link{color:#fff}#mainNav .navbar-toggler{font-size:80%;padding:.8rem}@media (min-width:992px){ #mainNav{padding-top:1.5rem;padding-bottom:1.5rem}#mainNav .navbar-brand{font-size:1.7em}#mainNav .navbar-nav{margin-top:0}}header.masthead{padding-top:calc(6rem + 72px);padding-bottom:6rem}header.masthead h1{font-size:3rem;line-height:3rem}@media screen and (min-width:320px) and (max-width:479px){header.masthead h1{font-size:2rem}}header.masthead h2{font-size:1.3rem;font-family:Lato}@media (min-width:992px){header.masthead{padding-top:calc(6rem + 106px);padding-bottom:6rem}header.masthead h1{font-size:4.75em;line-height:4rem}header.masthead h2{font-size:1.75em}}a{color:#18bc9c}.bg-primary{background-color:#18bc9c!important}.bg-secondary{background-color:#2c3e50!important}.image_main{border-radius:50%;width:280px;height:280px}@media screen and (min-width:320px) and (max-width:767px){.image_main{width:200px;height:200px}}@media screen and (min-width:768px) and (max-width:1023px){.image_main{width:240px;height:240px}}.lang-switcher__link{border-radius:2px}.lang-switcher__link:link,.lang-switcher__link:visited{text-decoration:none}</style>
+
+    <link rel="preload" href="src/img/main.webp" as="image" type="image/webp" />
+</head>
+
+<body id="page-top">
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Web-developer's Portfolio</a>
+        <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button"
+                data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto nav">
+                <li class="nav-item mx-0 mx-lg-1 nav__item">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger nav__link"
+                       href="#portfolio">Projects</a>
+                </li>
+                <li class="nav-item mx-0 mx-lg-1 nav__item">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger nav__link" href="#about">About me</a>
+                </li>
+            </ul>
+        </div>
+        <div class="lang-switcher" style="display: none;">
+            <div class="lang-switcher__item">
+                <a href="#" data-lang="ru" class="flag-icon flag-icon-ru lang-switcher__link" title="RU"></a>
+            </div>
+            <div class="lang-switcher__item">
+                <a href="#" data-lang="en" class="flag-icon flag-icon-us lang-switcher__link" title="EN"></a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Header -->
+<header class="masthead bg-primary text-white text-center">
+    <div class="container">
+        <img class="img-fluid mb-5 d-block mx-auto image image_main" src="src/img/main.webp" alt="">
+        <h1 class="text-uppercase mb-5">Nikita Churilov</h1>
+        <h2 class="font-weight-light mb-0">Web-developer, Frontend-developer</h2>
+    </div>
+</header>
+
+<!-- Projects -->
+<section class="portfolio section" id="portfolio">
+    <div class="container">
+        <h2 class="text-center text-uppercase text-secondary mb-5 section__title">
+            Projects
+        </h2>
+        <div class="row portfolio__row">
+            <!-- Project 1 -->
+            <div class="col-md-6 col-lg-4 portfolio__item">
+                <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-1">
+                    <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                        <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                            <i class="fa fa-search-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img class="img-fluid" src="src/img/portfolio/web.webp" alt="">
+                </a>
+            </div>
+
+            <div class="portfolio-modal mfp-hide project" id="portfolio-modal-1">
+                <div class="portfolio-modal-dialog bg-white project__modal">
+                    <a class="close-button d-none d-md-block portfolio-modal-dismiss project__close-button" href="#">
+                        <i class="fa fa-3x fa-times project__close-button-icon"></i>
+                    </a>
+                    <div class="container text-center project__container">
+                        <div class="row project__row">
+                            <div class="col-lg-8 mx-auto project__row-block">
+                                <h2 class="text-secondary text-uppercase mb-0 project__title">
+                                    Web Studio <a href="https://rustex.ru" target="_blank">Rustex</a>
+                                </h2>
+                                <p class="mb-5 project__description">
+                                    Front-end & back-end development<br />
+                                    Stack: Saxss, JQuery, Bolt CMS
+                                </p>
+                                <div class="project__images">
+                                    <div class="project__images-item project__images-item_mobile"
+                                        data-src="src/img/portfolio/web_320.webp"
+                                        data-classes="img-fluid mb-5  project__screenshot project__screenshot_mobile">
+                                        <div class="project__resolution">
+                                            <i class="fa fa-mobile"></i>
+                                        </div>
+                                    </div>
+                                    <div class="project__images-item project__images-item_tablet"
+                                        data-src="src/img/portfolio/web_768.webp"
+                                        data-classes="img-fluid mb-5  project__screenshot project__screenshot_tablet">
+                                        <div class="project__resolution">
+                                            <i class="fa fa-tablet"></i>
+                                        </div>
+                                    </div>
+                                    <div class="project__images-item project__images-item_desktop"
+                                        data-src="src/img/portfolio/web.webp"
+                                        data-classes="img-fluid mb-5  project__screenshot project__screenshot_desktop">
+                                        <div class="project__resolution">
+                                            <i class="fa fa-desktop"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                                    <i class="fa fa-close"></i>
+                                    Close
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="col-md-6 col-lg-4 portfolio__item">
+                <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-2">
+                    <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                        <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                            <i class="fa fa-search-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img class="img-fluid" src="src/img/portfolio/simstore_mini.webp" alt="">
+                </a>
+            </div>
+
+            <div class="portfolio-modal mfp-hide project" id="portfolio-modal-2">
+                <div class="portfolio-modal-dialog bg-white project__modal">
+                    <a class="close-button d-none d-md-block portfolio-modal-dismiss project__close-button" href="#">
+                        <i class="fa fa-3x fa-times project__close-button-icon"></i>
+                    </a>
+                    <div class="container text-center project__container">
+                        <div class="row project__row">
+                            <div class="col-lg-8 mx-auto project__row-block">
+                                <h2 class="text-secondary text-uppercase mb-0 project__title">
+                                    Communication Provider's Website
+                                </h2>
+                                <p class="mb-5 project__description">
+                                    Refactoring of website's functionality & new features' development<br />
+                                    Stack: Stack: Laravel v5, VueJS, Sass
+                                </p>
+                                <div class="project__images">
+                                    <div class="project__images-item project__images-item_mobile"
+                                        data-src="src/img/portfolio/simstore_320.webp"
+                                        data-classes="img-fluid mb-5  project__screenshot project__screenshot_mobile">
+                                        <div class="project__resolution">
+                                            <i class="fa fa-mobile"></i>
+                                        </div>
+                                    </div>
+                                    <div class="project__images-item project__images-item_tablet"
+                                        data-src="src/img/portfolio/simstore_768.webp"
+                                        data-classes="img-fluid mb-5  project__screenshot project__screenshot_tablet">
+                                        <div class="project__resolution">
+                                            <i class="fa fa-tablet"></i>
+                                        </div>
+                                    </div>
+                                    <div class="project__images-item project__images-item_desktop"
+                                        data-src="src/img/portfolio/simstore.webp"
+                                        data-classes="img-fluid mb-5  project__screenshot project__screenshot_desktop">
+                                        <div class="project__resolution">
+                                            <i class="fa fa-desktop"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                                    <i class="fa fa-close"></i>
+                                    Close
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="col-md-6 col-lg-4 portfolio__item">
+                <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-3">
+                    <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                        <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                            <i class="fa fa-search-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img class="img-fluid" src="src/img/portfolio/grinteq_mini.webp" alt="">
+                </a>
+            </div>
+
+            <div class="portfolio-modal mfp-hide project" id="portfolio-modal-3">
+                <div class="portfolio-modal-dialog bg-white project__modal">
+                    <a class="close-button d-none d-md-block portfolio-modal-dismiss project__close-button" href="#">
+                        <i class="fa fa-3x fa-times project__close-button-icon"></i>
+                    </a>
+                    <div class="container text-center project__container">
+                        <div class="row project__row">
+                            <div class="col-lg-8 mx-auto project__row-block">
+                                <h2 class="text-secondary text-uppercase mb-0 project__title">
+                                    Digital Studio <a href="https://grinteq.com" target="_blank">Grinteq</a>
+                                </h2>
+                                <p class="mb-5 project__description">
+                                    Development of Digtial Studio Website's Front-end<br />
+                                    Stack: jQuery/Vanilla, Sass, MODX
+                                </p>
+                                <div class="project__images">
+                                    <div class="project__images-item project__images-item_mobile"
+                                        data-src="src/img/portfolio/grinteq_320.webp"
+                                        data-classes="img-fluid mb-5  project__screenshot project__screenshot_mobile">
+                                        <div class="project__resolution">
+                                            <i class="fa fa-mobile"></i>
+                                        </div>
+                                    </div>
+                                    <div class="project__images-item project__images-item_tablet"
+                                        data-src="src/img/portfolio/grinteq_768.webp"
+                                        data-classes="img-fluid mb-5  project__screenshot project__screenshot_tablet">
+                                        <div class="project__resolution">
+                                            <i class="fa fa-tablet"></i>
+                                        </div>
+                                    </div>
+                                    <div class="project__images-item project__images-item_desktop"
+                                        data-src="src/img/portfolio/grinteq.webp"
+                                        data-classes="img-fluid mb-5  project__screenshot project__screenshot_desktop">
+                                        <div class="project__resolution">
+                                            <i class="fa fa-desktop"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                                    <i class="fa fa-close"></i>
+                                    Close
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="col-md-6 col-lg-4 portfolio__item">
+                <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-4">
+                    <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
+                        <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
+                            <i class="fa fa-search-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img class="img-fluid" src="src/img/portfolio/golos_mog_mini.webp" alt="">
+                </a>
+            </div>
+
+            <div class="portfolio-modal mfp-hide project" id="portfolio-modal-4">
+                <div class="portfolio-modal-dialog bg-white project__modal">
+                    <a class="close-button d-none d-md-block portfolio-modal-dismiss project__close-button" href="#">
+                        <i class="fa fa-3x fa-times project__close-button-icon"></i>
+                    </a>
+                    <div class="container text-center project__container">
+                        <div class="row project__row">
+                            <div class="col-lg-8 mx-auto project__row-block">
+                                <h2 class="text-secondary text-uppercase mb-0 project__title">
+                                    Report Voting Service
+                                </h2>
+                                <p class="mb-5 project__description">
+                                    <a href="https://github.com/GetingJagare/quiz" target="_blank">Source Code</a><br />
+                                    Stack: Laravel, VueJS
+                                </p>
+                                <div class="project__images">
+                                    <div class="project__images-item project__images-item_desktop"
+                                        data-src="src/img/portfolio/golos_mog.webp"
+                                        data-classes="img-fluid mb-5  project__screenshot project__screenshot_desktop">
+                                        <div class="project__resolution">
+                                            <i class="fa fa-desktop"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                                    <i class="fa fa-close"></i>
+                                    Close
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="bg-primary text-white mb-0 section" id="about">
+    <div class="container">
+        <h2 class="text-center text-uppercase text-white section__title mb-5">About me</h2>
+        <div class="row">
+            <div class="col-lg-4 ml-auto">
+                <p class="lead">
+                    I develop, support & maintain sites and applications made with any CMS or framework using modern technologies and tools
+                    <br/>
+                    + All devices adaptation (mobile, tablet, desktop).
+                </p>
+            </div>
+            <div class="col-lg-4 mr-auto">
+                <p class="lead">
+                    Education: Moscow State University of Printing Arts named after Ivan Fyodorov.<br/><br/>
+                    Languages: English (Pre-Intermediate), <br/>Russian (Native).
+                </p>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-lg-4 ml-auto">
+                <p class="lead">
+                    CV: <a href="/files/Nikita_Churilov_CV_EN.pdf" class="link" download>Download Link</a>
+                </p>
+            </div>
+            <div class="col-lg-4 mr-auto"></div>
+        </div>
+
+        <div class="skills row flex-wrap">
+            <div class="skills__caption mb-2 mb-md-3 mb-lg-5 mt-2 mt-md-3 mt-lg-5 text-center">Tools I use</div>
+            <div class="skills__col pl-5 col-md-5 col-lg-3 ml-auto">
+                <div class="d-flex align-items-center mt-3 mb-3 skills__item">
+                    <span class="d-inline-block skills__item-icon skills__item-icon_html"></span>
+                    <span class="d-inline-block skills__item-text">HTML5</span>
+                </div>
+                <div class="d-flex align-items-center mt-3 mb-3 skills__item">
+                    <span class="d-inline-block skills__item-icon skills__item-icon_css"></span>
+                    <span class="d-inline-block skills__item-text">CSS</span>
+                </div>
+                <div class="d-flex align-items-center mt-3 mb-3 skills__item">
+                    <span class="d-inline-block skills__item-icon skills__item-icon_js"></span>
+                    <span class="d-inline-block skills__item-text">Javascript</span>
+                </div>
+                <div class="d-flex align-items-center mt-3 mb-3 skills__item">
+                    <span class="d-inline-block skills__item-icon skills__item-icon_njs"></span>
+                    <span class="d-inline-block skills__item-text">NodeJS</span>
+                </div>
+                <div class="d-flex align-items-center mt-3 mb-3 skills__item">
+                    <span class="d-inline-block skills__item-icon skills__item-icon_vuejs"></span>
+                    <span class="d-inline-block skills__item-text">VueJS</span>
+                </div>
+                <div class="d-flex align-items-center mt-3 mb-3 skills__item">
+                    <span class="d-inline-block skills__item-icon skills__item-icon_sass"></span>
+                    <span class="d-inline-block skills__item-text">Sass</span>
+                </div>
+                <div class="d-flex align-items-center mt-3 mb-3 skills__item">
+                    <span class="d-inline-block skills__item-icon skills__item-icon_webp"></span>
+                    <span class="d-inline-block skills__item-text">Webpack</span>
+                </div>
+                <div class="d-flex align-items-center mt-3 mb-3 skills__item">
+                    <span class="d-inline-block skills__item-icon skills__item-icon_gulp"></span>
+                    <span class="d-inline-block skills__item-text">Gulp</span>
+                </div>
+                <div class="d-flex align-items-center mt-3 mb-3 skills__item">
+                    <span class="d-inline-block skills__item-icon skills__item-icon_git"></span>
+                    <span class="d-inline-block skills__item-text">Git</span>
+                </div>
+            </div>
+            <div class="skills__col pl-5 col-lg-3 col-md-5 mr-auto">
+                <div class="d-flex align-items-center mt-3 mb-3 skills__item">
+                    <span class="d-inline-block skills__item-icon skills__item-icon_php"></span>
+                    <span class="d-inline-block skills__item-text">PHP</span>
+                </div>
+                <div class="d-flex align-items-center mt-3 mb-3 skills__item">
+                    <span class="d-inline-block skills__item-icon skills__item-icon_mysql"></span>
+                    <span class="d-inline-block skills__item-text">MySQL</span>
+                </div>
+                <div class="d-flex align-items-center mt-3 mb-3 skills__item">
+                    <span class="d-inline-block skills__item-icon skills__item-icon_yii"></span>
+                    <span class="d-inline-block skills__item-text">Yii</span>
+                </div>
+                <div class="d-flex align-items-center mt-3 mb-3 skills__item">
+                    <span class="d-inline-block skills__item-icon skills__item-icon_laravel"></span>
+                    <span class="d-inline-block skills__item-text">Laravel</span>
+                </div>
+                <div class="d-flex align-items-center mt-3 mb-3 skills__item">
+                    <span class="d-inline-block skills__item-icon skills__item-icon_wp"></span>
+                    <span class="d-inline-block skills__item-text">Wordpress</span>
+                </div>
+                <div class="d-flex align-items-center mt-3 mb-3 skills__item">
+                    <span class="d-inline-block skills__item-icon skills__item-icon_apache"></span>
+                    <span class="d-inline-block skills__item-text">Apache</span>
+                </div>
+                <div class="d-flex align-items-center mt-3 mb-3 skills__item">
+                    <span class="d-inline-block skills__item-icon skills__item-icon_nginx"></span>
+                    <span class="d-inline-block skills__item-text">Nginx</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mb-5 mb-lg-0">
+                <h4 class="text-uppercase mb-4">Country</h4>
+                <p class="lead mb-0">
+                    Montenegro, Bar
+                </p>
+            </div>
+            <div class="col-md-6 mb-5 mb-lg-0">
+                <h4 class="text-uppercase mb-4">Contacts</h4>
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <a class="btn btn-outline-light btn-social text-center rounded-circle"
+                           href="https://www.facebook.com/danrautskeggr" target="_blank">
+                            <i class="fa fa-fw fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="btn btn-outline-light btn-social text-center rounded-circle"
+                           href="https://t.me/wagnyjagare" target="_blank">
+                            <i class="fa fa-fw fa-telegram"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="btn btn-outline-light btn-social text-center rounded-circle"
+                           href="https://www.linkedin.com/in/getingjagare/" target="_blank">
+                            <i class="fa fa-fw fa-linkedin"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div class="copyright py-4 text-center text-white">
+    <div class="container">
+        <small>Copyright &copy; 2024</small>
+    </div>
+</div>
+
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-to-top position-fixed ">
+    <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</div>
+
+<link rel="stylesheet" href="dist/main.css">
+
+<script src="dist/main.js" async defer></script>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+.form {
+  & &__label {
+    display: none;
+  }
+  &__input {
+    &_submit {
+      margin-top: 16px;
+    }
+  }
+}

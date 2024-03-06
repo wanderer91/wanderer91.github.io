@@ -1,0 +1,27 @@
+@mixin body-font() {
+  font-family: 'Lato';
+}
+
+@mixin heading-font() {
+  font-weight: 700;
+  font-family: 'Montserrat';
+}
+
+@mixin mq($start: false, $end: false, $type: "screen") {
+  $query: #{$type};
+  $end_query: "";
+  @if $start and type_of($start) == number {
+    @if $end and type_of($end) == number {
+      @if $start > $end {
+        $tmp: $start;
+        $end: $start;
+        $start: $tmp;
+      }
+      $end_query: " and (max-width: #{$end - 1}px)";
+    }
+    $query: "#{$query} and (min-width: #{$start}px)#{$end_query}";
+    @media #{$query} {
+      @content;
+    }
+  }
+}

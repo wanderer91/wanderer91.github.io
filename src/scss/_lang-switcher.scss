@@ -1,0 +1,11 @@
+.lang-switcher {
+  &__link {
+
+    border-radius: 2px;
+
+    &:link, &:hover, &:visited, &:active {
+      text-decoration: none;
+    }
+
+  }
+}
