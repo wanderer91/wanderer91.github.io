@@ -3,13 +3,12 @@ const critical = require('critical');
 /**
  * @see: https://github.com/addyosmani/critical
  */
-
 critical.generate({
     // Your base directory
     base: __dirname + '/dist',
 
     // HTML source file
-    src: '/../critical.html',
+    src: '../critical.html',
 
     // Your CSS Files (optional)
     css: [__dirname + '/dist/main.css'],

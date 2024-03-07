@@ -9,18 +9,9 @@ const convert = (path) => {
 
     const outputPath = path.replace(/\..+$/, '.webp');
 
-    webp.cwebp(path, outputPath, '-q 80', (status, error) => {
-
-        if (error) {
-
-            console.error(error);
-
-            return;
-
-        }
-
-        console.log(`Converting ${path} status: ${status}`);
-
+    const result = webp.cwebp(path, outputPath, '-q 80', "-v");
+    result.then(function(res) {
+        console.log(res);
     });
 
 };

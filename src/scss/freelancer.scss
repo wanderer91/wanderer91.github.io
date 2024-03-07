@@ -1,5 +1,5 @@
 @import "~font-awesome/css/font-awesome.css";
-@import "~bootstrap/dist/css/bootstrap.css";
+@import "~bootstrap/scss/bootstrap.scss";
 @import "~magnific-popup/src/css/main";
 @import "./vendor/fancybox/fancybox.css";
 @import "~flag-icon-css/css/flag-icon.css";
@@ -9,8 +9,8 @@
 @import "variables.scss";
 @import "mixins.scss";
 @import "global.scss";
-//@import "navbar.scss";
-//@import "masthead.scss";
+@import "navbar.scss";
+@import "masthead.scss";
 @import "portfolio.scss";
 @import "contact.scss";
 @import "footer.scss";
@@ -21,5 +21,5 @@
 @import "project";
 @import "section";
 @import "copyright";
-//@import "lang-switcher";
+@import "lang-switcher";
 @import "link";

@@ -68,3 +68,12 @@
     }
   }
 }
+
+@media (max-width: 575.98px) {
+  #mainNav {
+    & > .container {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+}

@@ -15,10 +15,7 @@ function cssWhiteList() {
 }
 
 module.exports = {
-    entry: {
-        main: './src/js/main.js',
-        audio: './src/js/audio.js'
-    },
+    entry: './src/js/main.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js'
@@ -70,8 +67,7 @@ module.exports = {
                         loader: 'file-loader',
                         options: {
                             name: '[name].[ext]',
-                            outputPath: './img',
-                            //emitFile: false
+                            outputPath: 'img',
                         }
                     }
                 ]
@@ -83,7 +79,7 @@ module.exports = {
                         loader: 'file-loader',
                         options: {
                             name: '[name].[ext]',
-                            outputPath: './fonts'
+                            outputPath: 'fonts'
                         }
                     }
                 ]
@@ -91,12 +87,13 @@ module.exports = {
         ]
     },
     plugins: [
+        new CleanWebpackPlugin(),
         new miniCssWebpackPlugin({
             filename: '[name].css',
             chunkFilename: '[name].css'
         }),
         new PurgecssPlugin({
-            paths: glob.sync(['./app/views/**/*.twig']),
+            paths: glob.sync(['./index.html']),
             whitelistPatterns: cssWhiteList(),
         }),
         new webpack.ProvidePlugin({
@@ -104,7 +101,6 @@ module.exports = {
             jQuery: "jquery",
             "window.jQuery": "jquery"
         }),
-        new CleanWebpackPlugin()
     ],
     optimization: {
         minimizer: [
