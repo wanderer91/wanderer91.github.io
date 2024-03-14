@@ -1,0 +1,15 @@
+body {
+    --navbar-height: 70px;
+    --side-menu-width: 240px;
+    --bs-gutter-x: 1.5rem;
+
+    &.menu-collapsed {
+        --side-menu-width: calc(var(--bs-gutter-x) + var(--bs-body-font-size) * 2.5);
+    }
+
+    @media (max-width: 991.98px) {
+        &:not(.menu-collapsed) {
+            --side-menu-width: 240px;
+        }
+    } 
+}

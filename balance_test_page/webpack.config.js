@@ -3,6 +3,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import webpack from 'webpack';
 
 export default function ( env, argv ) {
     return {
@@ -30,6 +31,11 @@ export default function ( env, argv ) {
             new MiniCssExtractPlugin( {
                 filename: '[name].css',
             } ),
+            new webpack.ProvidePlugin({
+                $: "jquery",
+                jQuery: "jquery",
+                "window.jQuery": "jquery"
+            }),
         ],
         optimization: {
             minimize: true,

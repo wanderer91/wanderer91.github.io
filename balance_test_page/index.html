@@ -1,13 +1,234 @@
 <html lang="ru">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Баланс</title>
-        <link rel="stylesheet" href="dist/main.css" />
-    </head>
-    <body>
-        
-        <script src="dist/main.js"></script>
-    </body>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Баланс</title>
+    <link rel="stylesheet" href="dist/main.css" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar d-flex flex-nowrap position-fixed">
+            <div class="navbar__left d-none d-md-flex align-items-center">
+                <button class="btn btn-success d-flex align-items-center overflow-hidden">
+                    <span class="fa fa-plus btn__icon text-center"></span>
+                    <span class="btn__text text-nowrap">Создать компанию</span>
+                </button>
+            </div>
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" aria-controls="navbarToggleExternalContent"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="d-flex align-items-center">
+                    <div class="dropdown navbar__dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="balanceDropdown"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            8000&#8381;
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="balanceDropdown">
+                            <li><button class="dropdown-item" type="button">Action</button></li>
+                            <li><button class="dropdown-item" type="button">Another action</button></li>
+                            <li><button class="dropdown-item" type="button">Something else here</button></li>
+                        </ul>
+                    </div>
+                    <div class="navbar__cart ms-3">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                    <div class="position-relative navbar__notifications ms-3">
+                        <span class="fa fa-bell-o"></span>
+                        <span class="position-absolute navbar__notifications-badge"></span>
+                    </div>
+                    <div class="d-flex align-items-center user user--verified position-relative ms-4">
+                        <img src="img/dummy-avatar.png" class="user__avatar" />
+                        <span class="fa fa-check user__verified-badge"></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="side-menu">
+            <div class="side-menu__inner">
+                <div class="d-md-none side-menu__item actions">
+                    <button class="btn btn-success d-flex align-items-center overflow-hidden">
+                        <span class="fa fa-plus btn__icon text-center"></span>
+                        <span class="btn__text text-nowrap">Создать компанию</span>
+                    </button>
+                </div>
+                <div class="side-menu__item text-nowrap d-flex align-items-center">
+                    <span class="fa fa-tachometer side-menu__icon position-relative"></span>
+                    <span class="side-menu__link">Главная</span>
+                </div>
+                <div class="side-menu__item text-nowrap d-flex align-items-center">
+                    <span class="fa fa-tachometer side-menu__icon position-relative"></span>
+                    <span class="side-menu__link">Биржа</span>
+                </div>
+                <div class="side-menu__item text-nowrap d-flex align-items-center">
+                    <span class="fa fa-flag side-menu__icon position-relative"></span>
+                    <span class="side-menu__link">Офферы</span>
+                </div>
+                <div class="side-menu__item text-nowrap d-flex align-items-center">
+                    <span class="fa fa-fire side-menu__icon side-menu__icon--deal position-relative"></span>
+                    <span class="side-menu__link">Сделки</span>
+                </div>
+                <div class="side-menu__item text-nowrap d-flex align-items-center">
+                    <span class="fa fa-users side-menu__icon side-menu__icon--argument position-relative"></span>
+                    <span class="side-menu__link">Споры</span>
+                </div>
+                <div class="side-menu__item side-menu__item--active text-nowrap d-flex align-items-center">
+                    <span
+                        class="fa fa fa-credit-card-alt side-menu__icon side-menu__icon--balance position-relative"></span>
+                    <span class="side-menu__link">Баланс</span>
+                </div>
+                <div class="side-menu__delimiter"></div>
+                <div class="side-menu__item text-nowrap d-flex align-items-center">
+                    <span class="fa fa fa-cog side-menu__icon side-menu__icon--settings position-relative"></span>
+                    <span class="side-menu__link">Настройки</span>
+                </div>
+                <div class="side-menu__delimiter"></div>
+                <div class="side-menu__item text-nowrap d-flex align-items-center">
+                    <span class="fa fa fa-bell side-menu__icon side-menu__icon--notifications position-relative"></span>
+                    <span class="side-menu__link">Уведомления</span>
+                    <span class="notification-badge ms-2">7</span>
+                </div>
+                <div class="side-menu__item text-nowrap d-flex align-items-center">
+                    <span class="fa fa-users side-menu__icon side-menu__icon--argument position-relative"></span>
+                    <span class="side-menu__link">Помощники</span>
+                </div>
+                <div class="side-menu__item text-nowrap d-flex align-items-center">
+                    <span
+                        class="fa fa-arrow-circle-right side-menu__icon side-menu__icon--profile position-relative"></span>
+                    <span class="side-menu__link">Профиль</span>
+                </div>
+                <div class="side-menu__delimiter"></div>
+                <div class="side-menu__item text-nowrap d-flex align-items-center">
+                    <span class="fa fa-compass side-menu__icon side-menu__icon--ideas position-relative"></span>
+                    <span class="side-menu__link">Банк идей</span>
+                </div>
+                <div class="side-menu__item text-nowrap d-flex align-items-center">
+                    <span class="fa fa-gift side-menu__icon side-menu__icon--cert position-relative"></span>
+                    <span class="side-menu__link">Сертификаты</span>
+                </div>
+                <div class="side-menu__item text-nowrap d-flex align-items-center">
+                    <span class="fa fa-commenting side-menu__icon side-menu__icon--help position-relative"></span>
+                    <span class="side-menu__link">Помощь</span>
+                </div>
+                <div class="side-menu__item text-nowrap d-flex align-items-center">
+                    <span class="fa fa-lock side-menu__icon side-menu__icon--security position-relative"></span>
+                    <span class="side-menu__link">Безопасность</span>
+                </div>
+                <div class="side-menu__item text-nowrap d-flex align-items-center">
+                    <span class="fa fa-sign-out side-menu__icon side-menu__icon--sign-out position-relative"></span>
+                    <span class="side-menu__link">Выход</span>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <div class="container-fluid content__container">
+                <button class="btn btn-primary btn--auto">
+                    <span class="btn__text">Пополнить баланс</span>
+                    <span class="fa fa-money"></span>
+                </button>
+
+                <div class="nav nav-tabs mt-4" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-balance-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-balance" type="button" role="tab">Мои финансы</button>
+                    <button class="nav-link" id="nav-locked-tab" data-bs-toggle="tab" data-bs-target="#nav-locked"
+                        type="button" role="tab">Замороженные средства</button>
+                    <button class="nav-link" id="nav-return-tab" data-bs-toggle="tab" data-bs-target="#nav-return"
+                        type="button" role="tab">Возвраты по спорам</button>
+                    <button class="nav-link" id="nav-history-tab" data-bs-toggle="tab" data-bs-target="#nav-history"
+                        type="button" role="tab">История операций</button>
+                </div>
+
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-balance" role="tabpanel"
+                        aria-labelledby="balance-tab">
+                        <div class="content__block pt-3 pb-3">
+                            <h5 class="content__header">Баланс кошелька</h5>
+                            <h1 class="content__header content__header--big">8000&#8381;</h1>
+
+                            <div>
+                                <a class="btn btn-link btn-link--green btn--auto btn-link--no-border" href="#">
+                                    <span class="fa fa-plus"></span>
+                                    <span class="btn__text">Пополнить баланс</span>
+                                </a>
+                            </div>
+
+                            <div>
+                                <a class="btn btn-link btn--auto btn-link--no-border" href="#">
+                                    <span class="btn__text">История транзакций</span>
+                                </a>
+                            </div>
+
+                            <div class="text">
+                                С этим аккаунтом не связан ни один способ оплаты
+                            </div>
+
+                            <div>
+                                <a class="btn btn-link btn-link--grey btn--auto" href="#">
+                                    <span class="btn__text">Добавить способ оплаты</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="content__block pt-3 pb-3">
+                            <h5 class="content__header">Контактные данные</h5>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div>
+                                        <a class="btn btn-link btn-link--grey btn-link--grey--dark btn--auto" href="#">
+                                            <span class="btn__text">Настройка учётной записи</span>
+                                        </a>
+                                    </div>
+                                    <div class="text text--dark d-flex align-items-center">
+                                        <span>Адрес электронной почты:</span>&nbsp;
+                                        <a class="btn btn-link btn-link--grey btn-link--grey--dark btn-link--no-border btn-link--p0 btn--auto"
+                                            href="mailto:asdfasdf@asdf.sdf">asdfasdf@asdf.sdf</a>
+                                    </div>
+                                    <div class="text text--dark d-flex align-items-center">
+                                        <span>Подтверждён:</span>&nbsp;<span class="text text--dark text--bold">да</span>&nbsp;
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div>
+                                        <a class="btn btn-link btn-link--grey btn-link--grey--dark btn--auto" href="#">
+                                            <span class="btn__text">Управление номером телефона</span>
+                                        </a>
+                                    </div>
+                                    <div class="text text--dark d-flex align-items-center">
+                                        <span>Телефон заканчивается на:</span>&nbsp;<span class="text text--dark text--bold">34</span>&nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content__block pt-3 pb-3">
+                            <h5 class="content__header">Выписки и справки</h5>
+                            <div>
+                                <a class="btn btn-link btn-link--grey btn-link--grey--dark btn--auto" href="#">
+                                    <span class="btn__text">Выписка по счёту</span>
+                                </a>
+                            </div>
+                            <div>
+                                <a class="btn btn-link btn-link--grey btn-link--grey--dark btn--auto" href="#">
+                                    <span class="btn__text">Универсальный передаточный документ</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-locked" role="tabpanel" aria-labelledby="nav-locked-tab"></div>
+                    <div class="tab-pane fade" id="nav-return" role="tabpanel" aria-labelledby="nav-return-tab"></div>
+                    <div class="tab-pane fade" id="nav-history" role="tabpanel" aria-labelledby="nav-history-tab"></div>
+                </div>
+            </div>
+            </div>
+    </main>
+
+    <script src="dist/main.js"></script>
+</body>
+
 </html>

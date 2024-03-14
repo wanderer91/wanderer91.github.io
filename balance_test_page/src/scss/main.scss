@@ -1,1 +1,16 @@
 @import "~bootstrap/dist/css/bootstrap.css";
+@import '~font-awesome/css/font-awesome.css';
+
+@import "variables/colors.scss";
+@import "variables/dimensions.scss";
+
+@import "blocks/scrollbar.scss";
+@import "blocks/navbar.scss";
+@import "blocks/side-menu.scss";
+@import "blocks/user.scss";
+@import "blocks/button.scss";
+@import "blocks/content.scss";
+@import "blocks/body.scss";
+@import "blocks/nav";
+@import "blocks/notification-badge.scss";
+@import "blocks/text.scss";

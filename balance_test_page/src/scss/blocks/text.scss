@@ -1,0 +1,11 @@
+.text {
+    color: var(--bs-gray-500);
+
+    &--dark {
+        color: var(--bs-gray-800);
+    }
+
+    &--bold {
+        font-weight: 600;
+    }
+}

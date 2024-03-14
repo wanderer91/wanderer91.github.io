@@ -1,0 +1,27 @@
+.content {
+    padding-left: var(--side-menu-width);
+    transition: all var(--transition-duration) ease-in-out;
+    padding-top: var(--bs-gutter-x);
+
+    &__container {
+        padding-left: var(--bs-gutter-x);
+        padding-right: var(--bs-gutter-x);
+    }
+
+    &__block {
+        font-size: calc(var(--bs-body-font-size) * 0.9);
+
+        &:not(:first-child) {
+            border-top: 1px solid var(--bs-border-color);
+        }
+    }
+
+    &__header {
+        color: var(--bs-gray-500);
+        font-weight: 600;
+
+        &--big {
+            color: var(--bs-gray-800);
+        }
+    }
+}

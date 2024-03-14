@@ -1,0 +1,41 @@
+.nav {
+    &-tabs {
+        border-bottom: none;
+    }
+
+    &-tabs &-link {
+        border: none;
+        position: relative;
+        transition: all var(--transition-duration) ease-in-out;
+        font-weight: 600;
+        color: var(--bs-body-color);
+    }
+
+    &-tabs &-link.active {
+        color: var(--bs-green);
+    }
+
+    &-tabs &-link:before,
+    &-tabs &-link:after {
+        position: absolute;
+        content: '';
+        left: 0;
+        right: 0;
+        height: 2px;
+        bottom: 0;
+        transition: all var(--transition-duration) ease-in-out;
+    }
+
+    &-tabs &-link:before {
+        background-color: var(--bs-border-color);
+    }
+
+    &-tabs &-link:after {
+        background-color: var(--bs-green);
+        transform: scaleX(0);
+    }
+
+    &-tabs &-link.active:after {
+        transform: scaleX(1);
+    }
+}
