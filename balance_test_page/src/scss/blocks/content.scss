@@ -25,4 +25,8 @@
             color: var(--bs-gray-800);
         }
     }
+
+    @media (max-width: 991.98px) {
+        padding-left: calc(var(--bs-gutter-x) + var(--bs-body-font-size) * 2.5);
+    }
 }
