@@ -1,7 +1,7 @@
 .item {
     background-color: var(--color-light-grey);
     border-radius: 15px;
-    padding: 65px 30px;
+    padding: 50px 20px;
     position: relative;
     height: 100%;
 
@@ -18,16 +18,30 @@
     }
 
     &__icon {
-        width: 94px;
-        height: 94px;
-        border: 10px solid var(--bs-white);
+        width: 74px;
+        height: 74px;
+        border: 5px solid var(--bs-white);
         border-radius: 50%;
         background-color: var(--color-second-green);
         display: flex;
         justify-content: center;
         align-items: center;
-        
-        & > img {
+    }
+
+    &__img {
+        max-width: 30px;
+    }
+
+    @media (min-width: 992px) {
+        padding: 65px 30px;
+
+        &__icon {
+            width: 94px;
+            height: 94px;
+            border-width: 10px;
+        }
+
+        &__img {
             max-width: 40px;
         }
     }

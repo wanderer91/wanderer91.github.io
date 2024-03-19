@@ -1,0 +1,10 @@
+.swiper {
+    width: calc(100% + 20px);
+    margin-left: -10px;
+
+    &__item {
+        height: auto;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}

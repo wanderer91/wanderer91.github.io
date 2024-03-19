@@ -10,8 +10,8 @@
 
     &-h2 {
         margin-bottom: 30px;
-        font-size: calc(var(--font-size) * 1.75);
-        line-height: calc(var(--font-size) * 2.25);
+        font-size: calc(var(--font-size) * 1.4);
+        line-height: calc(var(--font-size) * 1.75);
         text-align: center;
     }
 
@@ -25,6 +25,11 @@
             margin-bottom: 60px;
             font-size: calc(var(--font-size) * 2 + 6px);
             line-height: calc(var(--font-size) * 3 + 2px);
+        }
+
+        &-h2 {
+            font-size: calc(var(--font-size) * 1.75);
+            line-height: calc(var(--font-size) * 2.25);
         }
     }
 }

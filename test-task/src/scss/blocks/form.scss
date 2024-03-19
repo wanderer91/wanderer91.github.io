@@ -1,0 +1,27 @@
+.form {
+    &__input {
+        height: 52px;
+        border-radius: 26px;
+        font-size: var(--font-size);
+        padding-left: 20px;
+        font-weight: 600;
+
+        &,
+        &:focus {
+            border: 1px solid var(--color-third-green);
+            outline: none;
+        }
+    }
+
+    &__input,
+    &__submit {
+        width: 100%;
+    }
+
+    @media (min-width: 992px) {
+        &__input {
+            padding-left: 20px;
+            width: 210px;
+        }
+    }
+}

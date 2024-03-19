@@ -1,7 +1,7 @@
 .navbar {
     background-color: var(--color-green) !important;
-    padding-top: 0;
-    padding-bottom: 0;
+    padding-top: 8px;
+    padding-bottom: 8px;
     transition: all var(--transition-duration) ease-in-out;
 
     &-sticky {
@@ -10,6 +10,8 @@
         left: 0;
         right: 0;
         z-index: 999;
+        padding-top: 0;
+        padding-bottom: 0;
     }
 
     &__search {
@@ -41,6 +43,9 @@
     }
 
     @media (min-width: 992px) {
+        padding-top: 0;
+        padding-bottom: 0;
+
         &__search {
             .btn {
                 padding-right: var(--bs-btn-padding-x);

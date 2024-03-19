@@ -2,6 +2,7 @@
     text-decoration: none;
 
     &-green {
+
         &:link,
         &:active,
         &:hover,
@@ -15,6 +16,21 @@
 
         &.link-green {
             border-bottom: 1px dashed var(--color-second-green);
+        }
+    }
+
+    &-underlined {
+        text-decoration: underline;
+    }
+
+    &-grey {
+        &-06 {
+            &:link,
+            &:active,
+            &:hover,
+            &:visited {
+                color: var(--color-grey-06);
+            }
         }
     }
 }

@@ -2,8 +2,7 @@
     line-height: calc(var(--font-size) + 6px);
 
     &-bigger {
-        font-size: calc(var(--font-size) + 2px);
-        line-height: calc(var(--font-size) * 1.875);
+        font-size: calc(var(--font-size) - 2px);
     }
 
     &-smaller {
@@ -47,6 +46,18 @@
 
         &.text-grey-06 {
             border-left: 1px solid var(--color-grey-06);
+        }
+    }
+
+    @media (min-width: 992px) {
+        &-bigger {
+            font-size: calc(var(--font-size) + 2px);
+            line-height: calc(var(--font-size) * 1.875);
+        }
+
+        &-big {
+            font-size: calc(var(--font-size) + 4px);
+            line-height: calc(var(--font-size) * 2);
         }
     }
 }

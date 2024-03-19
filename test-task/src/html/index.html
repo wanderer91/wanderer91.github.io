@@ -6,14 +6,18 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 
-<body class="body">
+<body class="body pb-5">
     <%= require('html-loader!./partials/header.html').default %>
 
     <main>
         <%= require('html-loader!./partials/top-section.html').default %>
         <%= require('html-loader!./partials/second-section.html').default %>
         <%= require('html-loader!./partials/third-section.html').default %>
+        <%= require('html-loader!./partials/fourth-section.html').default %>
+        <%= require('html-loader!./partials/contacts.html').default %>
     </main>
+
+    <%= require('html-loader!./partials/footer.html').default %>
 </body>
 
 </html>
