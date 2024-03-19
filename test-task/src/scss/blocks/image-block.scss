@@ -6,4 +6,8 @@
         border-radius: 10px;
         overflow: hidden;
     }
+
+    & > img {
+        cursor: pointer;
+    }
 }
