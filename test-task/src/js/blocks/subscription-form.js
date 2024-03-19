@@ -18,7 +18,7 @@ export default class SubscriptionForm extends BaseClass {
             }
 
             const res = await fetch(`subscription.json?email=${email}`),
-                data = res.json(),
+                data = await res.json(),
                 submitBtn = e.target.querySelector('.form__submit');    
 
             emailField.value = '';    
