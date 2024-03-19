@@ -85,4 +85,16 @@
             }
         }
     }
+
+    &-thanks,
+    &-thanks:hover {
+        border-color: transparent;
+        background: linear-gradient(90deg, var(--color-black-09) 0%, var(--bs-black) 100%);
+    }
+
+    &-thanks &__text,
+    &-thanks:hover &__text {
+        color: var(--bs-white) !important;
+        text-transform: uppercase;       
+    }
 }

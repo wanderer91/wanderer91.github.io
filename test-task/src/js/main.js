@@ -4,6 +4,7 @@ import Swiper from 'swiper';
 import {Autoplay} from 'swiper/modules';
 import Navbar from './blocks/navbar.js';
 import Appointment from './blocks/appointment.js';
+import SubscriptionForm from './blocks/subscription-form.js';
 
 import 'swiper/css';
 import 'swiper/css/autoplay';
@@ -12,8 +13,9 @@ import "../scss/main.scss";
 document.addEventListener( 'DOMContentLoaded', ( e ) => {
     new Navbar( '.navbar' );
     new Appointment( '.js-appointment' );
+    new SubscriptionForm('.subscription-form');
 
-    const swiper = new Swiper( '.swiper', {
+    new Swiper( '.swiper', {
         modules: [Autoplay],
         loop: true,
         autoplay: {
