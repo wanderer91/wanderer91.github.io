@@ -5,6 +5,7 @@ import {Autoplay} from 'swiper/modules';
 import Navbar from './blocks/navbar.js';
 import Appointment from './blocks/appointment.js';
 import SubscriptionForm from './blocks/subscription-form.js';
+import ImageModal from './blocks/image-modal.js';
 
 import 'swiper/css';
 import 'swiper/css/autoplay';
@@ -14,6 +15,7 @@ document.addEventListener( 'DOMContentLoaded', ( e ) => {
     new Navbar( '.navbar' );
     new Appointment( '.js-appointment' );
     new SubscriptionForm('.subscription-form');
+    new ImageModal('#image-modal');
 
     new Swiper( '.swiper', {
         modules: [Autoplay],

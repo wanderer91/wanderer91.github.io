@@ -5,6 +5,10 @@
     overflow: hidden;
     height: 100%;
 
+    &__image {
+        cursor: pointer;
+    }
+
     &__header {
         background-color: var(--color-third-light-grey);
         height: 180px;

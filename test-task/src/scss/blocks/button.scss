@@ -97,4 +97,33 @@
         color: var(--bs-white) !important;
         text-transform: uppercase;       
     }
+
+    &-close {
+        position: relative;
+        width: 24px;
+        height: 24px;
+        border: none;
+        padding: 0;
+
+        &:hover {
+            background-color: transparent;
+        }
+
+        &:before,
+        &:after {
+            position: absolute;
+            content: '';
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 2px;
+            border-radius: 2px;
+            background-color: var(--color-green);
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        &:after {
+            transform: translateY(-50%) rotate(135deg);
+        }
+    }
 }

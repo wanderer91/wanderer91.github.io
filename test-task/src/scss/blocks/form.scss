@@ -18,6 +18,26 @@
         width: 100%;
     }
 
+    &__checkbox {
+        width: 20px;
+        height: 20px;
+
+        &:checked {
+            background-color: var(--color-green);
+            border-color: var(--color-green);
+        }
+
+        &:checked,
+        &:focus {
+            box-shadow: none;
+        }
+
+        &,
+        &:focus:not(:checked) {
+            border-color: var(--color-grey-06);
+        }
+    }
+
     @media (min-width: 992px) {
         &__input {
             padding-left: 20px;
