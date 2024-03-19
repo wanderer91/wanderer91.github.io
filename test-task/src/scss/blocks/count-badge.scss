@@ -1,0 +1,11 @@
+.count-badge {
+    position: absolute;
+    background-color: var(--color-second-green);
+    border-radius: 50%;
+    color: var(--bs-white);
+    top: 0;
+    right: 0;
+    transform: translate(0%, -50%);
+    width: 22px;
+    height: 22px;
+}

@@ -1,0 +1,45 @@
+.text {
+    &-bigger {
+        font-size: calc(var(--font-size) + 2px);
+    }
+
+    &-smaller {
+        font-size: calc(var(--font-size) - 2px);
+    }
+
+    &-small {
+        font-size: calc(var(--font-size) - 4px);
+    }
+
+    &-semibold {
+        font-weight: 600;
+    }
+
+    &-bold {
+        font-weight: 700;
+    }
+
+    &-green {
+        color: var(--color-second-green);
+    }
+
+    &-grey {
+        color: var(--color-grey);
+
+        &-06 {
+            color: var(--color-grey-06);
+        }
+    }
+
+    &-uppercase {
+        text-transform: uppercase;
+    }
+
+    &-left-border {
+        padding-left: 10px;
+
+        &.text-grey-06 {
+            border-left: 1px solid var(--color-grey-06);
+        }
+    }
+}

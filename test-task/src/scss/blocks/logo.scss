@@ -1,0 +1,7 @@
+.logo {
+    width: calc(var(--logo-width) * 0.35);
+
+    @media (min-width: 1199px) {
+        width: var(--logo-width);
+    }
+}

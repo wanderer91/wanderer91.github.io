@@ -1,0 +1,20 @@
+.link {
+    text-decoration: none;
+
+    &-green {
+        &:link,
+        &:active,
+        &:hover,
+        &:visited {
+            color: var(--color-second-green);
+        }
+    }
+
+    &-dashed {
+        padding-bottom: 2px;
+
+        &.link-green {
+            border-bottom: 1px dashed var(--color-second-green);
+        }
+    }
+}
