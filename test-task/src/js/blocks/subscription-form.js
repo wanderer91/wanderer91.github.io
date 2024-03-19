@@ -21,6 +21,7 @@ export default class SubscriptionForm extends BaseClass {
                 data = res.json(),
                 submitBtn = e.target.querySelector('.form__submit');    
 
+            emailField.value = '';    
             submitBtn.querySelector('.button__text').innerText = data.message;
             submitBtn.classList.add('button-thanks');    
         });
