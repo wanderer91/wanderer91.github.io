@@ -1,0 +1,34 @@
+.item {
+    background-color: var(--color-light-grey);
+    border-radius: 15px;
+    padding: 65px 30px;
+    position: relative;
+    height: 100%;
+
+    &__content {
+        text-align: center;
+    }
+
+    &__image {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        transform: translateY(-50%);
+    }
+
+    &__icon {
+        width: 94px;
+        height: 94px;
+        border: 10px solid var(--bs-white);
+        border-radius: 50%;
+        background-color: var(--color-second-green);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        & > img {
+            max-width: 40px;
+        }
+    }
+}

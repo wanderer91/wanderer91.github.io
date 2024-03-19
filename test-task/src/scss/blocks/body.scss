@@ -4,3 +4,7 @@
     font-weight: 400;
     line-height: calc(var(--font-size) + 2px);
 }
+
+html, body {
+    overflow-x: hidden;
+}

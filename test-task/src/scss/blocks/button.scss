@@ -26,4 +26,63 @@
     &:hover &__text {
         color: var(--bs-white);
     }
+
+    &-reversed {
+        border-color: transparent;
+        background: linear-gradient(90deg, var(--color-third-green) 0%, var(--color-fourth-green) 100%);
+
+        &:hover {
+            border-color: var(--color-second-green);
+            background: transparent;
+        }
+    }
+
+    &-reversed:hover &__text {
+        color: var(--color-second-green) !important;
+    }
+
+    &-arrowed {
+        position: relative;
+        padding-right: 50px;
+
+        &:before {
+            position: absolute;
+            content: '';
+            width: 40px;
+            height: 40px;
+            background-color: var(--bs-white);
+            border-radius: 50%;
+            right: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-image: url(../../img/icons/arrow.svg);
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: all var(--transition-duration) ease-in-out;
+        }
+
+        @media (min-width: 992px) {
+            padding-right: 80px;
+            height: 70px;
+            padding-top: 24px;
+            padding-bottom: 24px;
+            border-radius: 35px;
+
+            &:before {
+                width: 50px;
+                height: 50px;
+                background-color: var(--bs-white);
+                border-radius: 50%;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+
+        &:hover {
+            &:before {
+                background-color: var(--color-second-green);
+            }
+        }
+    }
 }

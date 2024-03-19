@@ -1,0 +1,9 @@
+.image-block {
+    object-fit: cover;
+    overflow: hidden;
+
+    &-round {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+}

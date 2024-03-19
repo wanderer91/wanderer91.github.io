@@ -1,6 +1,9 @@
 .text {
+    line-height: calc(var(--font-size) + 6px);
+
     &-bigger {
         font-size: calc(var(--font-size) + 2px);
+        line-height: calc(var(--font-size) * 1.875);
     }
 
     &-smaller {
@@ -17,6 +20,10 @@
 
     &-bold {
         font-weight: 700;
+    }
+
+    &-italic {
+        font-style: italic;
     }
 
     &-green {
