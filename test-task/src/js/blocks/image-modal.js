@@ -16,7 +16,7 @@ export default class ImageModal extends BaseClass {
                 return;
             }
 
-            if (img.dataset.popup === 'false') {
+            if (/\.svg(\?.*)?$/.test(img.src)) {
                 return;
             }
 
