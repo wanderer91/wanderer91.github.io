@@ -1,0 +1,8 @@
+{
+  "attr-value-not-empty": false,
+  "inline-script-disabled": true,
+  "id-unique": true,
+  "tag-pair": true,
+  "tags-check": false,
+  "attr-value-double-quotes": true
+}
