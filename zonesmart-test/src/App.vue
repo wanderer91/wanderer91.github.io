@@ -2,14 +2,13 @@
 import { RouterLink, RouterView } from 'vue-router'
 </script>
 
-<template>
-    <header>
-        <div class="wrapper"></div>
-    </header>
+<template lang="pug">
+    header
+        div(class='wrapper')
 
-    <RouterView />
+    RouterView
 </template>
 
-<style scoped>
+<style lang="scss">
 
 </style>
