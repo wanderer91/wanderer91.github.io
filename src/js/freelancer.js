@@ -76,7 +76,7 @@
                 var imageSrc = $(this).data('src');
                 var $fancyboxLink = $('<a data-fancybox="gallery' + galleryIndex + '" href="' + imageSrc + '"></a>');
 
-                $('<img src="' + imageSrc + '" class="' + $(this).data('classes') + '" alt="" />').appendTo($fancyboxLink);
+                $('<img src="' + imageSrc + '" class="' + $(this).data('classes') + '" alt="" loading="lazy"/>').appendTo($fancyboxLink);
                 $fancyboxLink.appendTo($(this));
             });
         });
