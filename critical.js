@@ -1,24 +1,23 @@
-const critical = require('critical');
+import {generate} from 'critical';
 
 /**
  * @see: https://github.com/addyosmani/critical
  */
-critical.generate({
+console.log();
+generate({
     // Your base directory
-    base: __dirname + '/dist',
+    base: `${process.env.PWD}/dist`,
 
     // HTML source file
     src: '../critical.html',
 
     // Your CSS Files (optional)
-    css: [__dirname + '/dist/main.css'],
+    css: [`${process.env.PWD}/dist/main.css`],
 
     target: {
-        css: __dirname + '/dist/critical.css',
+        css: `${process.env.PWD}/dist/critical.css`,
         uncritical: 'uncritical.css'
     },
-
-    minify: true,
 }, (err, res) => {
     if (err) {
         console.error(err);
