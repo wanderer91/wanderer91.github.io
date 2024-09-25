@@ -11,9 +11,6 @@ const siteDesc = `I develop, support and maintain sites and web-applications:
     Wordpress, Laravel, Yii, NodeJS, Javascript, Vue, Nuxt, React, Docker`;
 const htmlPluginOptions = {
     meta: {
-        charset: {
-            charset: "utf-8",
-        },
         viewport: "width=device-width, initial-scale=1, shrink-to-fit=no",
         "X-UA-Compatible": {
             "http-equiv": "X-UA-Compatible",

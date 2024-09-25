@@ -29,7 +29,7 @@ export function renderModal(data = {}, id = '') {
                                 <h2 class="text-secondary text-uppercase mb-0 project__title">
                                     ${data.title}
                                 </h2>
-                                <p class="mb-5 project__description mt-4">${data.description.join('<br />')}</p>
+                                <p class="mb-5 project__description mt-4">${data.description.join('<br>')}</p>
                                 <div class="project__images">
                                     ${data.images.map((img) => {
                                         return `<div class="project__images-item project__images-item_${img.device}"
