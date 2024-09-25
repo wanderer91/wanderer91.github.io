@@ -1,0 +1,106 @@
+[
+    {
+        "title": "Web Studio <a href='https://rustex.ru' target='_blank'>Rustex</a>",
+        "description": [
+            "Front-end & back-end development",
+            "Stack: Sass, JQuery, Bolt CMS, Gulp"
+        ],
+        "thumb": "static/img/portfolio/web_mini.webp",
+        "images": [
+            {
+                "src": "static/img/portfolio/web_320.webp",
+                "device": "mobile"
+            },
+            {
+                "src": "static/img/portfolio/web_768.webp",
+                "device": "tablet"
+            },
+            {
+                "src": "static/img/portfolio/web.webp",
+                "device": "desktop"
+            }
+        ]
+    },
+    {
+        "title": "Communication Provider's Website",
+        "description": [
+            "Refactoring of website's functionality & new features' development",
+            "Stack: Laravel v5, VueJS, Sass",
+            "<a href='https://github.com/GetingJagare/simstore' target='_blank'>Source Code</a>"
+        ],
+        "thumb": "static/img/portfolio/simstore_mini.webp",
+        "images": [
+            {
+                "src": "static/img/portfolio/simstore_320.webp",
+                "device": "mobile"
+            },
+            {
+                "src": "static/img/portfolio/simstore_768.webp",
+                "device": "tablet"
+            },
+            {
+                "src": "static/img/portfolio/simstore.webp",
+                "device": "desktop"
+            }
+        ]
+    },
+    {
+        "title": "Digital Studio <a href='https://grinteq.com' target='_blank'>Grinteq</a>",
+        "description": [
+            "Development of Digital Studio Website's Front-end",
+            "Stack: jQuery/Vanilla, Sass, MODX"
+        ],
+        "thumb": "static/img/portfolio/grinteq_mini.webp",
+        "images": [
+            {
+                "src": "static/img/portfolio/grinteq_320.webp",
+                "device": "mobile"
+            },
+            {
+                "src": "static/img/portfolio/grinteq_768.webp",
+                "device": "tablet"
+            },
+            {
+                "src": "static/img/portfolio/grinteq.webp",
+                "device": "desktop"
+            }
+        ]
+    },
+    {
+        "title": "Report Voting Service",
+        "description": [
+            "Stack: Laravel, VueJS",
+            "<a href='https://github.com/GetingJagare/quiz' target='_blank'>Source Code</a>"
+        ],
+        "thumb": "static/img/portfolio/golos_mog_mini.webp",
+        "images": [
+            {
+                "src": "static/img/portfolio/golos_mog.webp",
+                "device": "desktop"
+            }
+        ]
+    },
+    {
+        "title": "Presentation Website for <a href='https://ontoloo.ru' target='_blank'>KMS Ontoloo</a>",
+        "description": [
+            "Implementing of the Website's Frontend. Adaptive layout (mobiles, tablets, desktop).",
+            "Stack: Javascript (Vanilla, jQuery, D3.js), Sass, Webpack."
+        ],
+        "thumb": "static/img/portfolio/ontoloo_mini.webp",
+        "images": [
+            {
+                "src": "static/img/portfolio/ontoloo_320.webp",
+                "device": "mobile"
+            },
+            {
+                "src": "static/img/portfolio/ontoloo_768.webp",
+                "device": "tablet"
+            },
+            {
+                "src": "static/img/portfolio/ontoloo.webp",
+                "device": "desktop"
+            }
+        ],
+        "isNew": true
+    }
+]

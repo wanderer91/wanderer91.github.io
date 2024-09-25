@@ -1,121 +1,91 @@
 'use strict';
 
-const glob = require('glob-all');
-const path = require('path');
-const miniCssWebpackPlugin = require('mini-css-extract-plugin');
-const uglifyJsWebpackPlugin = require('uglifyjs-webpack-plugin');
-const optimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const PurgecssPlugin = require('purgecss-webpack-plugin');
-const webpack = require('webpack');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import TerserPlugin from "terser-webpack-plugin";
 
-function cssWhiteList() {
-    return [/mfp/, /fa/, /mb/, /img/, /project__screenshot/, /skills__item/, /fancybox/, /project__images/, /alert/, /button/, /close/, /flag-icon/,
-        /audio-player/];
-}
+const devMode = process.env.NODE_ENV === 'development';
+const {PWD: currentDir} = process.env;
+const htmlPluginOptions = {
+    meta: {
+        viewport: "width=device-width, initial-scale=1, shrink-to-fit=no",
+        "X-UA-Compatible": {
+            "http-equiv": "X-UA-Compatible",
+            "content": "IE=edge"
+        }
+    },
+    filename: `${currentDir}/index.html`,
+    template: 'src/html/index.html',
+    inject: 'body',
+    hash: true,
+    scriptLoading: 'defer',
+    minify: devMode ? false : {
+        collapseWhitespace: true,
+        keepClosingSlash: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true,
+    },
+    basePath: '',
+};
 
-module.exports = {
+
+export default {
     entry: './src/js/main.js',
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: '[name].js'
+        path: `${currentDir}/dist`,
+        filename: '[name].js',
+        clean: true,
     },
     module: {
         rules: [
             {
-                test: /\.js$/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env'],
-                        plugins: ['@babel/plugin-proposal-class-properties']
-                    }
-                }
+                test: /\.html$/,
+                use: 'html-loader'
             },
             {
                 test: /\.(sass|scss)$/,
                 use: [
-                    {
-                        loader: miniCssWebpackPlugin.loader
-                    },
-                    {
-                        loader: 'css-loader',
-                    },
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'resolve-url-loader',
                     {
                         loader: "sass-loader",
                         options: {
-                            sourceMap: true,
+                            sourceMap: true
                         }
                     }
                 ]
             },
             {
-                test: /\.css$/,
-                use: [
-                    {
-                        loader: 'css-loader',
-                    },
-                    {
-                        loader: 'style-loader',
-                    }
-                ]
+                test: /\.(png|jpe?g|gif|svg|webp|woff|woff2|eot|ttf|otf)(.*)$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: '[name][ext]'
+                }
             },
-            {
-                test: /\.(png|jpe?g|gif|svg|webp)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name].[ext]',
-                            outputPath: 'img',
-                        }
-                    }
-                ]
-            },
-            {
-                test: /\.(woff2?|ttf|eot|otf)(\?v=\d+\.\d+\.\d+)?$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name].[ext]',
-                            outputPath: 'fonts'
-                        }
-                    }
-                ]
-            }
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(),
-        new miniCssWebpackPlugin({
-            filename: '[name].css',
-            chunkFilename: '[name].css'
+        new MiniCssExtractPlugin({
+            filename: 'main.css',
         }),
-        new PurgecssPlugin({
-            paths: glob.sync(['./index.html']),
-            whitelistPatterns: cssWhiteList(),
-        }),
-        new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery",
-            "window.jQuery": "jquery"
-        }),
+        new HtmlWebpackPlugin(htmlPluginOptions),
     ],
     optimization: {
+        minimize: true,
         minimizer: [
-            new uglifyJsWebpackPlugin({
-                uglifyOptions: {
-                    output: {
+            new TerserPlugin({
+                parallel: 4,
+                terserOptions: {
+                    format: {
                         comments: false,
                     },
                 },
+                extractComments: false,
             }),
-            new optimizeCSSAssetsPlugin({
-                cssProcessorPluginOptions: {
-                    preset: ['default', { discardComments: { removeAll: true } }],
-                },
-            })
-        ]
+        ],
     }
 };

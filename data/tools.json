@@ -1,0 +1,66 @@
+[
+    {
+        "title": "HTML5",
+        "alias": "html"
+    },
+    {
+        "title": "CSS",
+        "alias": "css"
+    },
+    {
+        "title": "JavaScript",
+        "alias": "js"
+    },
+    {
+        "title": "NodeJS",
+        "alias": "njs"
+    },
+    {
+        "title": "VueJS",
+        "alias": "vuejs"
+    },
+    {
+        "title": "Sass",
+        "alias": "sass"
+    },
+    {
+        "title": "Webpack",
+        "alias": "webp"
+    },
+    {
+        "title": "Gulp",
+        "alias": "gulp"
+    },
+    {
+        "title": "PHP",
+        "alias": "php"
+    },
+    {
+        "title": "MySQL",
+        "alias": "mysql"
+    },
+    {
+        "title": "Yii",
+        "alias": "yii"
+    },
+    {
+        "title": "Laravel",
+        "alias": "laravel"
+    },
+    {
+        "title": "Wordpress",
+        "alias": "wp"
+    },
+    {
+        "title": "Apache",
+        "alias": "apache"
+    },
+    {
+        "title": "Nginx",
+        "alias": "nginx"
+    },
+    {
+        "title": "Git",
+        "alias": "git"
+    }
+]
