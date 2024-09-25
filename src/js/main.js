@@ -1,8 +1,9 @@
 import "../scss/main.scss";
 import $ from 'jquery';
 import {Collapse} from 'bootstrap';
+import Projects from "./blocks/Projects.js";
 
-$(function () {
+$(async function () {
     $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
             var target = $(this.hash);
@@ -45,6 +46,8 @@ $(function () {
     // Collapse the navbar when page is scrolled
     $(window).on('scroll', navbarCollapse);
 
+    (new Projects($('.portfolio__row')));
+
     // Modal popup$(function () {
     // $('.portfolio-item').magnificPopup({
     //     type: 'inline',
@@ -57,13 +60,13 @@ $(function () {
     //     $.magnificPopup.close();
     // });
 
-    $('.project__images').each(function (galleryIndex) {
-        $(this).find('.project__images-item').each(function () {
-            var imageSrc = $(this).data('src');
-            var $fancyboxLink = $('<a data-fancybox="gallery' + galleryIndex + '" href="' + imageSrc + '"></a>');
+   //  $('.project__images').each(function (galleryIndex) {
+   //      $(this).find('.project__images-item').each(function () {
+   //          var imageSrc = $(this).data('src');
+   //          var $fancyboxLink = $(`<a data-fancybox="gallery${galleryIndex}" href="${imageSrc}"></a>`);
 
-            $('<img src="' + imageSrc + '" class="' + $(this).data('classes') + '" alt="" loading="lazy"/>').appendTo($fancyboxLink);
-            $fancyboxLink.appendTo($(this));
-        });
-    });
+   //          $(`<img src="${imageSrc}" class="${$(this).data('classes')}" alt="" loading="lazy"/>`).appendTo($fancyboxLink);
+   //          $fancyboxLink.appendTo($(this));
+   //      });
+   //  });
 });
