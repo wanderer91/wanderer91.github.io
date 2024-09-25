@@ -1,7 +1,12 @@
 import "../scss/main.scss";
 import $ from 'jquery';
-import {Collapse} from 'bootstrap';
+import axios from "axios";
+import {Collapse, Modal} from 'bootstrap';
 import Projects from "./blocks/Projects.js";
+import Tools from "./blocks/Tools.js";
+
+window.$ = $;
+window.axios = axios;
 
 $(async function () {
     $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
@@ -46,27 +51,18 @@ $(async function () {
     // Collapse the navbar when page is scrolled
     $(window).on('scroll', navbarCollapse);
 
-    (new Projects($('.portfolio__row')));
+    (new Projects('.portfolio__row'));
+    (new Tools('.skills .section__content'));
 
-    // Modal popup$(function () {
-    // $('.portfolio-item').magnificPopup({
-    //     type: 'inline',
-    //     preloader: false,
-    //     focus: '#username',
-    //     modal: true
-    // });
-    // $(document).on('click', '.portfolio-modal-dismiss', function (e) {
-    //     e.preventDefault();
-    //     $.magnificPopup.close();
-    // });
+    $(document).on('click', '[data-dismiss="modal"]', (e) => {
+        e.preventDefault();
 
-   //  $('.project__images').each(function (galleryIndex) {
-   //      $(this).find('.project__images-item').each(function () {
-   //          var imageSrc = $(this).data('src');
-   //          var $fancyboxLink = $(`<a data-fancybox="gallery${galleryIndex}" href="${imageSrc}"></a>`);
+        const $modalEl = $(e.target).closest('.modal');
 
-   //          $(`<img src="${imageSrc}" class="${$(this).data('classes')}" alt="" loading="lazy"/>`).appendTo($fancyboxLink);
-   //          $fancyboxLink.appendTo($(this));
-   //      });
-   //  });
+        if (!$modalEl.length) {
+            return;
+        }
+
+        $modalEl.data('modal').hide();
+    });
 });

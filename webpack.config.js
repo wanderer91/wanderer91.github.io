@@ -6,13 +6,53 @@ import TerserPlugin from "terser-webpack-plugin";
 
 const devMode = process.env.NODE_ENV === 'development';
 const {PWD: currentDir} = process.env;
+const siteTitle = "Portfolio Page | Nikita Churilov";
+const siteDesc = `I develop, support and maintain sites and web-applications: 
+    Wordpress, Laravel, Yii, NodeJS, Javascript, Vue, Nuxt, React, Docker`;
 const htmlPluginOptions = {
     meta: {
+        charset: {
+            charset: "utf-8",
+        },
         viewport: "width=device-width, initial-scale=1, shrink-to-fit=no",
         "X-UA-Compatible": {
             "http-equiv": "X-UA-Compatible",
-            "content": "IE=edge"
-        }
+            content: "IE=edge",
+        },
+        generator: "Webpack",
+        keywords: "Web-developer's Portfolio, Freelancer, Web-developer PHP JS NodeJS Laravel Yii Wordpress Vue Nuxt React Docker",
+        description: siteDesc,
+        "twitter:card": "summary",
+        "twitter:title": siteTitle,
+        "twitter:description": siteDesc,
+        "og:type": {
+            property: "og:type",
+            content: "website",
+        },
+        "og:description": {
+            property: "og:description",
+            content: siteDesc,
+        },
+        "og:title": {
+            property: "og:title",
+            content: siteTitle,
+        },
+        "og:image": {
+            property: "og:image",
+            content: "static/img/main.png",
+        },
+        "og:image:type": {
+            property: "og:image:type",
+            content: "image/png",
+        },
+        "og:image:width": {
+            property: "og:image:width",
+            content: "718",
+        },
+        "og:image:height": {
+            property: "og:image:height",
+            content: "718",
+        },
     },
     filename: `${currentDir}/index.html`,
     template: 'src/html/index.html',
@@ -29,10 +69,18 @@ const htmlPluginOptions = {
         useShortDoctype: true,
     },
     basePath: '',
+    title: siteTitle,
 };
 
 
 export default {
+    devServer: {
+        static: {
+          directory: currentDir,
+        },
+        compress: true,
+        port: 9000,
+    },
     entry: './src/js/main.js',
     output: {
         path: `${currentDir}/dist`,
@@ -46,7 +94,7 @@ export default {
                 use: 'html-loader'
             },
             {
-                test: /\.(sass|scss)$/,
+                test: /\.(s?css)$/,
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',

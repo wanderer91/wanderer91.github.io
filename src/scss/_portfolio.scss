@@ -56,15 +56,19 @@
 }
 
 .portfolio-modal {
+  display: none;
+  padding-right: 0;
   .portfolio-modal-dialog {
     padding: 3rem 1rem;
     min-height: calc(100vh - 2rem);
+    max-width: 100% !important;
     margin: 1rem calc(1rem - 8px);
     position: relative;
     z-index: 2;
     -moz-box-shadow: 0 0 3rem 1rem fade-out(black, .5);
     -webkit-box-shadow: 0 0 3rem 1rem fade-out(black, .5);
     box-shadow: 0 0 3rem 1rem fade-out(black, .5);
+    pointer-events: all;
     .close-button {
       position: absolute;
       top: 2rem;

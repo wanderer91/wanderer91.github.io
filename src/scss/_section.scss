@@ -1,3 +1,13 @@
+@keyframes sectionLoadingIndicator {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
 .section {
   @include mq(320, 768) {
     padding: 2rem 0;
@@ -10,9 +20,33 @@
     }
   }
 
-  &__star {
-    @include mq(320, 768) {
-      display: none;
+  &__content {
+    &.loading {
+      min-height: 100px;
+      position: relative;
+      
+      &:before {
+        position: absolute;
+        content: '';
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 4px solid $primary;
+        border-radius: 50%;
+        border-right-color: transparent;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(0deg);
+        animation-name: sectionLoadingIndicator;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
     }
+  }
+
+  &.bg-primary &__content:before {
+    border-color: $white;
+    border-right-color: transparent;
   }
 }

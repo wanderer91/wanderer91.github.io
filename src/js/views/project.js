@@ -17,6 +17,37 @@ export function renderThumb(options = {}) {
             `</div>`;
 }
 
-export function renderModal(data = {}) {
-    
+export function renderModal(data = {}, id = '') {
+    return `<div class="portfolio-modal project modal fade" id="${id}">
+                <div class="modal-dialog portfolio-modal-dialog bg-white project__modal">
+                    <a class="close-button d-none d-md-block portfolio-modal-dismiss project__close-button" href="#" data-dismiss="modal">
+                        <i class="fa fa-3x fa-times project__close-button-icon"></i>
+                    </a>
+                    <div class="container text-center project__container">
+                        <div class="row project__row">
+                            <div class="col-lg-8 mx-auto project__row-block">
+                                <h2 class="text-secondary text-uppercase mb-0 project__title">
+                                    ${data.title}
+                                </h2>
+                                <p class="mb-5 project__description mt-4">${data.description.join('<br />')}</p>
+                                <div class="project__images">
+                                    ${data.images.map((img) => {
+                                        return `<div class="project__images-item project__images-item_${img.device}"
+                                                    data-src="${img.src}"
+                                                    data-classes="img-fluid mb-5 project__screenshot project__screenshot_${img.device}">
+                                                    <div class="project__resolution">
+                                                        <i class="fa fa-${img.device}"></i>
+                                                    </div>
+                                                </div>`
+                                    }).join('')}
+                                </div>
+                                <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#" data-dismiss="modal">
+                                    <i class="fa fa-close"></i>
+                                    Close
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
 }

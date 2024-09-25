@@ -12,12 +12,14 @@
   ],
   "license": "MIT",
   "scripts": {
+    "serve": "webpack serve",
     "dev": "NODE_ENV=development webpack -w",
     "build": "NODE_ENV=production webpack",
     "webp-convert": "node webp-convert.js",
     "critical": "node critical.js"
   },
   "devDependencies": {
+    "@fancyapps/ui": "^5.0.36",
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "css-loader": "^7.1.2",
@@ -32,7 +34,8 @@
     "sass-loader": "^16.0.2",
     "terser-webpack-plugin": "^5.3.10",
     "webpack": "^5.94.0",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0"
   },
   "dependencies": {
     "critical": "^7.2.1",
