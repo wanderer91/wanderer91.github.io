@@ -44,20 +44,6 @@
         ]
     },
     {
-        "title": "Report Voting Service",
-        "description": [
-            "Stack: Laravel, VueJS",
-            "<a href='https://github.com/GetingJagare/quiz' target='_blank'>Source Code</a>"
-        ],
-        "thumb": "static/img/portfolio/golos_mog_mini.webp",
-        "images": [
-            {
-                "src": "static/img/portfolio/golos_mog.webp",
-                "device": "desktop"
-            }
-        ]
-    },
-    {
         "title": "Presentation Website for <a href='https://ontoloo.ru' target='_blank'>KMS Ontoloo</a>",
         "description": [
             "Implementing of the Website's Frontend. Adaptive layout (mobiles, tablets, desktop).",
