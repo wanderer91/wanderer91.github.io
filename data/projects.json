@@ -22,29 +22,6 @@
         ]
     },
     {
-        "title": "Communication Provider's Website",
-        "description": [
-            "Refactoring of website's functionality & new features' development",
-            "Stack: Laravel v5, VueJS, Sass",
-            "<a href='https://github.com/GetingJagare/simstore' target='_blank'>Source Code</a>"
-        ],
-        "thumb": "static/img/portfolio/simstore_mini.webp",
-        "images": [
-            {
-                "src": "static/img/portfolio/simstore_320.webp",
-                "device": "mobile"
-            },
-            {
-                "src": "static/img/portfolio/simstore_768.webp",
-                "device": "tablet"
-            },
-            {
-                "src": "static/img/portfolio/simstore.webp",
-                "device": "desktop"
-            }
-        ]
-    },
-    {
         "title": "Digital Studio <a href='https://grinteq.com' target='_blank'>Grinteq</a>",
         "description": [
             "Development of Digital Studio Website's Front-end",
