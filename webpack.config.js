@@ -4,8 +4,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import TerserPlugin from "terser-webpack-plugin";
 
-const devMode = process.env.NODE_ENV === 'development';
-const {PWD: currentDir} = process.env;
+const {PWD: currentDir, NODE_ENV: mode} = process.env;
 const siteTitle = "Portfolio Page | Nikita Churilov";
 const siteDesc = `I develop, support and maintain sites and web-applications: 
     Wordpress, Laravel, Yii, NodeJS, Javascript, Vue, Nuxt, React, Docker`;
@@ -56,7 +55,7 @@ const htmlPluginOptions = {
     inject: 'body',
     hash: true,
     scriptLoading: 'defer',
-    minify: devMode ? false : {
+    minify: mode === 'development' ? false : {
         collapseWhitespace: true,
         keepClosingSlash: true,
         removeComments: true,
@@ -71,10 +70,12 @@ const htmlPluginOptions = {
 
 
 export default {
+    mode,
     devServer: {
         static: {
           directory: currentDir,
         },
+        hot: true,
         compress: true,
         port: 9000,
     },
