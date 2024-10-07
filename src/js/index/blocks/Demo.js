@@ -17,7 +17,7 @@ export default class Tools {
     init() {
         this.demos.forEach((demo) => {
             this.$contentEl.append(`<div class="demo__item">` + 
-                `<a href="${demo.url}" target="_blank">${demo.title}</a>` +
+                `<a href="${demo.url}">${demo.title}</a>` +
                 `</div>`);
         });
 
