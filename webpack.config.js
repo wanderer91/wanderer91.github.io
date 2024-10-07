@@ -3,55 +3,13 @@
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import TerserPlugin from "terser-webpack-plugin";
+import fs from 'fs';
 
 const {PWD: currentDir, NODE_ENV: mode} = process.env;
-const siteTitle = "Portfolio Page | Nikita Churilov";
-const siteDesc = `I develop, support and maintain sites and web-applications: 
-    Wordpress, Laravel, Yii, NodeJS, Javascript, Vue, Nuxt, React, Docker`;
-const htmlPluginOptions = {
-    meta: {
-        viewport: "width=device-width, initial-scale=1, shrink-to-fit=no",
-        "X-UA-Compatible": {
-            "http-equiv": "X-UA-Compatible",
-            content: "IE=edge",
-        },
-        generator: "Webpack",
-        keywords: "Web-developer's Portfolio, Freelancer, Web-developer PHP JS NodeJS Laravel Yii Wordpress Vue Nuxt React Docker",
-        description: siteDesc,
-        "twitter:card": "summary",
-        "twitter:title": siteTitle,
-        "twitter:description": siteDesc,
-        "og:type": {
-            property: "og:type",
-            content: "website",
-        },
-        "og:description": {
-            property: "og:description",
-            content: siteDesc,
-        },
-        "og:title": {
-            property: "og:title",
-            content: siteTitle,
-        },
-        "og:image": {
-            property: "og:image",
-            content: "static/img/main.png",
-        },
-        "og:image:type": {
-            property: "og:image:type",
-            content: "image/png",
-        },
-        "og:image:width": {
-            property: "og:image:width",
-            content: "718",
-        },
-        "og:image:height": {
-            property: "og:image:height",
-            content: "718",
-        },
-    },
-    filename: `${currentDir}/index.html`,
-    template: 'src/html/index.html',
+const pageOptions = JSON.parse(fs.readFileSync(`${currentDir}/data/page-options.json`, 'utf-8'));
+const htmlSrcDirectory = `${currentDir}/src/html`;
+const htmlWebpackPlugins = [];
+const basicHtmlPluginOptions = {
     inject: 'body',
     hash: true,
     scriptLoading: 'defer',
@@ -65,9 +23,34 @@ const htmlPluginOptions = {
         useShortDoctype: true,
     },
     basePath: '',
-    title: siteTitle,
 };
+const walkDirectory = (dir) => {
+    fs.readdirSync(dir).forEach((item) => {
+        const sourcePath = `${dir}/${item}`;
+        if (fs.lstatSync(sourcePath).isDirectory()) {
+            walkDirectory(sourcePath);
+        } else if (/\.html$/.test(sourcePath)) {
+            const filePath = sourcePath.replace(new RegExp(`${htmlSrcDirectory}\/?`), '');
+            let htmlPluginOptions = {
+                filename: `${currentDir}/${filePath}`,
+                template: sourcePath,
+                ...basicHtmlPluginOptions,
+            };
 
+            const pathSlug = filePath.replace(/\.html$/, '');
+
+            if (pageOptions[pathSlug]) {
+                htmlPluginOptions = {
+                    ...htmlPluginOptions,
+                    ...pageOptions[pathSlug],
+                };
+            }
+            
+            htmlWebpackPlugins.push(new HtmlWebpackPlugin(htmlPluginOptions));
+        }
+    });
+}
+walkDirectory(htmlSrcDirectory);
 
 export default {
     mode,
@@ -79,7 +62,10 @@ export default {
         compress: true,
         port: 9000,
     },
-    entry: './src/js/main.js',
+    entry: {
+        main: './src/js/main.js',
+        'simple-swiper': './src/js/simple-swiper.js',
+    },
     output: {
         path: `${currentDir}/dist`,
         filename: '[name].js',
@@ -116,9 +102,9 @@ export default {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'main.css',
+            filename: '[name].css',
         }),
-        new HtmlWebpackPlugin(htmlPluginOptions),
+        ...htmlWebpackPlugins,
     ],
     optimization: {
         minimize: true,

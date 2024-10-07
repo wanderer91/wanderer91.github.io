@@ -2,13 +2,14 @@ import "../scss/main.scss";
 import $ from 'jquery';
 import axios from "axios";
 import {Collapse, Modal} from 'bootstrap';
-import Projects from "./blocks/Projects.js";
-import Tools from "./blocks/Tools.js";
+import Projects from "./index/blocks/Projects.js";
+import Tools from "./index/blocks/Tools.js";
+import Demo from "./index/blocks/Demo.js";
 
 window.$ = $;
 window.axios = axios;
 
-$(async function () {
+$(function () {
     $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
             var target = $(this.hash);
@@ -53,6 +54,7 @@ $(async function () {
 
     (new Projects('.portfolio__row'));
     (new Tools('.skills .section__content'));
+    (new Demo('.demo .section__content'));
 
     $(document).on('click', '[data-dismiss="modal"]', (e) => {
         e.preventDefault();

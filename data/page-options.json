@@ -1,0 +1,68 @@
+{
+    "index": {
+        "meta": {
+            "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
+            "X-UA-Compatible": {
+                "http-equiv": "X-UA-Compatible",
+                "content": "IE=edge"
+            },
+            "generator": "Webpack",
+            "keywords": "Web-developer's Portfolio, Freelancer, Web-developer PHP JS NodeJS Laravel Yii Wordpress Vue Nuxt React Docker",
+            "description": "I develop, support and maintain sites and web-applications: Wordpress, Laravel, Yii, NodeJS, Javascript, Vue, Nuxt, React, Docker",
+            "twitter:card": "summary",
+            "twitter:title": "Portfolio Page | Nikita Churilov",
+            "twitter:description": "I develop, support and maintain sites and web-applications: Wordpress, Laravel, Yii, NodeJS, Javascript, Vue, Nuxt, React, Docker",
+            "og:type": {
+                "property": "og:type",
+                "content": "website"
+            },
+            "og:description": {
+                "property": "og:description",
+                "content": "I develop, support and maintain sites and web-applications: Wordpress, Laravel, Yii, NodeJS, Javascript, Vue, Nuxt, React, Docker"
+            },
+            "og:title": {
+                "property": "og:title",
+                "content": "Portfolio Page | Nikita Churilov"
+            },
+            "og:image": {
+                "property": "og:image",
+                "content": "static/img/main.png"
+            },
+            "og:image:type": {
+                "property": "og:image:type",
+                "content": "image/png"
+            },
+            "og:image:width": {
+                "property": "og:image:width",
+                "content": "718"
+            },
+            "og:image:height": {
+                "property": "og:image:height",
+                "content": "718"
+            }
+        },
+        "chunks": ["main"]
+    },
+    "demo/simple-swiper": {
+        "meta": {
+            "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
+            "X-UA-Compatible": {
+                "http-equiv": "X-UA-Compatible",
+                "content": "IE=edge"
+            },
+            "generator": "Webpack",
+            "keywords": "es6 swiper, swiper, es swiper, js swiper, simple swiper",
+            "twitter:card": "summary",
+            "twitter:title": "JS Simple Swiper",
+            "og:type": {
+                "property": "og:type",
+                "content": "website"
+            },
+            "og:title": {
+                "property": "og:title",
+                "content": "JS Simple Swiper"
+            }
+        },
+        "chunks": ["simple-swiper"]
+    }
+}
