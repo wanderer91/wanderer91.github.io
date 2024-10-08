@@ -1,0 +1,22 @@
+@import "~font-awesome/scss/font-awesome.scss";
+
+.code-block {
+    position: relative;
+    display: block;
+    border-radius: 6px;
+    padding: 6px 40px 6px 8px;
+    background-color: rgba(0, 0, 0, 0.05);
+
+    &--transparent {
+        background-color: transparent;
+    }
+
+    &__copy-btn {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        cursor: pointer;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 16px;
+    }
+}
