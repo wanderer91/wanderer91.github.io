@@ -66,7 +66,7 @@
                     </code>
                 </p>
                 <h3>Usage Example</h3>
-                <p>
+                <p class="mt-3">
                     <strong>HTML</strong><br>
                     <code class="">
                         &lt;div id=&quot;swiper&quot;&gt;<br>
@@ -76,7 +76,7 @@
                         &lt;/div&gt;<br>
                     </code>
                 </p>
-                <p>
+                <p class="mt-3">
                     <strong>CSS</strong><br>
                     Put this line into your javascript file:<br>
                     <code>
@@ -87,14 +87,14 @@
                         @import "~js-simple-swiper/dist/index.css";
                     </code>
                 </p>
-                <p>
+                <p class="mt-3">
                     <strong>JS</strong><br>
                     <code>
                         import Swiper from 'js-simple-swiper';<br>
                         new Swiper('#swiper');
                     </code>
                 </p>
-                <p>
+                <p class="mt-3">
                     <strong>Options</strong><br>
                     It's possible to pass options as the second constructor's parameter:<br>
                     <code>
@@ -103,7 +103,7 @@
                         });
                     </code>
                 </p>
-                <div class="table-responsive">
+                <div class="table-responsive mt-3">
                     <table class="table">
                         <thead>
                             <tr>
@@ -142,7 +142,7 @@
                                 <td>theme</td>
                                 <td><code data-copy="false">String</code></td>
                                 <td><code data-copy="false">'default'</code></td>
-                                <td>Theme name. See how you can specify your own theme.</td>
+                                <td>Theme name. <a href="#theme-tutorial">See</a> how you can specify your own theme.</td>
                             </tr>
                             <tr>
                                 <td>breakpoints</td>
@@ -155,13 +155,38 @@
                                 <td><code data-copy="false">Number</code></td>
                                 <td><code data-copy="false">45</td>
                                 <td>
-                                    In case when slide flipping is enabled this option is necessary for limiting angle between Y axis 
+                                    In case when slide flipping is enabled this option means angle's threshold between Y axis 
                                     and the line which user swipes across the screen along.
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                <p id="theme-tutorial" class="mt-3">
+                    <strong>Custom Theme</strong><br>
+                    Put this code into css-/scss- file and set variable values:<br>
+                    <code>
+                        .s-swiper.&lt;theme_name&gt;&nbsp;{<br>
+                        &nbsp;&nbsp;--dot-width: 6px;<br>
+                        &nbsp;&nbsp;--dot-height: 6px;<br>
+                        &nbsp;&nbsp;--active-dot-width: 10px;<br>
+                        &nbsp;&nbsp;--active-dot-height: 10px;<br>
+                        &nbsp;&nbsp;--dot-color: rgba(0, 0, 0, 0.5);<br>
+                        &nbsp;&nbsp;--active-dot-color: rgba(0, 0, 0, 1);<br>
+                        &nbsp;&nbsp;--arrow-width: 30px;<br>
+                        &nbsp;&nbsp;--arrow-height: 60px;<br>
+                        &nbsp;&nbsp;--arrow-color: rgba(0, 0, 0, 0.5);<br>
+                        &nbsp;&nbsp;--arrow-hover-color: rgba(0, 0, 0, 1);<br>
+                        }
+                    </code><br>
+                    Instead <code data-copy="false">&lt;theme_name&gt;</code> specify your theme's name.<br>
+                    Then set theme's name via constructor's options:<br>
+                    <code>
+                        new Swiper('#swiper', {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;theme: '&lt;theme_name&gt;',<br>
+                        });
+                    </code>
+                </p>
             </div>
         </div>
     </div>

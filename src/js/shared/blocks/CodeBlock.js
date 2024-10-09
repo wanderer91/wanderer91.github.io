@@ -17,7 +17,7 @@ export default class CodeBlock {
                 return;
             }
 
-            codeBlock.classList.add('pe-4');
+            codeBlock.classList.add('d-block', 'pe-4');
             codeBlock.innerHTML = `<span class="d-block overflow-x-auto pb-2 ps-2 pt-2">` + 
                 `<span class="code-block__text text-nowrap">${codeBlock.innerHTML}</span>` + 
                 `</span>`;
