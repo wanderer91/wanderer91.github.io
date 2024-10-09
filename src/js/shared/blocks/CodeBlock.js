@@ -1,7 +1,9 @@
+import '../../../scss/shared/code-block.scss';
+
 export default class CodeBlock {
     elements = null
 
-    constructor(selector = '') {
+    constructor(selector = 'code') {
         this.elements = document.querySelectorAll(selector);
         this.init();
     }
@@ -15,7 +17,10 @@ export default class CodeBlock {
                 return;
             }
 
-            codeBlock.innerHTML = `<span class="code-block__text">${codeBlock.innerHTML}</span>`;
+            codeBlock.classList.add('pe-4');
+            codeBlock.innerHTML = `<span class="d-block overflow-x-auto pb-2 ps-2 pt-2">` + 
+                `<span class="code-block__text text-nowrap">${codeBlock.innerHTML}</span>` + 
+                `</span>`;
 
             const copyBtn = document.createElement('span');
             copyBtn.classList.add('code-block__copy-btn');
@@ -37,7 +42,7 @@ export default class CodeBlock {
                 await navigator.clipboard.writeText(text);
 
                 target.classList.remove('fa-copy');
-                target.classList.add('fa-check');
+                target.classList.add('fa-check');    
             });
         });
     }

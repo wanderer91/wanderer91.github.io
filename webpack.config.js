@@ -6,6 +6,7 @@ import TerserPlugin from "terser-webpack-plugin";
 import fs from 'fs';
 
 const {PWD: currentDir, NODE_ENV: mode} = process.env;
+const devMode = mode === 'development';
 const pageOptions = JSON.parse(fs.readFileSync(`${currentDir}/data/page-options.json`, 'utf-8'));
 const htmlSrcDirectory = `${currentDir}/src/html`;
 const htmlWebpackPlugins = [];
@@ -13,7 +14,7 @@ const basicHtmlPluginOptions = {
     inject: 'body',
     hash: true,
     scriptLoading: 'defer',
-    minify: mode === 'development' ? false : {
+    minify: devMode ? false : {
         collapseWhitespace: true,
         keepClosingSlash: true,
         removeComments: true,
@@ -32,7 +33,7 @@ const walkDirectory = (dir) => {
         } else if (/\.html$/.test(sourcePath)) {
             const filePath = sourcePath.replace(new RegExp(`${htmlSrcDirectory}\/?`), '');
             let htmlPluginOptions = {
-                filename: `${currentDir}/${filePath}`,
+                filename: `${currentDir}/${devMode ? 'public/' : ''}${filePath}`,
                 template: sourcePath,
                 ...basicHtmlPluginOptions,
             };
@@ -55,12 +56,48 @@ walkDirectory(htmlSrcDirectory);
 export default {
     mode,
     devServer: {
-        static: {
-          directory: currentDir,
+        client: {
+            logging: 'log',
+            overlay: false,
         },
-        hot: true,
+        open: true,
+        host: '127.0.0.1',
+        liveReload: true,
+        watchFiles: [
+            `${currentDir}/src/**/*.js`,
+            `${currentDir}/src/**/*.scss`,
+            `${currentDir}/**/*.html`,
+        ],
+        webSocketServer: 'ws',
+        static: [
+            {
+                directory: `${currentDir}/public`,
+                watch: false,
+            },
+            {
+                directory: `${currentDir}/dist`,
+                publicPath: '/dist',
+            },
+            {
+                directory: `${currentDir}/data`,
+                publicPath: '/data'
+            },
+            {
+                directory: `${currentDir}/static`,
+                publicPath: '/static'
+            }
+        ],
+        hot: false,
         compress: true,
         port: 9000,
+        historyApiFallback: true,
+        devMiddleware: {
+            index: true,
+            mimeTypes: { phtml: 'text/html' },
+            publicPath: '/public',
+            serverSideRender: true,
+            writeToDisk: true,
+        },
     },
     entry: {
         main: './src/js/main.js',

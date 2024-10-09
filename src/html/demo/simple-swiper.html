@@ -8,7 +8,7 @@
     <div class="container mt-4 mb-5">
         <a href="/">Main Page</a>
         <div class="row mt-3">
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-lg-6 pe-lg-5">
                 <h1>JS Simple Swiper</h1>
                 <div class="mt-3 mb-3">
                     <a href="https://www.npmjs.com/package/js-simple-swiper" target="_blank">Package</a>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-6 ps-lg-5 mt-4 mt-lg-2">
+            <div class="col-12 col-lg-6 mt-4 mt-lg-2">
                 <h2>Installation</h2>
                 <p>
                     <code>
@@ -68,7 +68,7 @@
                 <h3>Usage Example</h3>
                 <p>
                     <strong>HTML</strong><br>
-                    <code>
+                    <code class="">
                         &lt;div id=&quot;swiper&quot;&gt;<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=&quot;https://dummyimage.com/600x400/000/fff.jpg&quot;/&gt;<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&lt;img src=&quot;https://dummyimage.com/600x400/000/fff.jpg&quot;/&gt;<br>
@@ -102,6 +102,8 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;stagePadding: 20,<br>
                         });
                     </code>
+                </p>
+                <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
@@ -114,38 +116,52 @@
                         <tbody>
                             <tr>
                                 <td>nav</td>
-                                <td>Object</td>
+                                <td><code data-copy="false">Object</code></td>
                                 <td><code data-copy="false">{<br>&nbsp;arrows:&nbsp;false,<br>&nbsp;dots:&nbsp;false<br>}</code></td>
-                                <td>Enable arrows/dots for slider swiping</td>
+                                <td>Enable arrows/dots for slide flipping.</td>
                             </tr>
                             <tr>
                                 <td>margin</td>
-                                <td>Number (in px)</td>
+                                <td><code data-copy="false">Number</code></td>
                                 <td><code data-copy="false">20</code></td>
-                                <td>Space between swiper's items</td>
+                                <td>Space between items (px).</td>
                             </tr>
                             <tr>
                                 <td>stagePadding</td>
-                                <td>Number (in px)</td>
+                                <td><code data-copy="false">Number</code></td>
                                 <td><code data-copy="false">30</code></td>
-                                <td>Inner padding of swiper's stage</td>
+                                <td>Stage's left and right padding (px).</td>
                             </tr>
                             <tr>
                                 <td>swiping</td>
-                                <td>Boolean</td>
+                                <td><code data-copy="false">Boolean</code></td>
                                 <td><code data-copy="false">false</code></td>
-                                <td>Enable swiping with touch or mouse button</td>
+                                <td>Enable flipping with touch or mouse button.</td>
                             </tr>
                             <tr>
                                 <td>theme</td>
-                                <td>String</td>
+                                <td><code data-copy="false">String</code></td>
                                 <td><code data-copy="false">'default'</code></td>
-                                <td>Swiper's theme</td>
+                                <td>Theme name. See how you can specify your own theme.</td>
+                            </tr>
+                            <tr>
+                                <td>breakpoints</td>
+                                <td><code data-copy="false">Object</code></td>
+                                <td><code data-copy="false">{<br>&nbsp;768:&nbsp;{<br>&nbsp;&nbsp;swiping:true,<br>&nbsp;}<br>}</code></td>
+                                <td>Describes option values for maximum window width (i. e. enable slide turning for window width &lt; 768px).</td>
+                            </tr>
+                            <tr>
+                                <td>maxSwipingVertAngle</td>
+                                <td><code data-copy="false">Number</code></td>
+                                <td><code data-copy="false">45</td>
+                                <td>
+                                    In case when slide flipping is enabled this option is necessary for limiting angle between Y axis 
+                                    and the line which user swipes across the screen along.
+                                </td>
                             </tr>
                         </tbody>
                     </table>
-                    <br>
-                </p>
+                </div>
             </div>
         </div>
     </div>

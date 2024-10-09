@@ -4,5 +4,5 @@ import "../scss/demo/simple-swiper.scss";
 
 document.addEventListener('DOMContentLoaded', () => {
     new Swiper('#swiper');
-    new CodeBlock('code');
+    new CodeBlock(); 
 });
