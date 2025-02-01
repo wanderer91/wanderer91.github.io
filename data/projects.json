@@ -1,49 +1,46 @@
 [
     {
+        "visible": true,
         "title": "Web Studio <a href='https://rustex.ru' target='_blank'>Rustex</a>",
-        "description": [
-            "Front-end & back-end development",
-            "Stack: Sass, JQuery, Bolt CMS, Gulp"
-        ],
+        "description": ["Front-end & back-end development", "Stack: Sass, JQuery, Bolt CMS, Gulp"],
         "thumb": "static/img/portfolio/web_mini.webp",
         "images": [
             {
-                "src": "static/img/portfolio/web_320.webp",
+                "list": ["static/img/portfolio/web_320.webp"],
                 "device": "mobile"
             },
             {
-                "src": "static/img/portfolio/web_768.webp",
+                "list": ["static/img/portfolio/web_768.webp"],
                 "device": "tablet"
             },
             {
-                "src": "static/img/portfolio/web.webp",
+                "list": ["static/img/portfolio/web.webp"],
                 "device": "desktop"
             }
         ]
     },
     {
+        "visible": true,
         "title": "Digital Studio <a href='https://grinteq.com' target='_blank'>Grinteq</a>",
-        "description": [
-            "Development of Digital Studio Website's Front-end",
-            "Stack: jQuery/Vanilla, Sass, MODX"
-        ],
+        "description": ["Development of Digital Studio Website's Front-end", "Stack: jQuery/Vanilla, Sass, MODX"],
         "thumb": "static/img/portfolio/grinteq_mini.webp",
         "images": [
             {
-                "src": "static/img/portfolio/grinteq_320.webp",
+                "list": ["static/img/portfolio/grinteq_320.webp"],
                 "device": "mobile"
             },
             {
-                "src": "static/img/portfolio/grinteq_768.webp",
+                "list": ["static/img/portfolio/grinteq_768.webp"],
                 "device": "tablet"
             },
             {
-                "src": "static/img/portfolio/grinteq.webp",
+                "list": ["static/img/portfolio/grinteq.webp"],
                 "device": "desktop"
             }
         ]
     },
     {
+        "visible": true,
         "title": "Presentation Website for <a href='https://ontoloo.ru' target='_blank'>KMS Ontoloo</a>",
         "description": [
             "Implementing of the Website's Frontend. Adaptive layout (mobiles, tablets, desktop).",
@@ -52,15 +49,15 @@
         "thumb": "static/img/portfolio/ontoloo_mini.webp",
         "images": [
             {
-                "src": "static/img/portfolio/ontoloo_320.webp",
+                "list": ["static/img/portfolio/ontoloo_320.webp"],
                 "device": "mobile"
             },
             {
-                "src": "static/img/portfolio/ontoloo_768.webp",
+                "list": ["static/img/portfolio/ontoloo_768.webp"],
                 "device": "tablet"
             },
             {
-                "src": "static/img/portfolio/ontoloo.webp",
+                "list": ["static/img/portfolio/ontoloo.webp"],
                 "device": "desktop"
             }
         ],
