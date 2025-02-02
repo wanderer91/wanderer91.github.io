@@ -16,6 +16,18 @@
         "alias": "njs"
     },
     {
+        "title": "TypeScript",
+        "alias": "ts"
+    },
+    {
+        "title": "React",
+        "alias": "react"
+    },
+    {
+        "title": "Docker",
+        "alias": "docker"
+    },
+    {
         "title": "VueJS",
         "alias": "vuejs"
     },
@@ -26,10 +38,6 @@
     {
         "title": "Webpack",
         "alias": "webp"
-    },
-    {
-        "title": "Gulp",
-        "alias": "gulp"
     },
     {
         "title": "PHP",

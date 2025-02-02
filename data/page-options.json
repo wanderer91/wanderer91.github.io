@@ -7,18 +7,18 @@
                 "content": "IE=edge"
             },
             "generator": "Webpack",
-            "keywords": "Web-developer's Page, Freelancer, Web-developer PHP JS NodeJS Laravel Yii Wordpress Vue Nuxt React Docker",
-            "description": "I develop, support and maintain sites and web-applications: Wordpress, Laravel, Yii, NodeJS, Javascript, Vue, Nuxt, React, Docker",
+            "keywords": "Web-developer's Page, Freelancer, Web-developer PHP JS NodeJS Laravel Yii Wordpress Vue Nuxt React Docker TypeScript",
+            "description": "I develop, support and maintain sites and web-applications: Wordpress, Laravel, Yii, NodeJS, Javascript, Vue, Nuxt, React, Docker, TypeScript",
             "twitter:card": "summary",
             "twitter:title": "Personal Page | Nikita Churilov",
-            "twitter:description": "I develop, support and maintain sites and web-applications: Wordpress, Laravel, Yii, NodeJS, Javascript, Vue, Nuxt, React, Docker",
+            "twitter:description": "I develop, support and maintain sites and web-applications: Wordpress, Laravel, Yii, NodeJS, Javascript, Vue, Nuxt, React, Docker, TypeScript",
             "og:type": {
                 "property": "og:type",
                 "content": "website"
             },
             "og:description": {
                 "property": "og:description",
-                "content": "I develop, support and maintain sites and web-applications: Wordpress, Laravel, Yii, NodeJS, Javascript, Vue, Nuxt, React, Docker"
+                "content": "I develop, support and maintain sites and web-applications: Wordpress, Laravel, Yii, NodeJS, Javascript, Vue, Nuxt, React, Docker, TypeScript"
             },
             "og:title": {
                 "property": "og:title",
