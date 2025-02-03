@@ -8,6 +8,10 @@
         "alias": "css"
     },
     {
+        "title": "Bootstrap",
+        "alias": "bs"
+    },
+    {
         "title": "JavaScript",
         "alias": "js"
     },
