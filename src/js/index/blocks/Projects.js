@@ -40,7 +40,7 @@ export default class Projects {
                 .each((projectImagesItemIndex, projectImagesItem) => {
                     const $projectImagesItem = $(projectImagesItem);
                     const imageSrc = $(projectImagesItem).data("src");
-                    const $link = $(`<a data-gallery="gallery${projectImagesItemIndex + 1}" href="${imageSrc}"></a>`);
+                    const $link = $(`<a data-gallery href="${imageSrc}"></a>`);
 
                     $(
                         `<img src="${imageSrc}" class="${$projectImagesItem.data("classes")}" alt="" loading="lazy"/>`
@@ -63,11 +63,10 @@ export default class Projects {
             e.preventDefault();
 
             const $link = $(e.target).closest("[data-gallery]");
-            const $modal = $link.closest(".modal");
-            const $allLinks = $modal.find(`a[data-gallery="${$link.attr("data-gallery")}"]`);
+            const $allLinks = $link.siblings(".project__images-item-gallery").find("img");
 
-            Fancybox.show($allLinks.find("img").clone(), {
-                startIndex: $allLinks.index($link),
+            Fancybox.show($allLinks.clone(), {
+                startIndex: 0,
             });
         });
     }

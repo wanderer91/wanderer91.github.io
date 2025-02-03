@@ -53,11 +53,16 @@
                 "device": "mobile"
             },
             {
-                "list": ["static/img/portfolio/ontoloo_768.webp"],
+                "list": ["static/img/portfolio/ontoloo_768.webp", "static/img/portfolio/ontoloo_768_1.webp"],
                 "device": "tablet"
             },
             {
-                "list": ["static/img/portfolio/ontoloo.webp"],
+                "list": [
+                    "static/img/portfolio/ontoloo.webp",
+                    "static/img/portfolio/ontoloo1.webp",
+                    "static/img/portfolio/ontoloo2.webp",
+                    "static/img/portfolio/ontoloo3.webp"
+                ],
                 "device": "desktop"
             }
         ],

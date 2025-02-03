@@ -36,11 +36,20 @@ export function renderModal(data = {}, id = "") {
                                         .map((imgData) => {
                                             const imgList = imgData.list;
                                             return imgList.length
-                                                ? `<div class="project__images-item project__images-item_${imgData.device}"
+                                                ? `<div class="project__images-item project__images-item_${
+                                                      imgData.device
+                                                  }"
                                                     data-src="${imgList[0]}"
-                                                    data-classes="img-fluid mb-5 project__screenshot project__screenshot_${imgData.device}">
+                                                    data-classes="img-fluid mb-5 project__screenshot project__screenshot_${
+                                                        imgData.device
+                                                    }">
                                                     <div class="project__resolution">
                                                         <i class="fa fa-${imgData.device}"></i>
+                                                    </div>
+                                                    <div class="d-none project__images-item-gallery">
+                                                    ${imgList
+                                                        .map((img) => `<img src="${img}" alt="" loading="lazy" />`)
+                                                        .join("")}
                                                     </div>
                                                 </div>`
                                                 : "";
