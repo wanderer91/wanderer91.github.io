@@ -52,6 +52,7 @@
 		display: none;
 	}
 	&__description {
+		max-width: 700px;
 		@include mq(320, 768) {
 			margin: 0.5rem 0;
 		}

@@ -30,7 +30,9 @@ export function renderModal(data = {}, id = "") {
                                 <h2 class="text-secondary text-uppercase mb-0 project__title">
                                     ${data.title}
                                 </h2>
-                                <p class="mb-5 project__description mt-4">${data.description.join("<br>")}</p>
+                                <p class="mb-5 project__description mt-4 me-auto text-start">${data.description.join(
+                                    "<br>"
+                                )}</p>
                                 <div class="project__images">
                                     ${data.images
                                         .map((imgData) => {
@@ -42,7 +44,7 @@ export function renderModal(data = {}, id = "") {
                                                     data-src="${imgList[0]}"
                                                     data-classes="img-fluid mb-5 project__screenshot project__screenshot_${
                                                         imgData.device
-                                                    }">
+                                                    }"${imgList.length > 1 ? ' title="Click to see all images"' : ""}>
                                                     <div class="project__resolution">
                                                         <i class="fa fa-${imgData.device}"></i>
                                                     </div>

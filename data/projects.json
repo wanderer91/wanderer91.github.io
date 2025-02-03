@@ -17,7 +17,8 @@
                 "list": ["static/img/portfolio/web.webp"],
                 "device": "desktop"
             }
-        ]
+        ],
+        "isNew": false
     },
     {
         "visible": true,
@@ -37,14 +38,15 @@
                 "list": ["static/img/portfolio/grinteq.webp"],
                 "device": "desktop"
             }
-        ]
+        ],
+        "isNew": false
     },
     {
         "visible": true,
         "title": "Presentation Website for <a href='https://ontoloo.ru' target='_blank'>KMS Ontoloo</a>",
         "description": [
             "Implementing of the Website's Frontend. Adaptive layout (mobiles, tablets, desktop).",
-            "Stack: Javascript (Vanilla, jQuery, D3.js), Sass, Webpack."
+            "Stack: Javascript (Vanilla, jQuery, D3.js), Sass, Webpack, Docker"
         ],
         "thumb": "static/img/portfolio/ontoloo_mini.webp",
         "images": [
@@ -53,15 +55,55 @@
                 "device": "mobile"
             },
             {
-                "list": ["static/img/portfolio/ontoloo_768.webp", "static/img/portfolio/ontoloo_768_1.webp"],
+                "list": ["static/img/portfolio/ontoloo_768.webp"],
+                "device": "tablet"
+            },
+            {
+                "list": ["static/img/portfolio/ontoloo.webp"],
+                "device": "desktop"
+            }
+        ],
+        "isNew": false
+    },
+    {
+        "visible": true,
+        "title": "Car parts' searching functionality for <a href='https://arlan-auto.ru' target='_blank'>Arlan Auto</a>",
+        "description": [
+            "<strong>Task</strong>: Replace car parts' searching iframe with the same functionality on Vue/Nuxt.",
+            "<strong>Result</strong>:",
+            "1. Output of parts' category multi-level tree and search across it",
+            "2. Interactive image for each part and its units",
+            "3. Search by part unit's code and unit list pagination",
+            "4. Ability to zoom and drag images with mouse and touch",
+            "<strong>Stack</strong>: Laravel, Vue/Nuxt, Sass, Docker."
+        ],
+        "thumb": "static/img/portfolio/arlan_mini.webp",
+        "images": [
+            {
+                "list": [
+                    "static/img/portfolio/arlan_320.webp",
+                    "static/img/portfolio/arlan_320_1.webp",
+                    "static/img/portfolio/arlan_320_2.webp",
+                    "static/img/portfolio/arlan_320_3.webp",
+                    "static/img/portfolio/arlan_320_4.webp"
+                ],
+                "device": "mobile"
+            },
+            {
+                "list": [
+                    "static/img/portfolio/arlan_768.webp",
+                    "static/img/portfolio/arlan_768_1.webp",
+                    "static/img/portfolio/arlan_768_2.webp"
+                ],
                 "device": "tablet"
             },
             {
                 "list": [
-                    "static/img/portfolio/ontoloo.webp",
-                    "static/img/portfolio/ontoloo1.webp",
-                    "static/img/portfolio/ontoloo2.webp",
-                    "static/img/portfolio/ontoloo3.webp"
+                    "static/img/portfolio/arlan.webp",
+                    "static/img/portfolio/arlan1.webp",
+                    "static/img/portfolio/arlan2.webp",
+                    "static/img/portfolio/arlan3.webp",
+                    "static/img/portfolio/arlan4.webp"
                 ],
                 "device": "desktop"
             }
