@@ -11,7 +11,7 @@ const convert = (path) => {
     sharp(path).webp().toFile(outputPath);
 };
 
-const imagePaths = ["/static/img/main.png", "/static/img/portfolio", "/static/icons"];
+const imagePaths = ["/static/img/main.png", "/static/img/portfolio", "/static/icons/sprite.png"];
 
 imagePaths.forEach((path) => {
     const targetPath = `${__dirname}${path}`;

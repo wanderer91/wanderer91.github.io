@@ -36,12 +36,12 @@
         "alias": "vuejs"
     },
     {
-        "title": "Sass",
-        "alias": "sass"
+        "title": "Scss",
+        "alias": "scss"
     },
     {
         "title": "Webpack",
-        "alias": "webp"
+        "alias": "webpack"
     },
     {
         "title": "PHP",

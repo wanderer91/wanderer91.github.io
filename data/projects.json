@@ -2,7 +2,7 @@
     {
         "visible": true,
         "title": "Web Studio <a href='https://rustex.ru' target='_blank'>Rustex</a>",
-        "description": ["Front-end & back-end development", "Stack: Sass, JQuery, Bolt CMS, Gulp"],
+        "description": ["Front-end & back-end development", "Stack: Scss, JQuery, Bolt CMS, Gulp"],
         "thumb": "static/img/portfolio/web_mini.webp",
         "images": [
             {
@@ -23,7 +23,7 @@
     {
         "visible": true,
         "title": "Digital Studio <a href='https://grinteq.com' target='_blank'>Grinteq</a>",
-        "description": ["Development of Digital Studio Website's Front-end", "Stack: jQuery/Vanilla, Sass, MODX"],
+        "description": ["Development of Digital Studio Website's Front-end", "Stack: jQuery/Vanilla, Scss, MODX"],
         "thumb": "static/img/portfolio/grinteq_mini.webp",
         "images": [
             {
@@ -46,7 +46,7 @@
         "title": "Presentation Website for <a href='https://ontoloo.ru' target='_blank'>KMS Ontoloo</a>",
         "description": [
             "Implementing of the Website's Frontend. Adaptive layout (mobiles, tablets, desktop).",
-            "Stack: Javascript (Vanilla, jQuery, D3.js), Sass, Webpack, Docker"
+            "Stack: Javascript (Vanilla, jQuery, D3.js), Scss, Webpack, Docker"
         ],
         "thumb": "static/img/portfolio/ontoloo_mini.webp",
         "images": [
@@ -75,7 +75,7 @@
             "2. Interactive image for each part and its units",
             "3. Search by part unit's code and unit list pagination",
             "4. Ability to zoom and drag images with mouse and touch",
-            "<strong>Stack</strong>: Laravel, Vue/Nuxt, Sass, Docker."
+            "<strong>Stack</strong>: Laravel, Vue/Nuxt, Scss, Docker."
         ],
         "thumb": "static/img/portfolio/arlan_mini.webp",
         "images": [
@@ -115,7 +115,7 @@
         "title": "Full redesign of website <a href='https://snabeks.ccs.msk.ru/' target='_blank'>Snabeks</a>",
         "description": [
             "This website based on <a href='https://go-core.ru/index.html' target='_blank'>GoCore Platform</a> (Node.js, Socket.io, MySQL, Pug)",
-            "<strong>Redesign Stack</strong>: Typescript, Node.js, Socket.io, React DOM, Sass, Webpack",
+            "<strong>Redesign Stack</strong>: Typescript, Node.js, Socket.io, React DOM, Scss, Webpack",
             "Docker and XDebug used for development"
         ],
         "thumb": "static/img/portfolio/snabeks_mini.webp",
