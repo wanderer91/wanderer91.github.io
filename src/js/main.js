@@ -8,6 +8,7 @@ import ScrollToTop from "./shared/blocks/ScrollToTop.js";
 import ScrollTriggerLink from "./shared/blocks/ScrollTriggerLink.js";
 import Navigation from "./shared/blocks/Navigation.js";
 import Modal from "./shared/blocks/Modal.js";
+import Footer from "./shared/blocks/Footer.js";
 
 window.$ = $;
 window.axios = axios;
@@ -19,5 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
     new Tools(".skills .section__content");
     new Demo(".demo .section__content");
     new ScrollToTop();
+    new Footer(".footer");
     Modal.attachEvents();
 });

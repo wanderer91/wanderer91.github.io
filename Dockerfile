@@ -1,18 +1,21 @@
-FROM node:18-alpine
-
-ENV MODE=development
+FROM node:22.12
 
 USER node
 
+WORKDIR /var/www/install
+
+RUN chown node:node /var/www/install
+
+COPY --chown=node:node package.json  .
+COPY --chown=node:node package-lock.json .
+COPY --chown=node:node entrypoint.sh .
+RUN chmod +x entrypoint.sh
+
+RUN npm install --prefer-offline --no-audit --progress=false
+
 WORKDIR /var/www/app
-
 RUN chown node:node /var/www/app
-
-COPY --chown=node:node ./package.json .
-RUN npm install --loglevel verbose
-
-COPY --chown=node:node . .
 
 EXPOSE 9000
 
-CMD if [ "${MODE}" == "development" ]; then npm run dev; elif [ "${MODE}" == "production" ]; then npm run build; fi
+CMD ["sh", "-c", "/var/www/install/entrypoint.sh"]

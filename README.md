@@ -1,13 +1,16 @@
+### Build
 ```
 make build
 ```
 ### Dev Mode
 ```
-make run
-make stop
+make dev
 ```
 ### Production Mode
 ```
-make run-prod
-make stop-prod
+make prod
+```
+### Stop
+```
+make stop
 ```

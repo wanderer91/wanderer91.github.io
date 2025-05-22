@@ -108,6 +108,53 @@
                 "device": "desktop"
             }
         ],
+        "isNew": false
+    },
+    {
+        "visible": true,
+        "title": "Full redesign of website <a href='https://snabeks.ccs.msk.ru/' target='_blank'>Snabeks</a>",
+        "description": [
+            "This website based on <a href='https://go-core.ru/index.html' target='_blank'>GoCore Platform</a> (Node.js, Socket.io, MySQL, Pug)",
+            "<strong>Redesign Stack</strong>: Typescript, Node.js, Socket.io, React DOM, Sass, Webpack",
+            "Docker and XDebug used for development"
+        ],
+        "thumb": "static/img/portfolio/snabeks_mini.webp",
+        "images": [
+            {
+                "list": [
+                    "static/img/portfolio/snabeks_320.webp",
+                    "static/img/portfolio/snabeks_320_2.webp",
+                    "static/img/portfolio/snabeks_320_3.webp",
+                    "static/img/portfolio/snabeks_320_4.webp",
+                    "static/img/portfolio/snabeks_320_5.webp",
+                    "static/img/portfolio/snabeks_320_6.webp"
+                ],
+                "device": "mobile"
+            },
+            {
+                "list": [
+                    "static/img/portfolio/snabeks_768.webp",
+                    "static/img/portfolio/snabeks_768_2.webp",
+                    "static/img/portfolio/snabeks_768_3.webp",
+                    "static/img/portfolio/snabeks_768_4.webp",
+                    "static/img/portfolio/snabeks_768_5.webp",
+                    "static/img/portfolio/snabeks_768_6.webp",
+                    "static/img/portfolio/snabeks_768_7.webp"
+                ],
+                "device": "tablet"
+            },
+            {
+                "list": [
+                    "static/img/portfolio/snabeks.webp",
+                    "static/img/portfolio/snabeks_2.webp",
+                    "static/img/portfolio/snabeks_3.webp",
+                    "static/img/portfolio/snabeks_4.webp",
+                    "static/img/portfolio/snabeks_5.webp",
+                    "static/img/portfolio/snabeks_6.webp"
+                ],
+                "device": "desktop"
+            }
+        ],
         "isNew": true
     }
 ]
