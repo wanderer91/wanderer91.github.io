@@ -85,3 +85,16 @@ section {
     z-index: 1060;
   }
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: $secondary;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba($secondary, 0.05);
+}
