@@ -100,7 +100,6 @@ export default {
     },
     entry: {
         main: "./src/js/main.js",
-        "simple-swiper": "./src/js/simple-swiper.js",
     },
     output: {
         path: `${currentDir}/dist`,
