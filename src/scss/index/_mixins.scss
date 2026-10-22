@@ -1,10 +1,10 @@
 @mixin body-font() {
-  font-family: 'Lato';
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 @mixin heading-font() {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-weight: 700;
-  font-family: 'Montserrat';
 }
 
 @mixin mq($start: false, $end: false, $type: "screen") {

@@ -1,107 +1,143 @@
 .skills {
-    &__list {
-        margin-top: 10px;
-    }
-    &__star {
-        @include mq(320, 768) {
-            display: none;
-        }
-    }
+  width: 100%;
 
-    &__caption {
-        width: 100%;
-        font-weight: 700;
-        font-size: 2em;
-        font-family: Montserrat;
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+    width: 100%;
+
+    @include mq(320, 576) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
     }
 
-    &__item {
-        &-text {
-            margin-left: 20px;
-            border-bottom: 2px solid white;
-            letter-spacing: 0.05em;
-        }
-
-        &-icon {
-            background: url(../../../static/icons/sprite.webp);
-            width: 48px;
-            height: 48px;
-
-            &_html {
-                background-position: -146px -78px;
-            }
-
-            &_js {
-                background-position: -146px -10px;
-            }
-
-            &_bs {
-                background-position: -214px -214px;
-            }
-
-            &_css {
-                background-position: -78px -146px;
-            }
-
-            &_njs {
-                background-position: -78px -78px;
-            }
-
-            &_php {
-                background-position: -214px -146px;
-            }
-
-            &_apache {
-                background-position: -282px -78px;
-            }
-
-            &_docker {
-                background-position: -10px -146px;
-            }
-
-            &_git {
-                background-position: -282px -10px;
-            }
-
-            &_laravel {
-                background-position: -146px -214px;
-            }
-
-            &_mysql {
-                background-position: -78px -214px;
-            }
-
-            &_nginx {
-                background-position: -10px -214px;
-            }
-
-            &_react {
-                background-position: -10px -78px;
-            }
-
-            &_ts {
-                background-position: -78px -10px;
-            }
-
-            &_scss {
-                background-position: -282px -146px;
-            }
-
-            &_vuejs {
-                background-position: -10px -10px;
-            }
-
-            &_webpack {
-                background-position: -214px -78px;
-            }
-
-            &_wp {
-                background-position: -214px -10px;
-            }
-
-            &_yii {
-                background-position: -146px -146px;
-            }
-        }
+    @include mq(576, 768) {
+      grid-template-columns: repeat(3, 1fr);
     }
+
+    @include mq(768, 992) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @include mq(992, 1200) {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+
+  &__card {
+    background-color: $white;
+    border: 1px solid $border-color;
+    border-radius: 12px;
+    padding: 1.25rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.75rem;
+    box-shadow: $card-shadow;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      border-color: rgba($primary, 0.4);
+      transform: translateY(-2px);
+      box-shadow: $card-shadow-hover;
+    }
+
+    @include mq(320, 576) {
+      padding: 1rem 0.5rem;
+    }
+  }
+
+  &__item-text {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: $text-primary;
+    letter-spacing: -0.01em;
+  }
+
+  &__item-icon {
+    background: url(../../../static/icons/sprite.webp);
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    flex-shrink: 0;
+
+    &_html {
+      background-position: -146px -78px;
+    }
+
+    &_js {
+      background-position: -146px -10px;
+    }
+
+    &_bs {
+      background-position: -214px -214px;
+    }
+
+    &_css {
+      background-position: -78px -146px;
+    }
+
+    &_njs {
+      background-position: -78px -78px;
+    }
+
+    &_php {
+      background-position: -214px -146px;
+    }
+
+    &_apache {
+      background-position: -282px -78px;
+    }
+
+    &_docker {
+      background-position: -10px -146px;
+    }
+
+    &_git {
+      background-position: -282px -10px;
+    }
+
+    &_laravel {
+      background-position: -146px -214px;
+    }
+
+    &_mysql {
+      background-position: -78px -214px;
+    }
+
+    &_nginx {
+      background-position: -10px -214px;
+    }
+
+    &_react {
+      background-position: -10px -78px;
+    }
+
+    &_ts {
+      background-position: -78px -10px;
+    }
+
+    &_scss {
+      background-position: -282px -146px;
+    }
+
+    &_vuejs {
+      background-position: -10px -10px;
+    }
+
+    &_webpack {
+      background-position: -214px -78px;
+    }
+
+    &_wp {
+      background-position: -214px -10px;
+    }
+
+    &_yii {
+      background-position: -146px -146px;
+    }
+  }
 }

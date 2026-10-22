@@ -24,8 +24,7 @@ export default class Projects {
         this.projects.forEach((item, i) => {
             this.$contentEl.append(
                 renderThumb({
-                    thumbSrc: item.thumb,
-                    isNew: !!item.isNew,
+                    ...item,
                     href: `#portfolio-modal-${i + 1}`,
                 })
             );

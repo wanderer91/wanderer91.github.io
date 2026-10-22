@@ -1,6 +1,28 @@
-// Typography
+// Typography & Global Layout
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 body {
   @include body-font;
+  background-color: $body-bg;
+  color: $text-secondary;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 h1,
@@ -10,76 +32,150 @@ h4,
 h5,
 h6 {
   @include heading-font;
+  color: $text-primary;
+  letter-spacing: -0.02em;
 }
 
-// Custom Horizontal Rule with Star Icon
-hr.star-light,
-hr.star-dark {
-  max-width: 15rem;
-  padding: 0;
-  text-align: center;
-  border: none;
-  border-top: solid 0.25rem;
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
-}
+a {
+  color: $primary;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
 
-hr.star-light:after,
-hr.star-dark:after {
-  position: relative;
-  top: -.8em;
-  display: inline-block;
-  padding: 0 0.25em;
-  content: '\f005';
-  font-family: FontAwesome;
-  font-size: 2em;
-}
-
-hr.star-light {
-  border-color: $white;
-}
-hr.star-light:after {
-  color: $white;
-  background-color: $primary;
-}
-
-hr.star-dark {
-  border-color: $secondary;
-}
-hr.star-dark:after {
-  color: $secondary;
-  background-color: white;
-}
-
-// Section Padding Settings
-section {
-  padding: 6rem 0;
-  h2 {
-    font-size: 2.25rem;
-    line-height: 2rem;
+  &:hover {
+    color: $primary-hover;
   }
-  @media (min-width: 992px) {
-    h2 {
-      font-size: 3rem;
-      line-height: 2.5rem;
+}
+
+// Focus outline for keyboard navigation
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid $primary;
+  outline-offset: 3px;
+}
+
+// Section Base Styling
+section {
+  padding: 5rem 0;
+  position: relative;
+
+  @include mq(320, 768) {
+    padding: 3.5rem 0;
+  }
+}
+
+// Section Headings (Editorial Style)
+.section-heading {
+  margin-bottom: 3.5rem;
+
+  @include mq(320, 768) {
+    margin-bottom: 2.25rem;
+  }
+
+  &__eyebrow {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: $primary;
+    margin-bottom: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    background-color: $primary-light;
+    border-radius: 9999px;
+  }
+
+  &__title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: $text-primary;
+    margin-bottom: 0.75rem;
+
+    @include mq(320, 768) {
+      font-size: 1.75rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: 1.1rem;
+    color: $text-muted;
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.6;
+
+    @include mq(320, 768) {
+      font-size: 1rem;
     }
   }
 }
 
-// Custom Button Size
-.btn-xl {
-  padding: 1rem 1.75rem;
-  font-size: 1.25rem;
+// Buttons
+.btn {
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.65rem 1.35rem;
+  font-size: 0.95rem;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  &-lg {
+    padding: 0.85rem 1.75rem;
+    font-size: 1.05rem;
+    border-radius: 10px;
+  }
+
+  &-primary {
+    background-color: $primary;
+    border-color: $primary;
+    color: $white;
+    box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2);
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $primary-hover;
+      border-color: $primary-hover;
+      color: $white;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+  }
+
+  &-outline-primary {
+    color: $primary;
+    border-color: $primary;
+    background-color: transparent;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $white;
+      background-color: $primary;
+      border-color: $primary;
+      transform: translateY(-1px);
+    }
+  }
+
+  &-outline-secondary {
+    color: $text-primary;
+    border-color: $border-color;
+    background-color: $white;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $primary;
+      border-color: $primary;
+      background-color: $primary-light;
+      transform: translateY(-1px);
+    }
+  }
 }
 
-// Custom Rounded Social Button
-.btn-social {
-  width: 3.25rem;
-  height: 3.25rem;
-  font-size: 1.25rem;
-  line-height: 2rem;
-}
-
+// Fancybox z-index override
 .fancybox {
   &__container {
     z-index: 1060;

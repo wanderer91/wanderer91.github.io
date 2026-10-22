@@ -1,17 +1,39 @@
-// Variables
+// Variables - Modern Editorial Portfolio Palette
 
-$white: #fff !default;
-$light-gray: #e8e8e8;
-$gray-100: #f8f9fa !default;
-$gray-200: #e9ecef !default;
-$gray-300: #dee2e6 !default;
-$gray-400: #ced4da !default;
-$gray-500: #adb5bd !default;
-$gray-600: #868e96 !default;
-$gray-700: #495057 !default;
-$gray-800: #343a40 !default;
-$gray-900: #212529 !default;
-$black: #000 !default;
+$white: #ffffff !default;
+$light-gray: #e2e8f0;
+$body-bg: #f8fafc;
+$card-bg: #ffffff;
+$subtle-bg: #f1f5f9;
 
-$primary: #18BC9C;
-$secondary: #2C3E50;
+$gray-50: #f8fafc !default;
+$gray-100: #f8fafc !default;
+$gray-200: #e2e8f0 !default;
+$gray-300: #cbd5e1 !default;
+$gray-400: #94a3b8 !default;
+$gray-500: #64748b !default;
+$gray-600: #475569 !default;
+$gray-700: #334155 !default;
+$gray-800: #1e293b !default;
+$gray-900: #0f172a !default;
+$black: #000000 !default;
+
+// Accent Colors
+$primary: #2563eb;          // Cobalt blue
+$primary-hover: #1d4ed8;
+$primary-light: #eff6ff;
+$primary-subtle: #dbeafe;
+$secondary: #0f172a;        // Graphite / near-black
+$secondary-light: #334155;
+
+// Typography colors
+$text-primary: #0f172a;
+$text-secondary: #475569;
+$text-muted: #64748b;
+
+// Borders & Shadows
+$border-color: #e2e8f0;
+$border-color-light: #f1f5f9;
+$card-shadow: 0 1px 3px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.06);
+$card-shadow-hover: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+$card-shadow-lg: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
