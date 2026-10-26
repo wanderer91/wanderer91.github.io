@@ -3,7 +3,6 @@ build:
 dev:
 	docker run \
 		--rm \
-		-d \
 		-e MODE=development \
 		-p 9000:9000 \
 		-v .:/var/www/app \
