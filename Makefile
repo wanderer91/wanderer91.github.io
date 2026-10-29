@@ -19,3 +19,5 @@ prod:
 		--name my-page my-page:latest
 stop:
 	docker container stop my-page
+logs:
+	docker logs -f my-page
