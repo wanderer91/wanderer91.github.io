@@ -39,53 +39,55 @@ export function renderThumb(options = {}, maybeHref = "") {
 export function renderModal(data = {}, id = "") {
     return `<div class="portfolio-modal project modal fade" id="${id}" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg portfolio-modal-dialog bg-white project__modal">
-                    <button type="button" class="close-button portfolio-modal-dismiss project__close-button" data-dismiss="modal" aria-label="Close">
-                        <i class="fa fa-times project__close-button-icon" aria-hidden="true"></i>
-                    </button>
-                    <div class="container-fluid text-center project__container p-0">
-                        <div class="row project__row">
-                            <div class="col-12 project__row-block">
-                                <h2 class="text-secondary project__title mb-3">
-                                    ${data.title}
-                                </h2>
-                                <div class="project__description text-start mx-auto mb-4">
-                                    ${data.description.map((line) => `<p class="mb-2">${line}</p>`).join("")}
-                                </div>
-                                <div class="project__devices-notice mb-4">
-                                    <span class="project__notice-pill">
-                                        <i class="fa fa-info-circle me-1 text-primary"></i> Click any screenshot below to browse full device gallery
-                                    </span>
-                                </div>
-                                <div class="project__images">
-                                    ${data.images
-                                        .map((imgData) => {
-                                            const imgList = imgData.list;
-                                            return imgList.length
-                                                ? `<div class="project__images-item project__images-item_${
-                                                      imgData.device
-                                                  }"
-                                                    data-src="${imgList[0]}"
-                                                    data-classes="img-fluid project__screenshot project__screenshot_${
-                                                        imgData.device
-                                                    }"${imgList.length > 1 ? ' title="Click to see all images"' : ""}>
-                                                    <div class="project__resolution">
-                                                        <i class="fa fa-${imgData.device}"></i>
-                                                        <span class="project__resolution-label">${imgData.device}</span>
-                                                    </div>
-                                                    <div class="d-none project__images-item-gallery">
-                                                    ${imgList
-                                                        .map((img) => `<img src="${img}" alt="" loading="lazy" />`)
-                                                        .join("")}
-                                                    </div>
-                                                </div>`
-                                                : "";
-                                        })
-                                        .join("")}
-                                </div>
-                                <div class="project__footer mt-4 pt-3 border-top">
-                                    <button type="button" class="btn btn-outline-secondary portfolio-modal-dismiss" data-dismiss="modal">
-                                        <i class="fa fa-times me-1"></i> Close
-                                    </button>
+                    <div class="modal-content bg-white">
+                        <button type="button" class="close-button portfolio-modal-dismiss project__close-button" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-times project__close-button-icon" aria-hidden="true"></i>
+                        </button>
+                        <div class="container-fluid text-center project__container p-0">
+                            <div class="row project__row">
+                                <div class="col-12 project__row-block">
+                                    <h2 class="text-secondary project__title mb-3">
+                                        ${data.title}
+                                    </h2>
+                                    <div class="project__description text-start mx-auto mb-4">
+                                        ${data.description.map((line) => `<p class="mb-2">${line}</p>`).join("")}
+                                    </div>
+                                    <div class="project__devices-notice mb-4">
+                                        <span class="project__notice-pill">
+                                            <i class="fa fa-info-circle me-1 text-primary"></i> Click any screenshot below to browse full device gallery
+                                        </span>
+                                    </div>
+                                    <div class="project__images">
+                                        ${data.images
+                                            .map((imgData) => {
+                                                const imgList = imgData.list;
+                                                return imgList.length
+                                                    ? `<div class="project__images-item project__images-item_${
+                                                          imgData.device
+                                                      }"
+                                                        data-src="${imgList[0]}"
+                                                        data-classes="img-fluid project__screenshot project__screenshot_${
+                                                            imgData.device
+                                                        }"${imgList.length > 1 ? ' title="Click to see all images"' : ""}>
+                                                        <div class="project__resolution">
+                                                            <i class="fa fa-${imgData.device}"></i>
+                                                            <span class="project__resolution-label">${imgData.device}</span>
+                                                        </div>
+                                                        <div class="d-none project__images-item-gallery">
+                                                        ${imgList
+                                                            .map((img) => `<img src="${img}" alt="" loading="lazy" />`)
+                                                            .join("")}
+                                                        </div>
+                                                    </div>`
+                                                    : "";
+                                            })
+                                            .join("")}
+                                    </div>
+                                    <div class="project__footer mt-4 pt-3 border-top">
+                                        <button type="button" class="btn btn-outline-secondary portfolio-modal-dismiss" data-bs-dismiss="modal">
+                                            <i class="fa fa-times me-1"></i> Close
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

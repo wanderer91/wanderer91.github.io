@@ -26,7 +26,7 @@ export default class Projects {
                 renderThumb({
                     ...item,
                     href: `#portfolio-modal-${i + 1}`,
-                })
+                }),
             );
             $body.append(renderModal(item, `portfolio-modal-${i + 1}`));
         });
@@ -42,7 +42,7 @@ export default class Projects {
                     const $link = $(`<a data-gallery href="${imageSrc}"></a>`);
 
                     $(
-                        `<img src="${imageSrc}" class="${$projectImagesItem.data("classes")}" alt="" loading="lazy"/>`
+                        `<img src="${imageSrc}" class="${$projectImagesItem.data("classes")}" alt="" loading="lazy"/>`,
                     ).appendTo($link);
                     $link.appendTo($projectImagesItem);
                 });
@@ -62,11 +62,16 @@ export default class Projects {
             e.preventDefault();
 
             const $link = $(e.target).closest("[data-gallery]");
-            const $allLinks = $link.siblings(".project__images-item-gallery").find("img");
+            const $galleryImgs = $link.siblings(".project__images-item-gallery").find("img");
 
-            Fancybox.show($allLinks.clone(), {
-                startIndex: 0,
-            });
+            const slides = $galleryImgs.map((_, img) => ({
+                src: $(img).attr("src"),
+                type: "image",
+            })).get();
+
+            if (slides.length) {
+                Fancybox.show(slides, { startIndex: 0 });
+            }
         });
     }
 }

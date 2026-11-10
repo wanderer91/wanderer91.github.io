@@ -149,6 +149,19 @@
         font-size: 1.1rem;
         line-height: 1;
       }
+
+      @include mq(320, 768) {
+        top: 0.25rem;
+        right: 0.25rem;
+        width: 28px;
+        height: 28px;
+        background-color: transparent;
+        border-color: transparent;
+
+        &-icon {
+          font-size: 0.95rem;
+        }
+      }
     }
   }
 }
